@@ -15,11 +15,11 @@ D:/TestWork/TestGame
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-56005
+62094
 Successfully changed project path to: D:/TestWork/TestGame
 D:/TestWork/TestGame
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 46.24 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 47.98 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.3.0f1 (c7b5465681fb)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.3.0f1/Editor/Data/Resources/UnitySubsystems
@@ -35,116 +35,228 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.3.0f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.3.0f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.3.0f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56748
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56504
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.3.0f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.3.0f1/Editor/Data/PlaybackEngines/LinuxStandaloneSupport/UnityEditor.LinuxStandalone.Extensions.dll
-Registered in 0.000965 seconds.
+Registered in 0.000917 seconds.
 Native extension for LinuxStandalone target not found
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 35.15 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 34.67 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.033 seconds
+- Completed reload, in  1.027 seconds
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.000528 seconds.
+Registered in 0.000753 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for LinuxStandalone target not found
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.57 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 0.50 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.434 seconds
+- Completed reload, in  0.433 seconds
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.03 seconds
-Refreshing native plugins compatible for Editor in 0.72 ms, found 1 plugins.
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.02 seconds
+Refreshing native plugins compatible for Editor in 0.53 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 2365 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 125.3 MB.
-System memory in use after: 125.2 MB.
+System memory in use before: 125.7 MB.
+System memory in use after: 125.7 MB.
 
-Unloading 27 unused Assets to reduce memory usage. Loaded Objects now: 2811.
-Total: 2.627800 ms (FindLiveObjects: 0.292400 ms CreateObjectMapping: 0.056200 ms MarkObjects: 1.985500 ms  DeleteObjects: 0.292700 ms)
-
-========================================================================
-Received Import Request.
-  path: Assets/Scenes/Level1Test.unity
-  artifactKey: Guid(9da918fef5d6f7848a6b383da7b692ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/Level1Test.unity using Guid(9da918fef5d6f7848a6b383da7b692ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'aa3921e12ffad95e392950a3de42c5d8') in 0.019191 seconds
-  Import took 0.023083 seconds .
+Unloading 27 unused Assets to reduce memory usage. Loaded Objects now: 2814.
+Total: 1.660700 ms (FindLiveObjects: 0.261000 ms CreateObjectMapping: 0.067900 ms MarkObjects: 1.137300 ms  DeleteObjects: 0.193900 ms)
 
 ========================================================================
 Received Import Request.
-  Time since last request: 14.495802 seconds.
-  path: Assets/3DGamekit/Art/Textures/Environment/Rock/DistantTerrain_DetailMask.tif
-  artifactKey: Guid(149320d70986b6e4e98e8e7ed00e3299) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/3DGamekit/Art/Textures/Environment/Rock/DistantTerrain_DetailMask.tif using Guid(149320d70986b6e4e98e8e7ed00e3299) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '22a3c4a1dcba183c8633db1932fb2502') in 0.076375 seconds
-  Import took 0.079572 seconds .
+  path: Assets/Scenes/Level1Test
+  artifactKey: Guid(3d7fd2fb3ec29194c8ad41a4234b2783) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Level1Test using Guid(3d7fd2fb3ec29194c8ad41a4234b2783) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ccc573af3ad7f865f90805d804a6058c') in 0.009633 seconds
+  Import took 0.012118 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000196 seconds.
-  path: Assets/3DGamekit/Art/Sprites/UI/HUD/HealthIconMask.png
-  artifactKey: Guid(0fc1f613ccfee624f80804d4702144e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/3DGamekit/Art/Sprites/UI/HUD/HealthIconMask.png using Guid(0fc1f613ccfee624f80804d4702144e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f12ec2f2b2b323cf9f99888cb3ca79ea') in 0.051295 seconds
-  Import took 0.053941 seconds .
+  Time since last request: 0.000191 seconds.
+  path: Assets/Scenes/Level1Test/LightingData.asset
+  artifactKey: Guid(421fb74f26a11784d8c9bc8888e79903) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Level1Test/LightingData.asset using Guid(421fb74f26a11784d8c9bc8888e79903) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '36154982e64ed244260e283d4f5cf2e0') in 0.031878 seconds
+  Import took 0.034343 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000185 seconds.
-  path: Assets/3DGamekit/Packages/Skybox3D/Runtime/Skybox3DRuntime.asmdef
-  artifactKey: Guid(b3c9e14c48a4a4ee08677c35bcfe710b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/3DGamekit/Packages/Skybox3D/Runtime/Skybox3DRuntime.asmdef using Guid(b3c9e14c48a4a4ee08677c35bcfe710b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5557f583b05cedd461e20790a64bf80a') in 0.011789 seconds
-  Import took 0.014430 seconds .
+  Time since last request: 0.000156 seconds.
+  path: Assets/Scenes/Level1Test/Lightmap-1_comp_light.exr
+  artifactKey: Guid(63e8c2e00057ae143b4ad4104f4af525) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Level1Test/Lightmap-1_comp_light.exr using Guid(63e8c2e00057ae143b4ad4104f4af525) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '806dc589bd38f42e2f3796ddb30b2ce9') in 0.057572 seconds
+  Import took 0.059773 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000163 seconds.
-  path: Assets/3DGamekit/Art/Animations/AvatarMasks/EllenFaceAvatarMask.mask
-  artifactKey: Guid(77479e0d616e23148b57680318ec6061) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/3DGamekit/Art/Animations/AvatarMasks/EllenFaceAvatarMask.mask using Guid(77479e0d616e23148b57680318ec6061) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f4d51ea92739e18d23650b6527bbc395') in 0.009642 seconds
-  Import took 0.012238 seconds .
+  Time since last request: 0.000169 seconds.
+  path: Assets/Scenes/Level1Test/ReflectionProbe-3.exr
+  artifactKey: Guid(3108c84a383f8fd4683ccd92d5a4e4e1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Level1Test/ReflectionProbe-3.exr using Guid(3108c84a383f8fd4683ccd92d5a4e4e1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '072283f502c853500e52baeeaeef1281') in 0.038374 seconds
+  Import took 0.040532 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000178 seconds.
-  path: Assets/3DGamekit/Art/Animations/AvatarMasks/EllenUpperBodyAvatarMask.mask
-  artifactKey: Guid(376ae134f82758b42ad2b11488c7dc82) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/3DGamekit/Art/Animations/AvatarMasks/EllenUpperBodyAvatarMask.mask using Guid(376ae134f82758b42ad2b11488c7dc82) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cd24224cf8d9c31e8551edfbbf5f2173') in 0.008320 seconds
-  Import took 0.011414 seconds .
+  Time since last request: 0.000174 seconds.
+  path: Assets/Scenes/Level1Test/ReflectionProbe-2.exr
+  artifactKey: Guid(c62e97457e9f10c4896cdf7e3694b9aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Level1Test/ReflectionProbe-2.exr using Guid(c62e97457e9f10c4896cdf7e3694b9aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '44c0873f41c3e8db3781c7c5ebed4726') in 0.010233 seconds
+  Import took 0.012816 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000189 seconds.
-  path: Assets/3DGamekit/Art/Animations/AvatarMasks/EllenLeanAvatarMask.mask
-  artifactKey: Guid(36fac9eada586e244bd9b649210d4f94) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/3DGamekit/Art/Animations/AvatarMasks/EllenLeanAvatarMask.mask using Guid(36fac9eada586e244bd9b649210d4f94) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0ee2230bc298d80b40e95929783807a6') in 0.008496 seconds
-  Import took 0.011278 seconds .
+  Time since last request: 0.000144 seconds.
+  path: Assets/Scenes/Level1Test/Lightmap-0_comp_light.exr
+  artifactKey: Guid(7b2932bf329ba874398c2aece27c1451) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Level1Test/Lightmap-0_comp_light.exr using Guid(7b2932bf329ba874398c2aece27c1451) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c6ba449bfb4a2ecd4b4b0a2b27766c39') in 0.008382 seconds
+  Import took 0.010732 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 3.532715 seconds.
-  path: Assets/3DGamekit/Art/Models/Skybox
-  artifactKey: Guid(b7102059ce550534d89187d7e5dffd37) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/3DGamekit/Art/Models/Skybox using Guid(b7102059ce550534d89187d7e5dffd37) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '741f3b03cdf1c79743eac05776028098') in 0.008733 seconds
-  Import took 0.011795 seconds .
+  Time since last request: 0.000160 seconds.
+  path: Assets/Scenes/Level1Test/Lightmap-1_comp_dir.png
+  artifactKey: Guid(4a40109f3163f3e4385807a616244b08) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Level1Test/Lightmap-1_comp_dir.png using Guid(4a40109f3163f3e4385807a616244b08) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '85764f172a2a1db343433568f2ede482') in 0.027064 seconds
+  Import took 0.029438 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.048670 seconds.
-  path: Assets/3DGamekit/Art/Models/Skybox/DistantTerrain.fbx
-  artifactKey: Guid(bd1e85e53d9adf9498e04a32822f2c7c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/3DGamekit/Art/Models/Skybox/DistantTerrain.fbx using Guid(bd1e85e53d9adf9498e04a32822f2c7c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dab8d348ff3736a42d0ac814678cd1d1') in 0.080386 seconds
-  Import took 0.083777 seconds .
+  Time since last request: 0.000171 seconds.
+  path: Assets/Scenes/Level1Test/ReflectionProbe-5.exr
+  artifactKey: Guid(af121b8e4378f154e99b9cddaff82082) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Level1Test/ReflectionProbe-5.exr using Guid(af121b8e4378f154e99b9cddaff82082) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2cd9c7d04f92e3862dbe7c6f849f3022') in 0.010455 seconds
+  Import took 0.013097 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000174 seconds.
+  path: Assets/Scenes/Level1Test/ReflectionProbe-0.exr
+  artifactKey: Guid(136179795cb9a6c4fa6a66cbc78e6d2b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Level1Test/ReflectionProbe-0.exr using Guid(136179795cb9a6c4fa6a66cbc78e6d2b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ab84e103c9060d0eaa96e93a0e0a0ac1') in 0.010745 seconds
+  Import took 0.013141 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000145 seconds.
+  path: Assets/Scenes/Level1Test/ReflectionProbe-7.exr
+  artifactKey: Guid(44415dd5e0578324ca7e7fc18ccd142a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Level1Test/ReflectionProbe-7.exr using Guid(44415dd5e0578324ca7e7fc18ccd142a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dc985fa29ea7f7af5bd44d471d88014e') in 0.010753 seconds
+  Import took 0.012993 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000142 seconds.
+  path: Assets/Scenes/Level1Test/ReflectionProbe-0.exr
+  artifactKey: Guid(136179795cb9a6c4fa6a66cbc78e6d2b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Level1Test/ReflectionProbe-0.exr using Guid(136179795cb9a6c4fa6a66cbc78e6d2b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ab84e103c9060d0eaa96e93a0e0a0ac1') in 0.010198 seconds
+  Import took 0.012396 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000139 seconds.
+  path: Assets/Scenes/Level1Test/ReflectionProbe-6.exr
+  artifactKey: Guid(68d055d22d6f0b74bab91b04d175e45e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Level1Test/ReflectionProbe-6.exr using Guid(68d055d22d6f0b74bab91b04d175e45e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '969ab4a3fda587695d1690c12bd3b4e7') in 0.013095 seconds
+  Import took 0.015438 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000151 seconds.
+  path: Assets/Scenes/Level1Test/ReflectionProbe-1.exr
+  artifactKey: Guid(148a795f510298a4e96499e6dbbae721) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Level1Test/ReflectionProbe-1.exr using Guid(148a795f510298a4e96499e6dbbae721) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6e655af335d6f5678bab263bc9a3f565') in 0.010275 seconds
+  Import took 0.012906 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000172 seconds.
+  path: Assets/Scenes/Level1Test/Lightmap-0_comp_dir.png
+  artifactKey: Guid(67f6165c64b561246ba29e5b3984ce87) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Level1Test/Lightmap-0_comp_dir.png using Guid(67f6165c64b561246ba29e5b3984ce87) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f668f073d374c2cb98ef40317a47a3c7') in 0.009384 seconds
+  Import took 0.011749 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000155 seconds.
+  path: Assets/Scenes/Level1Test/ReflectionProbe-4.exr
+  artifactKey: Guid(af5dfbcbe895ac743b972926e429ad5d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Level1Test/ReflectionProbe-4.exr using Guid(af5dfbcbe895ac743b972926e429ad5d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b3a4caff148f638dcef9f527e289c263') in 0.011965 seconds
+  Import took 0.014400 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 26.229026 seconds.
+  path: Assets/3DGamekit/Scenes/_TemplateScene.unity
+  artifactKey: Guid(a93c8f727f3196941b92761d8a44628c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/_TemplateScene.unity using Guid(a93c8f727f3196941b92761d8a44628c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'be23c28b3530a09833b07c9f4aa45734') in 0.009197 seconds
+  Import took 0.012339 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 13.403595 seconds.
+  path: Assets/3DGamekit/Scenes/Start
+  artifactKey: Guid(f46af0c5e57a269429fe662a6e523511) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Start using Guid(f46af0c5e57a269429fe662a6e523511) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9e627557a8a7e5091a163270c1e3c1da') in 0.007944 seconds
+  Import took 0.011360 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.074853 seconds.
+  path: Assets/3DGamekit/Scenes/Start/LightingData.asset
+  artifactKey: Guid(8f76ee977e046a843bb9653d59fb546b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Start/LightingData.asset using Guid(8f76ee977e046a843bb9653d59fb546b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '13625705f51aa5bbee8afe203b0427b9') in 0.007020 seconds
+  Import took 0.010102 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000181 seconds.
+  path: Assets/3DGamekit/Scenes/Start/ReflectionProbe-0.exr
+  artifactKey: Guid(ed9909bf57d48d449abd0a1a26062e33) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Start/ReflectionProbe-0.exr using Guid(ed9909bf57d48d449abd0a1a26062e33) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e71377c52c14b2aaf8255c730ff3a118') in 0.013102 seconds
+  Import took 0.015882 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000197 seconds.
+  path: Assets/3DGamekit/Scenes/Start/ReflectionProbe-1.exr
+  artifactKey: Guid(0f11e2a52642b2b4b90649f099ed93a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Start/ReflectionProbe-1.exr using Guid(0f11e2a52642b2b4b90649f099ed93a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7545fe159122cc24ac28b97fb130017a') in 0.013420 seconds
+  Import took 0.016442 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000705 seconds.
+  path: Assets/3DGamekit/Scenes/Start/ReflectionProbe-1.exr
+  artifactKey: Guid(0f11e2a52642b2b4b90649f099ed93a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Start/ReflectionProbe-1.exr using Guid(0f11e2a52642b2b4b90649f099ed93a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7545fe159122cc24ac28b97fb130017a') in 0.005987 seconds
+  Import took 0.008463 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.427456 seconds.
+  path: Assets/3DGamekit/Scenes/GamePlay/Level1.unity
+  artifactKey: Guid(ed46e53182fb08b4482fd3c4a75bc631) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/GamePlay/Level1.unity using Guid(ed46e53182fb08b4482fd3c4a75bc631) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '62343326c96ebf34a2b6d0eecfa04105') in 0.008510 seconds
+  Import took 0.011898 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 118.529751 seconds.
+  path: Assets/3DGamekit/Art/Materials/Effects/Environment/Smoke_Blue_Particle_Mat.mat
+  artifactKey: Guid(79bcbbcf18cf39445bf1750a43be471f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Art/Materials/Effects/Environment/Smoke_Blue_Particle_Mat.mat using Guid(79bcbbcf18cf39445bf1750a43be471f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2fc2cb8fd4412aa953be0a7ab50b666c') in 0.021461 seconds
+  Import took 0.024672 seconds .
 
 AssetImportWorkerClient::OnTransportError - code=2 error=End of file
