@@ -15,11 +15,11 @@ D:/TestWork/TestGame
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-50106
+49815
 Successfully changed project path to: D:/TestWork/TestGame
 D:/TestWork/TestGame
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 42.52 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 51.08 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.3.0f1 (c7b5465681fb)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.3.0f1/Editor/Data/Resources/UnitySubsystems
@@ -35,287 +35,86 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.3.0f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.3.0f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.3.0f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56816
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56608
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.3.0f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.3.0f1/Editor/Data/PlaybackEngines/LinuxStandaloneSupport/UnityEditor.LinuxStandalone.Extensions.dll
-Registered in 0.000972 seconds.
+Registered in 0.001079 seconds.
 Native extension for LinuxStandalone target not found
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 36.17 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 41.04 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.124 seconds
+- Completed reload, in  1.202 seconds
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.000630 seconds.
+Registered in 0.000832 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for LinuxStandalone target not found
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 36.89 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 43.44 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.576 seconds
+- Completed reload, in  0.676 seconds
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
 Launched and connected shader compiler UnityShaderCompiler.exe after 0.02 seconds
-Refreshing native plugins compatible for Editor in 0.59 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 0.52 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 2555 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 155.3 MB.
-System memory in use after: 155.1 MB.
+System memory in use before: 157.3 MB.
+System memory in use after: 157.1 MB.
 
 Unloading 39 unused Assets to reduce memory usage. Loaded Objects now: 3029.
-Total: 1.883600 ms (FindLiveObjects: 0.222300 ms CreateObjectMapping: 0.041100 ms MarkObjects: 1.286300 ms  DeleteObjects: 0.333300 ms)
+Total: 2.491100 ms (FindLiveObjects: 0.202200 ms CreateObjectMapping: 0.053700 ms MarkObjects: 1.925000 ms  DeleteObjects: 0.309600 ms)
 
 ========================================================================
 Received Import Request.
   path: Assets/3DGamekit/Scenes/GamePlay/Level1Test.unity
   artifactKey: Guid(9da918fef5d6f7848a6b383da7b692ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/3DGamekit/Scenes/GamePlay/Level1Test.unity using Guid(9da918fef5d6f7848a6b383da7b692ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c3d348d15bf08ce0facd3c88938e049d') in 0.044043 seconds
-  Import took 0.048085 seconds .
+Start importing Assets/3DGamekit/Scenes/GamePlay/Level1Test.unity using Guid(9da918fef5d6f7848a6b383da7b692ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3f3660e7964dc8aaef2a29d6ead6f3f3') in 0.042684 seconds
+  Import took 0.045713 seconds .
 
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-Registered in 0.000631 seconds.
+Registered in 0.000848 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for LinuxStandalone target not found
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.53 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 0.59 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.506 seconds
+- Completed reload, in  0.646 seconds
 Platform modules already initialized, skipping
 Refreshing native plugins compatible for Editor in 0.53 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 2412 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 144.4 MB.
-System memory in use after: 144.3 MB.
+System memory in use before: 146.4 MB.
+System memory in use after: 146.2 MB.
 
 Unloading 12 unused Assets to reduce memory usage. Loaded Objects now: 3045.
-Total: 1.671400 ms (FindLiveObjects: 0.177700 ms CreateObjectMapping: 0.045200 ms MarkObjects: 1.164300 ms  DeleteObjects: 0.283600 ms)
-
-========================================================================
-Received Import Request.
-  Time since last request: 2446.275372 seconds.
-  path: Assets/3DGamekit/Art/Models/Environment/VegetationLarge
-  artifactKey: Guid(b1da957a36cf2364c951e9cbfc66b865) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/3DGamekit/Art/Models/Environment/VegetationLarge using Guid(b1da957a36cf2364c951e9cbfc66b865) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '65a60f9d46320bab49ee497c637d0691') in 0.014123 seconds
-  Import took 0.017985 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.069246 seconds.
-  path: Assets/3DGamekit/Art/Models/Environment/VegetationLarge/VegetationLarge01.fbx
-  artifactKey: Guid(528bcfb2338ecb2418b75a2b59da9848) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/3DGamekit/Art/Models/Environment/VegetationLarge/VegetationLarge01.fbx using Guid(528bcfb2338ecb2418b75a2b59da9848) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c866133700298605848f7f23572ff1d9') in 0.296854 seconds
-  Import took 0.300047 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000189 seconds.
-  path: Assets/3DGamekit/Art/Models/Environment/VegetationLarge/VegetationLarge04.fbx
-  artifactKey: Guid(50b92cf3f08f03745bbc74de550c2dc7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/3DGamekit/Art/Models/Environment/VegetationLarge/VegetationLarge04.fbx using Guid(50b92cf3f08f03745bbc74de550c2dc7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f3aac57b81e9111e08c8cfbf2e5f1b63') in 0.164919 seconds
-  Import took 0.168426 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000202 seconds.
-  path: Assets/3DGamekit/Art/Models/Environment/VegetationLarge/VegetationLarge06.fbx
-  artifactKey: Guid(80322bf1c46281b42b1197ea37d48332) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/3DGamekit/Art/Models/Environment/VegetationLarge/VegetationLarge06.fbx using Guid(80322bf1c46281b42b1197ea37d48332) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c57ea29241aed0ad94e8b0185bc39fd8') in 0.199505 seconds
-  Import took 0.203147 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000185 seconds.
-  path: Assets/3DGamekit/Art/Models/Environment/VegetationLarge/VegetationLarge03_02.fbx
-  artifactKey: Guid(8eaceb728e8170e4ea6bde32da984bc7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/3DGamekit/Art/Models/Environment/VegetationLarge/VegetationLarge03_02.fbx using Guid(8eaceb728e8170e4ea6bde32da984bc7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e1dbdcd61ab10a13b2c07edda727cb53') in 0.193671 seconds
-  Import took 0.196654 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000161 seconds.
-  path: Assets/3DGamekit/Art/Models/Environment/VegetationLarge/VegetationLarge05_02.fbx
-  artifactKey: Guid(48e9b3f8587ad7e46afa325dad953978) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/3DGamekit/Art/Models/Environment/VegetationLarge/VegetationLarge05_02.fbx using Guid(48e9b3f8587ad7e46afa325dad953978) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3cfed34ab19571bf0db4eea5e33235f4') in 0.197629 seconds
-  Import took 0.200849 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000177 seconds.
-  path: Assets/3DGamekit/Art/Models/Environment/VegetationLarge/VegetationLarge07.fbx
-  artifactKey: Guid(86873b3ddd4a1a548a9d25799c621b3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/3DGamekit/Art/Models/Environment/VegetationLarge/VegetationLarge07.fbx using Guid(86873b3ddd4a1a548a9d25799c621b3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8a45ae61557ef6360528e8229841d0b3') in 0.178758 seconds
-  Import took 0.182131 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000186 seconds.
-  path: Assets/3DGamekit/Art/Models/Environment/VegetationLarge/VegetationLarge01_02.fbx
-  artifactKey: Guid(f19200800740c5549b0e845fc0a9bc4d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/3DGamekit/Art/Models/Environment/VegetationLarge/VegetationLarge01_02.fbx using Guid(f19200800740c5549b0e845fc0a9bc4d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fe1a7fffeb71a84bfc48fc222f663db6') in 0.032938 seconds
-  Import took 0.035788 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000160 seconds.
-  path: Assets/3DGamekit/Art/Models/Environment/VegetationLarge/VegetationLarge02.fbx
-  artifactKey: Guid(f119fa83f1038ac4b833f21a41cae9d1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/3DGamekit/Art/Models/Environment/VegetationLarge/VegetationLarge02.fbx using Guid(f119fa83f1038ac4b833f21a41cae9d1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1d3adc802a8b21323a0a6baa5b0cfede') in 0.179674 seconds
-  Import took 0.182922 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000183 seconds.
-  path: Assets/3DGamekit/Art/Models/Environment/VegetationLarge/VegetationLarge05.fbx
-  artifactKey: Guid(d64fd6a0931b7a34389216abb957525d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/3DGamekit/Art/Models/Environment/VegetationLarge/VegetationLarge05.fbx using Guid(d64fd6a0931b7a34389216abb957525d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bd76966ed72995abd1d90033a0bb3ec3') in 0.080067 seconds
-  Import took 0.083499 seconds .
+Total: 1.841600 ms (FindLiveObjects: 0.198400 ms CreateObjectMapping: 0.053700 ms MarkObjects: 1.272400 ms  DeleteObjects: 0.316400 ms)
 
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-Registered in 0.194303 seconds.
+Registered in 0.000972 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for LinuxStandalone target not found
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.79 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.652 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.57 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2412 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 148.0 MB.
-System memory in use after: 147.8 MB.
-
-Unloading 12 unused Assets to reduce memory usage. Loaded Objects now: 3071.
-Total: 2.221200 ms (FindLiveObjects: 0.298500 ms CreateObjectMapping: 0.051700 ms MarkObjects: 1.534300 ms  DeleteObjects: 0.335900 ms)
-
-========================================================================
-Received Import Request.
-  Time since last request: 8763.659680 seconds.
-  path: Assets/3DGamekit/Prefabs/Environment/VegetationSmall/GroundCover03.prefab
-  artifactKey: Guid(f8b565dbb4e633842941cde9af7a298d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/3DGamekit/Prefabs/Environment/VegetationSmall/GroundCover03.prefab using Guid(f8b565dbb4e633842941cde9af7a298d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1f9010f05945fef93fea600f07a45d4f') in 0.098918 seconds
-  Import took 0.102835 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 778.710173 seconds.
-  path: Assets/3DGamekit/Scenes/GamePlay/Level1.unity
-  artifactKey: Guid(ed46e53182fb08b4482fd3c4a75bc631) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/3DGamekit/Scenes/GamePlay/Level1.unity using Guid(ed46e53182fb08b4482fd3c4a75bc631) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2a38fea20b53b3de236b78264c42dcb3') in 0.009118 seconds
-  Import took 0.012672 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 782.347845 seconds.
-  path: Assets/3DGamekit/Scenes/GamePlay/Level1Test.unity
-  artifactKey: Guid(9da918fef5d6f7848a6b383da7b692ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/3DGamekit/Scenes/GamePlay/Level1Test.unity using Guid(9da918fef5d6f7848a6b383da7b692ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8dcc441098693faa00822d2edd1c1d9b') in 0.008572 seconds
-  Import took 0.012601 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.000873 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for LinuxStandalone target not found
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.60 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.644 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.72 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2412 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 148.0 MB.
-System memory in use after: 147.8 MB.
-
-Unloading 12 unused Assets to reduce memory usage. Loaded Objects now: 3088.
-Total: 2.271400 ms (FindLiveObjects: 0.216200 ms CreateObjectMapping: 0.063900 ms MarkObjects: 1.545300 ms  DeleteObjects: 0.445200 ms)
-
-========================================================================
-Received Import Request.
-  Time since last request: 4627.552094 seconds.
-  path: Assets/3DGamekit/Art/Models/Effects/ShockWave.fbx
-  artifactKey: Guid(ea4900fb19beef44a89d2450de9db58f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/3DGamekit/Art/Models/Effects/ShockWave.fbx using Guid(ea4900fb19beef44a89d2450de9db58f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3e94087ed2c995c1adb34e28a75af94b') in 0.074272 seconds
-  Import took 0.078071 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.000953 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for LinuxStandalone target not found
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.66 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.586 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.53 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2412 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 148.0 MB.
-System memory in use after: 147.9 MB.
-
-Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 3105.
-Total: 1.975300 ms (FindLiveObjects: 0.251200 ms CreateObjectMapping: 0.083300 ms MarkObjects: 1.296800 ms  DeleteObjects: 0.343300 ms)
-
-========================================================================
-Received Import Request.
-  Time since last request: 836.826874 seconds.
-  path: Assets/3DGamekit/Scenes/GamePlay/Level1Settings.lighting
-  artifactKey: Guid(bf160010783c5014c856a2d8001de845) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/3DGamekit/Scenes/GamePlay/Level1Settings.lighting using Guid(bf160010783c5014c856a2d8001de845) Importer(815301076,1909f56bfc062723c751e8b465ee728b) LightingSettings: switching bake backend from 1 to 0.
- -> (artifact id: '69a2135b3a800b417cf52d3b2222bca8') in 0.045233 seconds
-  Import took 0.049158 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 58.233107 seconds.
-  path: Assets/3DGamekit/Scenes/GamePlay/Level1Test.unity
-  artifactKey: Guid(9da918fef5d6f7848a6b383da7b692ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/3DGamekit/Scenes/GamePlay/Level1Test.unity using Guid(9da918fef5d6f7848a6b383da7b692ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ccf861d2944c9ae453f1bba993bc2e9b') in 0.002130 seconds
-  Import took 0.005636 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.000672 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for LinuxStandalone target not found
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.52 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 0.51 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
@@ -323,187 +122,27 @@ RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
 - Completed reload, in  0.533 seconds
 Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.52 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2412 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 148.1 MB.
-System memory in use after: 147.9 MB.
-
-Unloading 12 unused Assets to reduce memory usage. Loaded Objects now: 3121.
-Total: 1.983800 ms (FindLiveObjects: 0.232500 ms CreateObjectMapping: 0.059000 ms MarkObjects: 1.304400 ms  DeleteObjects: 0.387100 ms)
-
-========================================================================
-Received Import Request.
-  Time since last request: 410.596960 seconds.
-  path: Assets/3DGamekit/Scenes/GamePlay/Level2
-  artifactKey: Guid(a984999467e6ecf4aa4a476f749cc424) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/3DGamekit/Scenes/GamePlay/Level2 using Guid(a984999467e6ecf4aa4a476f749cc424) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'af8de7541b1f9501510c1fe394e0a4d8') in 0.012046 seconds
-  Import took 0.015232 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 162.674959 seconds.
-  path: Assets/3DGamekit/Art/Materials/Effects/Environment/Smoke_Particle_Mat.mat
-  artifactKey: Guid(974b7327aebd5ba41babada1e4f79fe5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/3DGamekit/Art/Materials/Effects/Environment/Smoke_Particle_Mat.mat using Guid(974b7327aebd5ba41babada1e4f79fe5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4655c687464b3b1c84a77ac182b9addf') in 0.098861 seconds
-  Import took 0.102921 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 72.848693 seconds.
-  path: Assets/3DGamekit/Scenes/GamePlay/Level1Test.unity
-  artifactKey: Guid(9da918fef5d6f7848a6b383da7b692ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/3DGamekit/Scenes/GamePlay/Level1Test.unity using Guid(9da918fef5d6f7848a6b383da7b692ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b0e3c97770a2492659ca010c7546f2d5') in 0.001977 seconds
-  Import took 0.005455 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.000768 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for LinuxStandalone target not found
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.51 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.537 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.61 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2412 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 148.2 MB.
-System memory in use after: 148.1 MB.
-
-Unloading 12 unused Assets to reduce memory usage. Loaded Objects now: 3171.
-Total: 2.157800 ms (FindLiveObjects: 0.234000 ms CreateObjectMapping: 0.058000 ms MarkObjects: 1.494300 ms  DeleteObjects: 0.370900 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.000856 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for LinuxStandalone target not found
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.99 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.613 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.66 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2412 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 148.3 MB.
-System memory in use after: 148.1 MB.
-
-Unloading 12 unused Assets to reduce memory usage. Loaded Objects now: 3187.
-Total: 2.475200 ms (FindLiveObjects: 0.237600 ms CreateObjectMapping: 0.049300 ms MarkObjects: 1.539800 ms  DeleteObjects: 0.647800 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.000782 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for LinuxStandalone target not found
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.53 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.547 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.66 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2412 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 148.3 MB.
-System memory in use after: 148.1 MB.
-
-Unloading 12 unused Assets to reduce memory usage. Loaded Objects now: 3203.
-Total: 2.334600 ms (FindLiveObjects: 0.228000 ms CreateObjectMapping: 0.057200 ms MarkObjects: 1.682200 ms  DeleteObjects: 0.366400 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.000821 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for LinuxStandalone target not found
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.53 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.538 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.58 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2412 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 148.3 MB.
-System memory in use after: 148.1 MB.
-
-Unloading 12 unused Assets to reduce memory usage. Loaded Objects now: 3219.
-Total: 1.809100 ms (FindLiveObjects: 0.200100 ms CreateObjectMapping: 0.035300 ms MarkObjects: 1.224400 ms  DeleteObjects: 0.348700 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.000864 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for LinuxStandalone target not found
-Native extension for WindowsStandalone target not found
 Refreshing native plugins compatible for Editor in 0.60 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.735 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.62 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 2412 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 148.3 MB.
-System memory in use after: 148.2 MB.
+System memory in use before: 146.5 MB.
+System memory in use after: 146.3 MB.
 
-Unloading 12 unused Assets to reduce memory usage. Loaded Objects now: 3235.
-Total: 2.145900 ms (FindLiveObjects: 0.302100 ms CreateObjectMapping: 0.075600 ms MarkObjects: 1.407300 ms  DeleteObjects: 0.360400 ms)
+Unloading 12 unused Assets to reduce memory usage. Loaded Objects now: 3061.
+Total: 2.490300 ms (FindLiveObjects: 0.299000 ms CreateObjectMapping: 0.184200 ms MarkObjects: 1.603700 ms  DeleteObjects: 0.402600 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 19510.141429 seconds.
+  path: Assets/3DGamekit/Scenes/GamePlay/Level1Test.unity
+  artifactKey: Guid(9da918fef5d6f7848a6b383da7b692ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/GamePlay/Level1Test.unity using Guid(9da918fef5d6f7848a6b383da7b692ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b63c8af7f9be70c501a78bc84b11cdb7') in 0.009162 seconds
+  Import took 0.012700 seconds .
 
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-Registered in 0.000917 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for LinuxStandalone target not found
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.55 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.654 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.73 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2412 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 148.3 MB.
-System memory in use after: 148.2 MB.
-
-Unloading 12 unused Assets to reduce memory usage. Loaded Objects now: 3251.
-Total: 2.526500 ms (FindLiveObjects: 0.371000 ms CreateObjectMapping: 0.116100 ms MarkObjects: 1.611600 ms  DeleteObjects: 0.427300 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.000816 seconds.
+Registered in 0.000764 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for LinuxStandalone target not found
 Native extension for WindowsStandalone target not found
@@ -513,40 +152,56 @@ Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.583 seconds
+- Completed reload, in  0.535 seconds
 Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.51 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 0.65 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 2412 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 148.3 MB.
-System memory in use after: 148.2 MB.
+System memory in use before: 146.5 MB.
+System memory in use after: 146.3 MB.
 
-Unloading 12 unused Assets to reduce memory usage. Loaded Objects now: 3267.
-Total: 2.136400 ms (FindLiveObjects: 0.239500 ms CreateObjectMapping: 0.060500 ms MarkObjects: 1.477500 ms  DeleteObjects: 0.358100 ms)
+Unloading 12 unused Assets to reduce memory usage. Loaded Objects now: 3077.
+Total: 2.459700 ms (FindLiveObjects: 0.263400 ms CreateObjectMapping: 0.073300 ms MarkObjects: 1.622300 ms  DeleteObjects: 0.499800 ms)
 
 ========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.000618 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for LinuxStandalone target not found
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.55 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.583 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.52 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2412 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 148.4 MB.
-System memory in use after: 148.2 MB.
+Received Import Request.
+  Time since last request: 779.335331 seconds.
+  path: Assets/3DGamekit/Scenes/GamePlay/Level1Test.unity
+  artifactKey: Guid(9da918fef5d6f7848a6b383da7b692ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/GamePlay/Level1Test.unity using Guid(9da918fef5d6f7848a6b383da7b692ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7cc465cf6e8bac4904d529a23b118267') in 0.050188 seconds
+  Import took 0.054196 seconds .
 
-Unloading 12 unused Assets to reduce memory usage. Loaded Objects now: 3283.
-Total: 2.030100 ms (FindLiveObjects: 0.242300 ms CreateObjectMapping: 0.050500 ms MarkObjects: 1.390500 ms  DeleteObjects: 0.345900 ms)
+========================================================================
+Received Import Request.
+  Time since last request: 63.634524 seconds.
+  path: Assets/3DGamekit/Scenes/GamePlay/Level1.unity
+  artifactKey: Guid(ed46e53182fb08b4482fd3c4a75bc631) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/GamePlay/Level1.unity using Guid(ed46e53182fb08b4482fd3c4a75bc631) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '19350e61003d969e2ab55453ec503e12') in 0.037684 seconds
+  Import took 0.040938 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 114.907483 seconds.
+  path: Assets/3DGamekit/Scenes/GamePlay/Level1Test.unity
+  artifactKey: Guid(9da918fef5d6f7848a6b383da7b692ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/GamePlay/Level1Test.unity using Guid(9da918fef5d6f7848a6b383da7b692ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '07ebb530c20a5cfa9d1519fe9ba96bf1') in 0.002222 seconds
+  Import took 0.005529 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 783.805656 seconds.
+  path: Assets/3DGamekit/Scenes/GamePlay/Level1Test.unity
+  artifactKey: Guid(9da918fef5d6f7848a6b383da7b692ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/GamePlay/Level1Test.unity using Guid(9da918fef5d6f7848a6b383da7b692ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '71907ca2857def5d964a2a849f1bb048') in 0.001936 seconds
+  Import took 0.005229 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 555.357920 seconds.
+  path: Assets/3DGamekit/Scenes/GamePlay/Level1.unity
+  artifactKey: Guid(ed46e53182fb08b4482fd3c4a75bc631) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/GamePlay/Level1.unity using Guid(ed46e53182fb08b4482fd3c4a75bc631) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5179c573baac11787138d24a73629b2b') in 0.002485 seconds
+  Import took 0.006031 seconds .
 
 ========================================================================
 Received Prepare
@@ -561,117 +216,1069 @@ Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.566 seconds
+- Completed reload, in  1.030 seconds
 Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.82 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2412 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 146.5 MB.
+System memory in use after: 146.4 MB.
+
+Unloading 12 unused Assets to reduce memory usage. Loaded Objects now: 3093.
+Total: 3.846700 ms (FindLiveObjects: 0.360500 ms CreateObjectMapping: 0.078600 ms MarkObjects: 2.649700 ms  DeleteObjects: 0.756600 ms)
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.000755 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
 Refreshing native plugins compatible for Editor in 0.58 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2412 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 148.4 MB.
-System memory in use after: 148.2 MB.
-
-Unloading 12 unused Assets to reduce memory usage. Loaded Objects now: 3299.
-Total: 2.394600 ms (FindLiveObjects: 0.383600 ms CreateObjectMapping: 0.174300 ms MarkObjects: 1.475200 ms  DeleteObjects: 0.360600 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.000819 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for LinuxStandalone target not found
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.53 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.541 seconds
+- Completed reload, in  0.608 seconds
 Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.54 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 0.51 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2412 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 148.4 MB.
-System memory in use after: 148.2 MB.
+Unloading 2410 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 146.5 MB.
+System memory in use after: 146.4 MB.
 
-Unloading 12 unused Assets to reduce memory usage. Loaded Objects now: 3315.
-Total: 2.598800 ms (FindLiveObjects: 0.298100 ms CreateObjectMapping: 0.093000 ms MarkObjects: 1.756500 ms  DeleteObjects: 0.450400 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.001067 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for LinuxStandalone target not found
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.81 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.606 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.60 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2412 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 148.4 MB.
-System memory in use after: 148.3 MB.
-
-Unloading 12 unused Assets to reduce memory usage. Loaded Objects now: 3331.
-Total: 2.289400 ms (FindLiveObjects: 0.238900 ms CreateObjectMapping: 0.055000 ms MarkObjects: 1.628100 ms  DeleteObjects: 0.366600 ms)
+Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 3108.
+Total: 1.899300 ms (FindLiveObjects: 0.178000 ms CreateObjectMapping: 0.042300 ms MarkObjects: 1.323100 ms  DeleteObjects: 0.355400 ms)
 
 ========================================================================
 Received Import Request.
-  Time since last request: 6346.783302 seconds.
+  Time since last request: 1426.866069 seconds.
+  path: Assets/3DGamekit/3DGameKit_Third-PartyNotice.txt
+  artifactKey: Guid(702e43600f5616c4c985f8bf481a4c75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/3DGameKit_Third-PartyNotice.txt using Guid(702e43600f5616c4c985f8bf481a4c75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '754743d7ce836df00e781f5fc1c088e8') in 0.151323 seconds
+  Import took 0.154307 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 10.206847 seconds.
+  path: Assets/3DGamekit/Packages/NavMeshComponents/Scripts
+  artifactKey: Guid(ce67aa87f613246dda63a54a59c6399e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Packages/NavMeshComponents/Scripts using Guid(ce67aa87f613246dda63a54a59c6399e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ccfab1c74d20bffe4567bd92a461cd17') in 0.019628 seconds
+  Import took 0.022878 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.074574 seconds.
+  path: Assets/3DGamekit/Packages/NavMeshComponents/Scripts/NavMeshComponents.asmdef
+  artifactKey: Guid(8c4dd21966739024fbd72155091d199e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Packages/NavMeshComponents/Scripts/NavMeshComponents.asmdef using Guid(8c4dd21966739024fbd72155091d199e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '883b1991ade775729b42cf9e27b9ebcd') in 0.017475 seconds
+  Import took 0.020583 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.797195 seconds.
+  path: Assets/3DGamekit/Audio/Enemies
+  artifactKey: Guid(3fe4755a21b0c83449a5d37ce3dfbf4b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Audio/Enemies using Guid(3fe4755a21b0c83449a5d37ce3dfbf4b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '42eeccb11ed09e939b109a6fd2255578') in 0.063757 seconds
+  Import took 0.067377 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.634617 seconds.
+  path: Assets/3DGamekit/Audio/Environment
+  artifactKey: Guid(07fb7020b19262b40872aeecf4c1cefd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Audio/Environment using Guid(07fb7020b19262b40872aeecf4c1cefd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd0f1920efdc1213a2b724bd678708479') in 0.020243 seconds
+  Import took 0.024015 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.915079 seconds.
+  path: Assets/3DGamekit/Audio/Environment/Fireflies
+  artifactKey: Guid(6acd081ee0d5ac74bb66c4484d9e533e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Audio/Environment/Fireflies using Guid(6acd081ee0d5ac74bb66c4484d9e533e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e87232a428695890a26e8eca2a4b51a9') in 0.008773 seconds
+  Import took 0.011988 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.728436 seconds.
+  path: Assets/3DGamekit/Art/Animations/AnimationClips
+  artifactKey: Guid(96768fda5883bbf44868bd20bdccc6e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Art/Animations/AnimationClips using Guid(96768fda5883bbf44868bd20bdccc6e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8b3deafcb2d651d1cf2c2316b9632c3e') in 0.009435 seconds
+  Import took 0.012723 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.060094 seconds.
+  path: Assets/3DGamekit/Art/Animations/AnimationClips/@Staff_Combo01.fbx
+  artifactKey: Guid(db21481ab80b79044941866818bbd8e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Art/Animations/AnimationClips/@Staff_Combo01.fbx using Guid(db21481ab80b79044941866818bbd8e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3e936c7815c77b0a4c866c14b03233b0') in 0.156976 seconds
+  Import took 0.160290 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.180403 seconds.
+  path: Assets/3DGamekit/Art/Animations/AnimationClips/Characters
+  artifactKey: Guid(1668fe4b3167a804f8a2307a8f87e6f3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Art/Animations/AnimationClips/Characters using Guid(1668fe4b3167a804f8a2307a8f87e6f3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5e7cd7f15010858220abf20654b8a492') in 0.034021 seconds
+  Import took 0.037195 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 8.953195 seconds.
+  path: Assets/3DGamekit/Art/Shaders
+  artifactKey: Guid(1ae1f961b4b5a764c87c25a9ebb1d831) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Art/Shaders using Guid(1ae1f961b4b5a764c87c25a9ebb1d831) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b1edf77760530b7d0fea0bf0fd3a522c') in 0.008965 seconds
+  Import took 0.012095 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.186053 seconds.
+  path: Assets/3DGamekit/Art/Shaders/BubbleBurst.shader
+  artifactKey: Guid(5735905cc44894b448f3339c6739900f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Art/Shaders/BubbleBurst.shader using Guid(5735905cc44894b448f3339c6739900f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '68b676ef708a501958a8d17ba3d3129b') in 0.008716 seconds
+  Import took 0.011719 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.177624 seconds.
+  path: Assets/3DGamekit/Art/Shaders/BubbleBurst.shader
+  artifactKey: Guid(5735905cc44894b448f3339c6739900f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Art/Shaders/BubbleBurst.shader using Guid(5735905cc44894b448f3339c6739900f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '68b676ef708a501958a8d17ba3d3129b') in 0.001815 seconds
+  Import took 0.004953 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.963937 seconds.
+  path: Assets/3DGamekit/Art/Shaders/CollectShadowWaterCustom.shader
+  artifactKey: Guid(c133f7c09f64ab447b8e96d17ad7cac6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Art/Shaders/CollectShadowWaterCustom.shader using Guid(c133f7c09f64ab447b8e96d17ad7cac6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f140d0daa34e00938724813b32c29fd6') in 0.008727 seconds
+  Import took 0.011895 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.654872 seconds.
+  path: Assets/3DGamekit/Art/Shaders/DepthOnly.shader
+  artifactKey: Guid(4c992bb79ce085d48a6fe75298960254) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Art/Shaders/DepthOnly.shader using Guid(4c992bb79ce085d48a6fe75298960254) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cf76319599d05c8d87f1e837ddac62b7') in 0.008922 seconds
+  Import took 0.012254 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 10.276534 seconds.
+  path: Assets/3DGamekit/Scenes/Data/NavmeshData
+  artifactKey: Guid(e7c7169f2d488d54ea7bd820060de590) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/NavmeshData using Guid(e7c7169f2d488d54ea7bd820060de590) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b73de7f3b703aec9a9bb572143beb077') in 0.009174 seconds
+  Import took 0.012531 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.078630 seconds.
+  path: Assets/3DGamekit/Scenes/Data/NavmeshData/NavMesh-Walkable.asset
+  artifactKey: Guid(4545ec1fc5c360040b0efcf48ae4f082) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/NavmeshData/NavMesh-Walkable.asset using Guid(4545ec1fc5c360040b0efcf48ae4f082) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '24949663d2523b38669a39d1f7b4a41a') in 0.053398 seconds
+  Import took 0.056694 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.810811 seconds.
+  path: Assets/3DGamekit/Scenes/Data/NavmeshData/Level2
+  artifactKey: Guid(69794c16670221b488b3a7619b62e897) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/NavmeshData/Level2 using Guid(69794c16670221b488b3a7619b62e897) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5bc60d057ffd395a5b4bbafabd294401') in 0.022176 seconds
+  Import took 0.025875 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.049896 seconds.
+  path: Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorCircular01 (1) 1.asset
+  artifactKey: Guid(068fc2cf69b368c4aab19fa2df6745f3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorCircular01 (1) 1.asset using Guid(068fc2cf69b368c4aab19fa2df6745f3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7826330656e330f0e7bd6b3dc1cd1f75') in 0.064430 seconds
+  Import took 0.067728 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000158 seconds.
+  path: Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorCircular02.asset
+  artifactKey: Guid(8e81cfafa95737a4486ee951f825a0c3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorCircular02.asset using Guid(8e81cfafa95737a4486ee951f825a0c3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '09f5aad60cbb0763935a4cda91b69f1e') in 0.066735 seconds
+  Import took 0.070056 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000159 seconds.
+  path: Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1.asset
+  artifactKey: Guid(313bd4fd77f8fc0428406a166d158070) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1.asset using Guid(313bd4fd77f8fc0428406a166d158070) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0e55275df7ccff0fecb20eb33b2ff0df') in 0.178833 seconds
+  Import took 0.181664 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000164 seconds.
+  path: Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-Plane.asset
+  artifactKey: Guid(576d2685d315ec8438a6540423b14333) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-Plane.asset using Guid(576d2685d315ec8438a6540423b14333) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '500351271d5a9b87bdad9f5d957bb8e6') in 0.073818 seconds
+  Import took 0.077292 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000150 seconds.
+  path: Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (34) 1.asset
+  artifactKey: Guid(4e5358d1ffe54014eae5b8e2dd5a7bed) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (34) 1.asset using Guid(4e5358d1ffe54014eae5b8e2dd5a7bed) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd7c9b6465331f2ea7489fb7a43a981a4') in 0.081349 seconds
+  Import took 0.084729 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000173 seconds.
+  path: Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (10) 1.asset
+  artifactKey: Guid(f97d3580d32bc2a4e96edf05ce94a51b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (10) 1.asset using Guid(f97d3580d32bc2a4e96edf05ce94a51b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '91d75af0f0b2b1bf1ae7459f775a1fcc') in 0.081440 seconds
+  Import took 0.083986 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000176 seconds.
+  path: Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x2.asset
+  artifactKey: Guid(6ec3bb5bd1a26e543bb9d67a11eaa863) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x2.asset using Guid(6ec3bb5bd1a26e543bb9d67a11eaa863) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '28d74d7f5a55d7d891e94b7603f5f316') in 0.079426 seconds
+  Import took 0.082803 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000180 seconds.
+  path: Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (8) 1.asset
+  artifactKey: Guid(c784a7758b940ed4192c7f8a3ad7f589) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (8) 1.asset using Guid(c784a7758b940ed4192c7f8a3ad7f589) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0d082878ae934ff45a3e6a2ce6f99b2c') in 0.067182 seconds
+  Import took 0.070502 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000167 seconds.
+  path: Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (15).asset
+  artifactKey: Guid(7dca947781131794fbf6bfc443659ef6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (15).asset using Guid(7dca947781131794fbf6bfc443659ef6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bf96fac0a3b20fe87a434b3382ac52d7') in 0.068845 seconds
+  Import took 0.071976 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000162 seconds.
+  path: Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (6) 1.asset
+  artifactKey: Guid(265c2af8de8c84344b6e62321ac830e1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (6) 1.asset using Guid(265c2af8de8c84344b6e62321ac830e1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd6e3d6f9fff8f7e0c3bd320999174fbf') in 0.073366 seconds
+  Import took 0.076743 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000363 seconds.
+  path: Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (17).asset
+  artifactKey: Guid(3c007941e1e987341bd2caefc7ca1f04) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (17).asset using Guid(3c007941e1e987341bd2caefc7ca1f04) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1fca29d17d9251b148e0ab5264e660db') in 0.067276 seconds
+  Import took 0.070757 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000163 seconds.
+  path: Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-PressurePad (1) 1.asset
+  artifactKey: Guid(5e555beb6e88b4d4e9ffdd3632fad97d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-PressurePad (1) 1.asset using Guid(5e555beb6e88b4d4e9ffdd3632fad97d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a72834dedb4c683e525bbca819a2d816') in 0.042097 seconds
+  Import took 0.045099 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000164 seconds.
+  path: Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (16) 1.asset
+  artifactKey: Guid(6117acc7e38f5ea4bba3a70c98ea70c3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (16) 1.asset using Guid(6117acc7e38f5ea4bba3a70c98ea70c3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0469deb909f857d48fd5e791d43c0edd') in 0.100920 seconds
+  Import took 0.103909 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000150 seconds.
+  path: Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (16).asset
+  artifactKey: Guid(1ca7b237f0a865640b90bafbb7cf5112) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (16).asset using Guid(1ca7b237f0a865640b90bafbb7cf5112) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e9fc615944a1c1f2d7e211c7352514fa') in 0.049609 seconds
+  Import took 0.052787 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000163 seconds.
+  path: Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (17) 1.asset
+  artifactKey: Guid(23f8173e55f027b44a3fc2a5f962a455) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (17) 1.asset using Guid(23f8173e55f027b44a3fc2a5f962a455) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f781f102898ce9f1396f269d5fcb4ecf') in 0.040735 seconds
+  Import took 0.043499 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000170 seconds.
+  path: Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1_LOD00 (1) 1.asset
+  artifactKey: Guid(6af5803fd10040842b79eff1220befde) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1_LOD00 (1) 1.asset using Guid(6af5803fd10040842b79eff1220befde) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '226e9c982dd05449efba03d04ca8f617') in 0.068273 seconds
+  Import took 0.071653 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000162 seconds.
+  path: Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (1).asset
+  artifactKey: Guid(a1993704f368c8d49a9028b77feee83b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (1).asset using Guid(a1993704f368c8d49a9028b77feee83b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cba711f5ce36294d6ad61dd8cc99d8db') in 0.059008 seconds
+  Import took 0.061986 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000209 seconds.
+  path: Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (14).asset
+  artifactKey: Guid(fb9120951aeb7c6429ae8beec419e651) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (14).asset using Guid(fb9120951aeb7c6429ae8beec419e651) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '74b82c99e8320beb097e055ab744061e') in 0.064550 seconds
+  Import took 0.067873 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000155 seconds.
+  path: Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (3).asset
+  artifactKey: Guid(d2a063e9b79e6244eacb0a7cf57f9e1c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (3).asset using Guid(d2a063e9b79e6244eacb0a7cf57f9e1c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f107d560c86c73cbcd09f2c9d815c576') in 0.051909 seconds
+  Import took 0.054666 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000160 seconds.
+  path: Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (2).asset
+  artifactKey: Guid(37dbbabc04248fb46a4d1c954c969a02) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (2).asset using Guid(37dbbabc04248fb46a4d1c954c969a02) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cfbcec685451ea740733a0a3f7adc43d') in 0.050731 seconds
+  Import took 0.054094 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000195 seconds.
+  path: Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (15) 1.asset
+  artifactKey: Guid(6f6fa7e795606074482cacd906b013f8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (15) 1.asset using Guid(6f6fa7e795606074482cacd906b013f8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '024274af10824008142b6af7a8d69c35') in 0.156144 seconds
+  Import took 0.158871 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000156 seconds.
+  path: Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (21).asset
+  artifactKey: Guid(444e89e4acc8ff549b8cdf26d6a7777f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (21).asset using Guid(444e89e4acc8ff549b8cdf26d6a7777f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '161287d95cd3b6e4aef47f122a228301') in 0.215331 seconds
+  Import took 0.218161 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000154 seconds.
+  path: Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (21) 1.asset
+  artifactKey: Guid(19d3ee60c803ad8449b1d4c855874fe8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (21) 1.asset using Guid(19d3ee60c803ad8449b1d4c855874fe8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5ce743a70d121a717758b7257f01c3c7') in 0.101351 seconds
+  Import took 0.104585 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000165 seconds.
+  path: Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (12).asset
+  artifactKey: Guid(f832a85ade81cf949a231417c1bca51d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (12).asset using Guid(f832a85ade81cf949a231417c1bca51d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6757fa87f22bd15c06e26d0070b72527') in 0.169295 seconds
+  Import took 0.172553 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000188 seconds.
+  path: Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (12) 1.asset
+  artifactKey: Guid(29983f4a32f9e2b4fb03e18618d0ff86) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (12) 1.asset using Guid(29983f4a32f9e2b4fb03e18618d0ff86) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '722eeaff1bfff8a4849f290968a5af27') in 0.085320 seconds
+  Import took 0.088424 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000175 seconds.
+  path: Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (7).asset
+  artifactKey: Guid(6b70d511a07dc0940bb612d1acee5b67) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (7).asset using Guid(6b70d511a07dc0940bb612d1acee5b67) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ffc61830490fe0f305814b7b8bfc2a67') in 0.068149 seconds
+  Import took 0.071172 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000204 seconds.
+  path: Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (4).asset
+  artifactKey: Guid(43310e00717570b4b84fbff1a09d84b8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (4).asset using Guid(43310e00717570b4b84fbff1a09d84b8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c7040b2c77b93dda2330fcefd3bfd384') in 0.112469 seconds
+  Import took 0.115816 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000183 seconds.
+  path: Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (7) 1.asset
+  artifactKey: Guid(18566eb73ae2f604c8dc42065101d3de) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (7) 1.asset using Guid(18566eb73ae2f604c8dc42065101d3de) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b268ad54578b4ada9bde81d9b1a02245') in 0.096293 seconds
+  Import took 0.099014 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000162 seconds.
+  path: Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (19).asset
+  artifactKey: Guid(5ca931aeac6c28a41a972dff4207d2ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (19).asset using Guid(5ca931aeac6c28a41a972dff4207d2ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3448accda9c975c156a7168aa881624a') in 0.088836 seconds
+  Import took 0.092165 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000154 seconds.
+  path: Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (19) 1.asset
+  artifactKey: Guid(fc009d1b0e2438b4db509e758187e932) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (19) 1.asset using Guid(fc009d1b0e2438b4db509e758187e932) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '369a2052aa1ef514c19683a55efdac22') in 0.059988 seconds
+  Import took 0.063454 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000178 seconds.
+  path: Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorCircular01 (1).asset
+  artifactKey: Guid(fdbf7f7c877278c4dbbffb506ff3ea3a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorCircular01 (1).asset using Guid(fdbf7f7c877278c4dbbffb506ff3ea3a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '70536b51a7f606c2b2a4caa43db4d111') in 0.075482 seconds
+  Import took 0.078718 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000320 seconds.
+  path: Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorCircular01.asset
+  artifactKey: Guid(6a38f2b6fcee0e8459c9d7f7e2c74a3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorCircular01.asset using Guid(6a38f2b6fcee0e8459c9d7f7e2c74a3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cb22ccd96009262654db3d8543dfe372') in 0.012967 seconds
+  Import took 0.015794 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000151 seconds.
+  path: Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (10).asset
+  artifactKey: Guid(16c002a4ee17ab34da9f1e3f2431a72b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (10).asset using Guid(16c002a4ee17ab34da9f1e3f2431a72b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ccbfef5eef5167cfcadabb7e31b1a283') in 0.054152 seconds
+  Import took 0.057571 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000165 seconds.
+  path: Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorCircular01.asset
+  artifactKey: Guid(6a38f2b6fcee0e8459c9d7f7e2c74a3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorCircular01.asset using Guid(6a38f2b6fcee0e8459c9d7f7e2c74a3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cb22ccd96009262654db3d8543dfe372') in 0.007785 seconds
+  Import took 0.010636 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000158 seconds.
+  path: Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (9) 1.asset
+  artifactKey: Guid(c1f3bc02b16588d4296ebf0060167008) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (9) 1.asset using Guid(c1f3bc02b16588d4296ebf0060167008) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'aa34ce6bbedfc47064d3ce11054714c0') in 0.147728 seconds
+  Import took 0.150794 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000413 seconds.
+  path: Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1_LOD00 (1).asset
+  artifactKey: Guid(a2a8ceb3f75c39843a2112aefd372a13) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1_LOD00 (1).asset using Guid(a2a8ceb3f75c39843a2112aefd372a13) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '264750434ae4282f4d2b43097608d66e') in 0.170534 seconds
+  Import took 0.173414 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000168 seconds.
+  path: Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (2) 1.asset
+  artifactKey: Guid(5ceadbc37f1dd37488d7559505081c92) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (2) 1.asset using Guid(5ceadbc37f1dd37488d7559505081c92) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd510fd93661b208092f5e7f41d2a7544') in 0.039384 seconds
+  Import took 0.042356 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000162 seconds.
+  path: Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (3) 1.asset
+  artifactKey: Guid(9ba8c89480b634f4794e3b689b416bde) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (3) 1.asset using Guid(9ba8c89480b634f4794e3b689b416bde) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6f0945482054ea27564e312161ae42b6') in 0.023554 seconds
+  Import took 0.026695 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000197 seconds.
+  path: Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-PressurePad (1).asset
+  artifactKey: Guid(d0a5b1b08654fd947bcd3de45e3ad5aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-PressurePad (1).asset using Guid(d0a5b1b08654fd947bcd3de45e3ad5aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '394cd08f80abd0e6ad9a48db1bf9615a') in 0.068756 seconds
+  Import took 0.071624 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000225 seconds.
+  path: Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (8).asset
+  artifactKey: Guid(1fbd22d8f8fc3ae4fbe3613b51a57214) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (8).asset using Guid(1fbd22d8f8fc3ae4fbe3613b51a57214) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a94691d1ff1a8d78c539721fe7ca042f') in 0.093074 seconds
+  Import took 0.096416 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000180 seconds.
+  path: Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (13).asset
+  artifactKey: Guid(2f42e5aac6c6a704a853629819ae9d85) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (13).asset using Guid(2f42e5aac6c6a704a853629819ae9d85) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bf91e8b25140b9f39cea3691d56f3974') in 0.071043 seconds
+  Import took 0.073672 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000173 seconds.
+  path: Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (4) 1.asset
+  artifactKey: Guid(8952b500f731f50409ca5b2de2bdc315) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (4) 1.asset using Guid(8952b500f731f50409ca5b2de2bdc315) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e067c661126c46da207f3b64cec76c54') in 0.109744 seconds
+  Import took 0.112820 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000164 seconds.
+  path: Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (6).asset
+  artifactKey: Guid(ff08f39572ab7a44ba9d756c540dc00d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (6).asset using Guid(ff08f39572ab7a44ba9d756c540dc00d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '87039f0ea51b2541e4bd7bc56012a278') in 0.068146 seconds
+  Import took 0.071300 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000194 seconds.
+  path: Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (9).asset
+  artifactKey: Guid(280e35a4dd6c9ff46a96bbe9bf907fae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (9).asset using Guid(280e35a4dd6c9ff46a96bbe9bf907fae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd93f1d2ffe355c6574792534f8058b82') in 0.056467 seconds
+  Import took 0.059698 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000255 seconds.
+  path: Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-Plane 1.asset
+  artifactKey: Guid(0514661bb5e5a2748baaf5dd401337e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-Plane 1.asset using Guid(0514661bb5e5a2748baaf5dd401337e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0d8fb1df69fdd5b7868b4f00c4bd1ad3') in 0.057082 seconds
+  Import took 0.060567 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000167 seconds.
+  path: Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (14) 1.asset
+  artifactKey: Guid(eaca3ced586e37548a2b09b53e4671ad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (14) 1.asset using Guid(eaca3ced586e37548a2b09b53e4671ad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '514665e2a2dffd28cc4526086f677e93') in 0.021797 seconds
+  Import took 0.024481 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000154 seconds.
+  path: Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-Plane 2.asset
+  artifactKey: Guid(543940f9650466b45a90da0696fea1a0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-Plane 2.asset using Guid(543940f9650466b45a90da0696fea1a0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '239439f094ef18b5357c486002f3084a') in 0.013406 seconds
+  Import took 0.015877 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000173 seconds.
+  path: Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (13) 1.asset
+  artifactKey: Guid(888475cd989d0df4da52c54ac18ef5b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (13) 1.asset using Guid(888475cd989d0df4da52c54ac18ef5b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bcebed126664402c8c5c2ae67904cfe8') in 0.076094 seconds
+  Import took 0.078647 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000180 seconds.
+  path: Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorCircular03.asset
+  artifactKey: Guid(706f4790738f07e46a880bf32d97f0eb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorCircular03.asset using Guid(706f4790738f07e46a880bf32d97f0eb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dc612306305a2a4056e242a0424fc001') in 0.031163 seconds
+  Import took 0.033902 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000240 seconds.
+  path: Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (1) 1.asset
+  artifactKey: Guid(d483d425909ad8b4cbdcbf4dd67c3cd0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (1) 1.asset using Guid(d483d425909ad8b4cbdcbf4dd67c3cd0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2ad36afe05c520e00ba7bfd5998d6e8d') in 0.052369 seconds
+  Import took 0.056372 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000155 seconds.
+  path: Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (34).asset
+  artifactKey: Guid(f5f3361d51b62fb4081331f0e7f0d286) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/NavmeshData/Level2/NavMesh-FloorPanel1x1 (34).asset using Guid(f5f3361d51b62fb4081331f0e7f0d286) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2a4e4f6f7abd200f10a55574af090135') in 0.052433 seconds
+  Import took 0.055571 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.102126 seconds.
+  path: Assets/3DGamekit/Scenes/Data/LightingData
+  artifactKey: Guid(7958912858706f245b1c2c1bde302972) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/LightingData using Guid(7958912858706f245b1c2c1bde302972) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '027c0011a57a6b20684de90d2d1bf1ea') in 0.018250 seconds
+  Import took 0.021248 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.927929 seconds.
+  path: Assets/3DGamekit/Scenes/Data/LightingData/_TemplateScene
+  artifactKey: Guid(d3573c75a2f0b4642a0d5725649168d1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/LightingData/_TemplateScene using Guid(d3573c75a2f0b4642a0d5725649168d1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fbb78a3d4f785ca410046d0555ecea9f') in 0.027874 seconds
+  Import took 0.031093 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.056075 seconds.
+  path: Assets/3DGamekit/Scenes/Data/LightingData/_TemplateScene/LightingData.asset
+  artifactKey: Guid(db2a23b3c97edeb45b6dd42b3bb2040c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/LightingData/_TemplateScene/LightingData.asset using Guid(db2a23b3c97edeb45b6dd42b3bb2040c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a4d7f6c41612b021251fff0bcc547772') in 0.047807 seconds
+  Import took 0.050795 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000150 seconds.
+  path: Assets/3DGamekit/Scenes/Data/LightingData/_TemplateScene/Lightmap-0_comp_dir.png
+  artifactKey: Guid(db6a609b055439b4dbdf544b1834ce9d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/LightingData/_TemplateScene/Lightmap-0_comp_dir.png using Guid(db6a609b055439b4dbdf544b1834ce9d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fc35a5e35cae2e9172862ea70239b65b') in 0.099463 seconds
+  Import took 0.102323 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000163 seconds.
+  path: Assets/3DGamekit/Scenes/Data/LightingData/_TemplateScene/ReflectionProbe-0.exr
+  artifactKey: Guid(355cabea296d6d24e8bf915cac99d267) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/LightingData/_TemplateScene/ReflectionProbe-0.exr using Guid(355cabea296d6d24e8bf915cac99d267) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cb0bc6fe0d84f58d697eb721a7b79e19') in 0.139138 seconds
+  Import took 0.141909 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000143 seconds.
+  path: Assets/3DGamekit/Scenes/Data/LightingData/_TemplateScene/Lightmap-1_comp_light.exr
+  artifactKey: Guid(8ba4fc0acaf62d5409c7ffcf97107916) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/LightingData/_TemplateScene/Lightmap-1_comp_light.exr using Guid(8ba4fc0acaf62d5409c7ffcf97107916) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '40f1b7b8b1e55a7678e6e166514f6a02') in 0.128311 seconds
+  Import took 0.131354 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000168 seconds.
+  path: Assets/3DGamekit/Scenes/Data/LightingData/_TemplateScene/Lightmap-0_comp_light.exr
+  artifactKey: Guid(cefd34cdd0eb1a44d9c1a5f9ca3412e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/LightingData/_TemplateScene/Lightmap-0_comp_light.exr using Guid(cefd34cdd0eb1a44d9c1a5f9ca3412e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ab3075852881abad0aebe162e8bbe12d') in 0.069752 seconds
+  Import took 0.072338 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000387 seconds.
+  path: Assets/3DGamekit/Scenes/Data/LightingData/_TemplateScene/ReflectionProbe-1.exr
+  artifactKey: Guid(c3c12bd3563f794449bd0f3a87a61130) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/LightingData/_TemplateScene/ReflectionProbe-1.exr using Guid(c3c12bd3563f794449bd0f3a87a61130) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'aa9b75e8b040dc7ac3feb5ae21f6a5dd') in 0.186194 seconds
+  Import took 0.189527 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000190 seconds.
+  path: Assets/3DGamekit/Scenes/Data/LightingData/_TemplateScene/Lightmap-1_comp_dir.png
+  artifactKey: Guid(01e62a8ed470ded43a6ab9255754ade3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/LightingData/_TemplateScene/Lightmap-1_comp_dir.png using Guid(01e62a8ed470ded43a6ab9255754ade3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8578c3c3dab89343a3ac59528bac08ce') in 0.105875 seconds
+  Import took 0.110026 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.181854 seconds.
+  path: Assets/3DGamekit/Scenes/Data/LightingData/Level1
+  artifactKey: Guid(b5ba4b14e2301db46b79f0234d8a31bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/LightingData/Level1 using Guid(b5ba4b14e2301db46b79f0234d8a31bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '167cc80732e7de87f01239b6db389050') in 0.029620 seconds
+  Import took 0.032733 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.061729 seconds.
+  path: Assets/3DGamekit/Scenes/Data/LightingData/Level1/LightingData.asset
+  artifactKey: Guid(95cfbc26d8666aa439acdd4b99dae279) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/LightingData/Level1/LightingData.asset using Guid(95cfbc26d8666aa439acdd4b99dae279) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd4dcf523dc1bf53dcf47f4b250f32209') in 1.987575 seconds
+  Import took 2.000055 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000173 seconds.
+  path: Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-14.exr
+  artifactKey: Guid(907bcf727bed52845805ea85518e236c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-14.exr using Guid(907bcf727bed52845805ea85518e236c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1e9822ef872f9ae7011ca44d49912e59') in 0.099946 seconds
+  Import took 0.103865 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000154 seconds.
+  path: Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-13.exr
+  artifactKey: Guid(3de2510f29fb06641b5809365718f032) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-13.exr using Guid(3de2510f29fb06641b5809365718f032) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '870b8d9ad85bf6e91f88150c34978f01') in 0.045570 seconds
+  Import took 0.048313 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000157 seconds.
+  path: Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-12.exr
+  artifactKey: Guid(930811c9174d5004891e4b049b81e0b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-12.exr using Guid(930811c9174d5004891e4b049b81e0b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c76ed312269b96f15e532f288a971543') in 0.127239 seconds
+  Import took 0.129919 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000164 seconds.
+  path: Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-22.exr
+  artifactKey: Guid(ce2c5e016e6155540a37642e31119477) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-22.exr using Guid(ce2c5e016e6155540a37642e31119477) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c744e7c8b14c2b6193168f9b391d962b') in 0.074589 seconds
+  Import took 0.077642 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000179 seconds.
+  path: Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-25.exr
+  artifactKey: Guid(833af1b4727b64147babf225840e87cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-25.exr using Guid(833af1b4727b64147babf225840e87cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c236bf99c98ba63a0523df0fac7f9fd2') in 0.074593 seconds
+  Import took 0.077647 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000176 seconds.
+  path: Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-6.exr
+  artifactKey: Guid(68d63623773d7db4a948f409e311d16c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-6.exr using Guid(68d63623773d7db4a948f409e311d16c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1cdd88c03a8d24b9b99ed3a7027d56ae') in 0.050436 seconds
+  Import took 0.053422 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000170 seconds.
+  path: Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-4.exr
+  artifactKey: Guid(9b8cd6f79948a7f4db88af98d6b6c51f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-4.exr using Guid(9b8cd6f79948a7f4db88af98d6b6c51f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f43a06c7471b8a23c9cd3a3a53f1f341') in 0.186648 seconds
+  Import took 0.189615 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000262 seconds.
+  path: Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-16.exr
+  artifactKey: Guid(fa8a91439ea4d6c45a4cc33bd9eb07e8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-16.exr using Guid(fa8a91439ea4d6c45a4cc33bd9eb07e8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7121539698285ec35af2cfaa3ec997bb') in 0.129667 seconds
+  Import took 0.134004 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000379 seconds.
+  path: Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-9.exr
+  artifactKey: Guid(9769044a18489bb48b0570ac1440a9fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-9.exr using Guid(9769044a18489bb48b0570ac1440a9fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'aba5b3deff53cd0c26c843600327cf7e') in 0.085111 seconds
+  Import took 0.088269 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000481 seconds.
+  path: Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-8.exr
+  artifactKey: Guid(e3dec84a477fe254681428db04d107bd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-8.exr using Guid(e3dec84a477fe254681428db04d107bd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3a5b3c0d696aaab61c4aa66dbe700331') in 0.069071 seconds
+  Import took 0.072475 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000221 seconds.
+  path: Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-28.exr
+  artifactKey: Guid(c7666b198b292bc4789fed32e338719b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-28.exr using Guid(c7666b198b292bc4789fed32e338719b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7d3fcaee093999e4774b355d11018b96') in 0.080459 seconds
+  Import took 0.084128 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000188 seconds.
+  path: Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-0.exr
+  artifactKey: Guid(e65ce720dc79c684d8044b887dd3acc8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-0.exr using Guid(e65ce720dc79c684d8044b887dd3acc8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f03a0207f2040b13352f9238db043e48') in 0.103425 seconds
+  Import took 0.117964 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000302 seconds.
+  path: Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-2.exr
+  artifactKey: Guid(922a8b77fb9ebc749acbf8202d249689) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-2.exr using Guid(922a8b77fb9ebc749acbf8202d249689) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'eedf458c617a50cb2e3d0a1793610771') in 0.014026 seconds
+  Import took 0.017905 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000197 seconds.
+  path: Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-21.exr
+  artifactKey: Guid(14652a5492bae674495c740448a9e10d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-21.exr using Guid(14652a5492bae674495c740448a9e10d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6a8f4bf45e73e39b20ef02e8696bf0e3') in 0.079732 seconds
+  Import took 0.083237 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000164 seconds.
+  path: Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-17.exr
+  artifactKey: Guid(eab3f2eb4fadf1e438b725b0c8ab74b6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-17.exr using Guid(eab3f2eb4fadf1e438b725b0c8ab74b6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3a74dc73fd7a693c34580d31b829975c') in 0.046744 seconds
+  Import took 0.049700 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000176 seconds.
+  path: Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-24.exr
+  artifactKey: Guid(069c3761276601b4f91a77d5c47b7231) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-24.exr using Guid(069c3761276601b4f91a77d5c47b7231) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '611b3e049ec541cf4f315ae359bd3f02') in 0.050232 seconds
+  Import took 0.053480 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000186 seconds.
+  path: Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-23.exr
+  artifactKey: Guid(4efcb56dc6ba0164faefc37036ac837a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-23.exr using Guid(4efcb56dc6ba0164faefc37036ac837a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b5d62291002fd9dbce5718b411dc5ac3') in 0.078018 seconds
+  Import took 0.080596 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000173 seconds.
+  path: Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-18.exr
+  artifactKey: Guid(5c7a413f27d99f449a31cf23f1db1bc4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-18.exr using Guid(5c7a413f27d99f449a31cf23f1db1bc4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dc5e292dbb58ab357707a290353dfc49') in 0.067792 seconds
+  Import took 0.070787 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000170 seconds.
+  path: Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-26.exr
+  artifactKey: Guid(48a417898b7fa6b4fbfdf367978d02a5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-26.exr using Guid(48a417898b7fa6b4fbfdf367978d02a5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd1b313c675c4c0ff26ee35b3b578d0e2') in 0.085444 seconds
+  Import took 0.125093 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000188 seconds.
+  path: Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-11.exr
+  artifactKey: Guid(37bed2a733d21cb47b141dd4871916f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-11.exr using Guid(37bed2a733d21cb47b141dd4871916f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a69123ccea73823a5e5a68636beb220f') in 0.064281 seconds
+  Import took 0.068226 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000172 seconds.
+  path: Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-31.exr
+  artifactKey: Guid(5a70b43fcfeb2274bb5c3eaab781159a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-31.exr using Guid(5a70b43fcfeb2274bb5c3eaab781159a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bd7930a0625507312f70374fa451fea2') in 0.089600 seconds
+  Import took 0.092785 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000189 seconds.
+  path: Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-10.exr
+  artifactKey: Guid(8fa96820d9104004abd5fcdec2748d28) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-10.exr using Guid(8fa96820d9104004abd5fcdec2748d28) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '57dfb22a0d08322d2116e4c943b2ff61') in 0.083654 seconds
+  Import took 0.086836 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000198 seconds.
+  path: Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-27.exr
+  artifactKey: Guid(cd6c2833432ee944ba4e3bdaa2cf86fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-27.exr using Guid(cd6c2833432ee944ba4e3bdaa2cf86fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '17229df0a689d32cbc11146c82c55c3c') in 0.152060 seconds
+  Import took 0.155928 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000180 seconds.
+  path: Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-1.exr
+  artifactKey: Guid(f1e095ed2193daf41a80bb4a6c1d96bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-1.exr using Guid(f1e095ed2193daf41a80bb4a6c1d96bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e85b6be45e8a21afc7a88ee3c6b996a7') in 0.085896 seconds
+  Import took 0.089610 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000170 seconds.
+  path: Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-5.exr
+  artifactKey: Guid(c7aec3a13bf5c7343bb906770d30bfb7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-5.exr using Guid(c7aec3a13bf5c7343bb906770d30bfb7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5f50203098cade655b5f94210234ad5c') in 0.087415 seconds
+  Import took 0.091143 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000165 seconds.
+  path: Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-20.exr
+  artifactKey: Guid(431a8f8ad812b9140803a14a36a1af36) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-20.exr using Guid(431a8f8ad812b9140803a14a36a1af36) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e0840c7b8c0a8dd54836fb7bd1b49424') in 0.109112 seconds
+  Import took 0.112435 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000454 seconds.
+  path: Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-30.exr
+  artifactKey: Guid(8ae8e520a24d13446a7c980d5ccabc94) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-30.exr using Guid(8ae8e520a24d13446a7c980d5ccabc94) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '79b50d8f73dd9d9119991585dae31d7d') in 0.077384 seconds
+  Import took 0.080174 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000162 seconds.
+  path: Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-29.exr
+  artifactKey: Guid(37ce5b993e1ad624a8a634ea59fc14d2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-29.exr using Guid(37ce5b993e1ad624a8a634ea59fc14d2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '454b15c05525f4b480b794a94e9ed40f') in 0.103705 seconds
+  Import took 0.107647 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000234 seconds.
+  path: Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-7.exr
+  artifactKey: Guid(92d77876542491f4193b88339d0f2033) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-7.exr using Guid(92d77876542491f4193b88339d0f2033) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '75e96b6e63ee0809d7d447ded1ccc52f') in 0.083488 seconds
+  Import took 0.086455 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000165 seconds.
+  path: Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-15.exr
+  artifactKey: Guid(3cf807ed134ebd44f8681b9300f50155) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-15.exr using Guid(3cf807ed134ebd44f8681b9300f50155) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '749cef8b97661b8e125cd3900f5b28c2') in 0.055512 seconds
+  Import took 0.058135 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000158 seconds.
+  path: Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-19.exr
+  artifactKey: Guid(b9cd09c83ce8a6e4b8cb67dd1408d57b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-19.exr using Guid(b9cd09c83ce8a6e4b8cb67dd1408d57b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '22a48f4f8a8db905c254c1e12772dc81') in 0.054144 seconds
+  Import took 0.057177 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000188 seconds.
+  path: Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-3.exr
+  artifactKey: Guid(0fad6448d04412c41b135c695167da18) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/LightingData/Level1/ReflectionProbe-3.exr using Guid(0fad6448d04412c41b135c695167da18) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9ab980753e6459e5c938c0ee2c28946c') in 0.048773 seconds
+  Import took 0.052115 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.604768 seconds.
+  path: Assets/3DGamekit/Scenes/Data/PostProcessingProfiles
+  artifactKey: Guid(558edd309a9c61e46bdba57ac056e118) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/PostProcessingProfiles using Guid(558edd309a9c61e46bdba57ac056e118) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '67765eb8ff3d739c43c19e36dfff1449') in 0.041542 seconds
+  Import took 0.044542 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.109291 seconds.
+  path: Assets/3DGamekit/Scenes/Data/PostProcessingProfiles/StartMenuPostProcessingProfiles
+  artifactKey: Guid(5adc896fe79ecab4f8e38fb267ec226b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/PostProcessingProfiles/StartMenuPostProcessingProfiles using Guid(5adc896fe79ecab4f8e38fb267ec226b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '16eb0c4047a3030063d3bcc646cfafc3') in 0.008953 seconds
+  Import took 0.012083 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.122475 seconds.
+  path: Assets/3DGamekit/Scenes/Data/PostProcessingProfiles/StartMenuPostProcessingProfiles/StartMenu Global Profile Fantastic.asset
+  artifactKey: Guid(8e6ea9a75a4429a43b93fb0540467195) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/PostProcessingProfiles/StartMenuPostProcessingProfiles/StartMenu Global Profile Fantastic.asset using Guid(8e6ea9a75a4429a43b93fb0540467195) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f5e51d695c6d21d8939b1d4395d166b7') in 0.023350 seconds
+  Import took 0.027195 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.692632 seconds.
+  path: Assets/3DGamekit/Scenes/Data/RealtimeGIParameters
+  artifactKey: Guid(b22e480799dffea45adf3a87f810f5b6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/RealtimeGIParameters using Guid(b22e480799dffea45adf3a87f810f5b6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e7e64d1f6df5b7dfa4646a7012ee9216') in 0.008547 seconds
+  Import took 0.011747 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.090730 seconds.
+  path: Assets/3DGamekit/Scenes/Data/RealtimeGIParameters/DistantTerrain.giparams
+  artifactKey: Guid(82bf0b460de60df419aa8aa3a106c063) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/RealtimeGIParameters/DistantTerrain.giparams using Guid(82bf0b460de60df419aa8aa3a106c063) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b7767147867f1bb5c442bd812cdf740a') in 0.029365 seconds
+  Import took 0.032323 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000167 seconds.
+  path: Assets/3DGamekit/Scenes/Data/RealtimeGIParameters/Swamp.giparams
+  artifactKey: Guid(3ea3c2956527e6c45aa7ff706f21ac18) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/RealtimeGIParameters/Swamp.giparams using Guid(3ea3c2956527e6c45aa7ff706f21ac18) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4647a0bc51cde79c7422b82654e60877') in 0.015572 seconds
+  Import took 0.018391 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000150 seconds.
+  path: Assets/3DGamekit/Scenes/Data/RealtimeGIParameters/RocksForeground.giparams
+  artifactKey: Guid(da960c91c3cafc841a858c072ded795f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/RealtimeGIParameters/RocksForeground.giparams using Guid(da960c91c3cafc841a858c072ded795f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8e54a9aa71bf81ddeaf818f9beef06e0') in 0.013311 seconds
+  Import took 0.016124 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000179 seconds.
+  path: Assets/3DGamekit/Scenes/Data/RealtimeGIParameters/TerrainForeground.giparams
+  artifactKey: Guid(c547682ddd9906242a5b5f20bdf012fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/RealtimeGIParameters/TerrainForeground.giparams using Guid(c547682ddd9906242a5b5f20bdf012fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7ce137b2466575b7fb1828dcb4ea4f9c') in 0.011792 seconds
+  Import took 0.014769 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000173 seconds.
+  path: Assets/3DGamekit/Scenes/Data/RealtimeGIParameters/RocksBackground.giparams
+  artifactKey: Guid(7d56ae9df51809342b6d4948bf7170aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/RealtimeGIParameters/RocksBackground.giparams using Guid(7d56ae9df51809342b6d4948bf7170aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2fddf6062bbb77a1e3a343e3e1f763f0') in 0.013528 seconds
+  Import took 0.016590 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000147 seconds.
+  path: Assets/3DGamekit/Scenes/Data/RealtimeGIParameters/Ground.giparams
+  artifactKey: Guid(71b4b605178509c40a9daa68db33608c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/Data/RealtimeGIParameters/Ground.giparams using Guid(71b4b605178509c40a9daa68db33608c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e87ee4d0b9694f81939c54387653d7d9') in 0.039964 seconds
+  Import took 0.042864 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 9.985699 seconds.
   path: Assets/3DGamekit/Scenes/GamePlay/Level1Test.unity
   artifactKey: Guid(9da918fef5d6f7848a6b383da7b692ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/3DGamekit/Scenes/GamePlay/Level1Test.unity using Guid(9da918fef5d6f7848a6b383da7b692ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '484375896ea8cf14f32cc700812e0c10') in 0.047590 seconds
-  Import took 0.070630 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.000699 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for LinuxStandalone target not found
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.76 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.679 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.57 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2412 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 148.4 MB.
-System memory in use after: 148.3 MB.
-
-Unloading 12 unused Assets to reduce memory usage. Loaded Objects now: 3347.
-Total: 2.131600 ms (FindLiveObjects: 0.297200 ms CreateObjectMapping: 0.083700 ms MarkObjects: 1.401600 ms  DeleteObjects: 0.348200 ms)
+Start importing Assets/3DGamekit/Scenes/GamePlay/Level1Test.unity using Guid(9da918fef5d6f7848a6b383da7b692ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '786c3800a72ce0cda402e37e529705c4') in 0.002473 seconds
+  Import took 0.005997 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 1209.168074 seconds.
+  Time since last request: 340.855235 seconds.
   path: Assets/3DGamekit/Scenes/GamePlay/Level1Test.unity
   artifactKey: Guid(9da918fef5d6f7848a6b383da7b692ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/3DGamekit/Scenes/GamePlay/Level1Test.unity using Guid(9da918fef5d6f7848a6b383da7b692ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ba429e624e7213c8bf1861482182f370') in 0.036960 seconds
-  Import took 0.054168 seconds .
+Start importing Assets/3DGamekit/Scenes/GamePlay/Level1Test.unity using Guid(9da918fef5d6f7848a6b383da7b692ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ac4fb7e77afc063c8b212d9b8a7ec830') in 0.002629 seconds
+  Import took 0.006601 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 119.777527 seconds.
-  path: Assets/3DGamekit/Prefabs/Environment/Skybox.prefab
-  artifactKey: Guid(360e769726970954fb7f09b03b970ab4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/3DGamekit/Prefabs/Environment/Skybox.prefab using Guid(360e769726970954fb7f09b03b970ab4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ab4616d7bc70bd5c816ef8c7331cbdea') in 0.041483 seconds
-  Import took 0.082892 seconds .
+  Time since last request: 299.309711 seconds.
+  path: Assets/3DGamekit/Art/Animations/Timeline/Level01_Door01.playable
+  artifactKey: Guid(9cf6b473cb737ae41b642f708e32fd45) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Art/Animations/Timeline/Level01_Door01.playable using Guid(9cf6b473cb737ae41b642f708e32fd45) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a4e88b4a9043ccfaad4e5dea73bf2906') in 0.035591 seconds
+  Import took 0.039079 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000708 seconds.
+  path: Assets/3DGamekit/Art/Animations/Timeline/Level01_Door01.playable
+  artifactKey: Guid(9cf6b473cb737ae41b642f708e32fd45) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Art/Animations/Timeline/Level01_Door01.playable using Guid(9cf6b473cb737ae41b642f708e32fd45) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a4e88b4a9043ccfaad4e5dea73bf2906') in 0.002060 seconds
+  Import took 0.004854 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 440.706421 seconds.
+  path: Assets/3DGamekit/Scenes/GamePlay/Level1Test.unity
+  artifactKey: Guid(9da918fef5d6f7848a6b383da7b692ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/GamePlay/Level1Test.unity using Guid(9da918fef5d6f7848a6b383da7b692ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9e18b5aa313b9e844970f669988a74ad') in 0.001948 seconds
+  Import took 0.007286 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 286.104390 seconds.
+  path: Assets/3DGamekit/Scenes/GamePlay/Level1Test.unity
+  artifactKey: Guid(9da918fef5d6f7848a6b383da7b692ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/GamePlay/Level1Test.unity using Guid(9da918fef5d6f7848a6b383da7b692ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '30967c58617adf7abb3c5e543cd27859') in 0.001847 seconds
+  Import took 0.005441 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 164.055544 seconds.
+  path: Assets/3DGamekit/Art/Animations/Animators/Characters/Ellen.controller
+  artifactKey: Guid(b7c146d79b5d0df4bbddbb87906b0bc6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Art/Animations/Animators/Characters/Ellen.controller using Guid(b7c146d79b5d0df4bbddbb87906b0bc6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cd35bdfa8432c210da50d302e6003909') in 0.152878 seconds
+  Import took 0.158046 seconds .
 
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-Registered in 0.000719 seconds.
+Registered in 0.000726 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for LinuxStandalone target not found
 Native extension for WindowsStandalone target not found
@@ -681,15 +1288,143 @@ Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.532 seconds
+- Completed reload, in  0.567 seconds
 Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.52 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2410 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 164.9 MB.
+System memory in use after: 164.7 MB.
+
+Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 3164.
+Total: 1.980000 ms (FindLiveObjects: 0.219900 ms CreateObjectMapping: 0.049100 ms MarkObjects: 1.345000 ms  DeleteObjects: 0.365400 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 604.346982 seconds.
+  path: Assets/3DGamekit/Scenes/GamePlay/Level1Test.unity
+  artifactKey: Guid(9da918fef5d6f7848a6b383da7b692ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/GamePlay/Level1Test.unity using Guid(9da918fef5d6f7848a6b383da7b692ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4f4ad23d9002a837218d5350d001dd5f') in 0.048555 seconds
+  Import took 0.052219 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.000950 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
 Refreshing native plugins compatible for Editor in 0.62 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2412 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 148.5 MB.
-System memory in use after: 148.3 MB.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.558 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.56 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2410 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 164.9 MB.
+System memory in use after: 164.7 MB.
 
-Unloading 12 unused Assets to reduce memory usage. Loaded Objects now: 3364.
-Total: 2.449200 ms (FindLiveObjects: 0.261300 ms CreateObjectMapping: 0.044100 ms MarkObjects: 1.516400 ms  DeleteObjects: 0.626800 ms)
+Unloading 12 unused Assets to reduce memory usage. Loaded Objects now: 3180.
+Total: 2.892100 ms (FindLiveObjects: 0.222500 ms CreateObjectMapping: 0.056300 ms MarkObjects: 2.098600 ms  DeleteObjects: 0.513500 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 332.320963 seconds.
+  path: Assets/3DGamekit/Scenes/GamePlay/Level1Test.unity
+  artifactKey: Guid(9da918fef5d6f7848a6b383da7b692ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/GamePlay/Level1Test.unity using Guid(9da918fef5d6f7848a6b383da7b692ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '10f8b062024556311fb55223afc4ac2c') in 0.041586 seconds
+  Import took 0.044877 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.000815 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.60 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.578 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.52 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2410 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 164.9 MB.
+System memory in use after: 164.8 MB.
+
+Unloading 12 unused Assets to reduce memory usage. Loaded Objects now: 3196.
+Total: 1.816100 ms (FindLiveObjects: 0.210900 ms CreateObjectMapping: 0.036200 ms MarkObjects: 1.222300 ms  DeleteObjects: 0.345800 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 700.071064 seconds.
+  path: Assets/3DGamekit/Art/Animations/Timeline/Level01_Door01.playable
+  artifactKey: Guid(9cf6b473cb737ae41b642f708e32fd45) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Art/Animations/Timeline/Level01_Door01.playable using Guid(9cf6b473cb737ae41b642f708e32fd45) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2135e2677203c0354b1aa6d75ba7153d') in 0.055414 seconds
+  Import took 0.058745 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000162 seconds.
+  path: Assets/3DGamekit/Art/Animations/Timeline/TestLevel1Cristal.playable
+  artifactKey: Guid(53653d286087d7d49a4daa5817995bd1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Art/Animations/Timeline/TestLevel1Cristal.playable using Guid(53653d286087d7d49a4daa5817995bd1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6c10c4c415132212b03e9ee8cda43d2e') in 0.009052 seconds
+  Import took 0.011910 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 168.872438 seconds.
+  path: Assets/3DGamekit/Scenes/GamePlay/Level1Test.unity
+  artifactKey: Guid(9da918fef5d6f7848a6b383da7b692ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/GamePlay/Level1Test.unity using Guid(9da918fef5d6f7848a6b383da7b692ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '07f2265ab184f0228220ff65eb7c7112') in 0.010101 seconds
+  Import took 0.014563 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 165.257548 seconds.
+  path: Assets/3DGamekit/Scenes/GamePlay/Level1.unity
+  artifactKey: Guid(ed46e53182fb08b4482fd3c4a75bc631) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/GamePlay/Level1.unity using Guid(ed46e53182fb08b4482fd3c4a75bc631) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f36fab7afcf370511cf630a190c6b199') in 0.009791 seconds
+  Import took 0.014527 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 23.880100 seconds.
+  path: Assets/3DGamekit/Scenes/GamePlay/Level1Test.unity
+  artifactKey: Guid(9da918fef5d6f7848a6b383da7b692ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3DGamekit/Scenes/GamePlay/Level1Test.unity using Guid(9da918fef5d6f7848a6b383da7b692ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f19063921a5e188341ca3178e9ae4a17') in 0.001583 seconds
+  Import took 0.004772 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.000740 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.53 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.567 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.61 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2410 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 165.0 MB.
+System memory in use after: 164.8 MB.
+
+Unloading 12 unused Assets to reduce memory usage. Loaded Objects now: 3212.
+Total: 2.320400 ms (FindLiveObjects: 0.292200 ms CreateObjectMapping: 0.095900 ms MarkObjects: 1.533300 ms  DeleteObjects: 0.398200 ms)
 
 AssetImportWorkerClient::OnTransportError - code=2 error=End of file
