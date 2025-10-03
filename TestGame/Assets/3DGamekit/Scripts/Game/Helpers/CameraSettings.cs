@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
 
@@ -10,14 +8,8 @@ namespace Gamekit3D
     {
         public enum InputChoice
         {
-            KeyboardAndMouse, Controller,
-        }
-
-        [Serializable]
-        public struct InvertSettings
-        {
-            public bool invertX;
-            public bool invertY;
+            KeyboardAndMouse,
+            Controller
         }
 
 
@@ -30,22 +22,25 @@ namespace Gamekit3D
         public InvertSettings controllerInvertSettings;
         public bool allowRuntimeCameraSettingsChanges;
 
-        public CinemachineFreeLook Current
+        public CinemachineFreeLook Current =>
+            inputChoice == InputChoice.KeyboardAndMouse ? keyboardAndMouseCamera : controllerCamera;
+
+        private void Awake()
         {
-            get { return inputChoice == InputChoice.KeyboardAndMouse ? keyboardAndMouseCamera : controllerCamera; }
+            UpdateCameraSettings();
         }
 
-        void Reset()
+        private void Reset()
         {
-            Transform keyboardAndMouseCameraTransform = transform.Find("KeyboardAndMouseFreeLookRig");
+            var keyboardAndMouseCameraTransform = transform.Find("KeyboardAndMouseFreeLookRig");
             if (keyboardAndMouseCameraTransform != null)
                 keyboardAndMouseCamera = keyboardAndMouseCameraTransform.GetComponent<CinemachineFreeLook>();
 
-            Transform controllerCameraTransform = transform.Find("ControllerFreeLookRig");
+            var controllerCameraTransform = transform.Find("ControllerFreeLookRig");
             if (controllerCameraTransform != null)
                 controllerCamera = controllerCameraTransform.GetComponent<CinemachineFreeLook>();
 
-            PlayerController playerController = FindObjectOfType<PlayerController>();
+            var playerController = FindObjectOfType<PlayerController>();
             if (playerController != null && playerController.name == "Ellen")
             {
                 follow = playerController.transform;
@@ -57,20 +52,12 @@ namespace Gamekit3D
             }
         }
 
-        void Awake()
+        private void Update()
         {
-            UpdateCameraSettings();
+            if (allowRuntimeCameraSettingsChanges) UpdateCameraSettings();
         }
 
-        void Update()
-        {
-            if (allowRuntimeCameraSettingsChanges)
-            {
-                UpdateCameraSettings();
-            }
-        }
-
-        void UpdateCameraSettings()
+        private void UpdateCameraSettings()
         {
             keyboardAndMouseCamera.Follow = follow;
             keyboardAndMouseCamera.LookAt = lookAt;
@@ -85,5 +72,12 @@ namespace Gamekit3D
             keyboardAndMouseCamera.Priority = inputChoice == InputChoice.KeyboardAndMouse ? 1 : 0;
             controllerCamera.Priority = inputChoice == InputChoice.Controller ? 1 : 0;
         }
-    } 
+
+        [Serializable]
+        public struct InvertSettings
+        {
+            public bool invertX;
+            public bool invertY;
+        }
+    }
 }

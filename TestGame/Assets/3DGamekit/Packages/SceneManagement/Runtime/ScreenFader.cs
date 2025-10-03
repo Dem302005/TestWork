@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Gamekit3D
 {
@@ -8,8 +7,22 @@ namespace Gamekit3D
     {
         public enum FadeType
         {
-            Black, Loading, GameOver,
+            Black,
+            Loading,
+            GameOver
         }
+
+        private const int k_MaxSortingLayer = 32767;
+
+        protected static ScreenFader s_Instance;
+
+
+        public CanvasGroup faderCanvasGroup;
+        public CanvasGroup loadingCanvasGroup;
+        public CanvasGroup gameOverCanvasGroup;
+        public float fadeDuration = 1f;
+
+        protected bool m_IsFading;
 
         public static ScreenFader Instance
         {
@@ -29,30 +42,9 @@ namespace Gamekit3D
             }
         }
 
-        public static bool IsFading
-        {
-            get { return Instance.m_IsFading; }
-        }
+        public static bool IsFading => Instance.m_IsFading;
 
-        protected static ScreenFader s_Instance;
-
-        public static void Create()
-        {
-            ScreenFader controllerPrefab = Resources.Load<ScreenFader>("ScreenFader");
-            s_Instance = Instantiate(controllerPrefab);
-        }
-
-
-        public CanvasGroup faderCanvasGroup;
-        public CanvasGroup loadingCanvasGroup;
-        public CanvasGroup gameOverCanvasGroup;
-        public float fadeDuration = 1f;
-
-        protected bool m_IsFading;
-
-        const int k_MaxSortingLayer = 32767;
-
-        void Awake()
+        private void Awake()
         {
             if (Instance != this)
             {
@@ -63,17 +55,24 @@ namespace Gamekit3D
             DontDestroyOnLoad(gameObject);
         }
 
+        public static void Create()
+        {
+            var controllerPrefab = Resources.Load<ScreenFader>("ScreenFader");
+            s_Instance = Instantiate(controllerPrefab);
+        }
+
         protected IEnumerator Fade(float finalAlpha, CanvasGroup canvasGroup)
         {
             m_IsFading = true;
             canvasGroup.blocksRaycasts = true;
-            float fadeSpeed = Mathf.Abs(canvasGroup.alpha - finalAlpha) / fadeDuration;
+            var fadeSpeed = Mathf.Abs(canvasGroup.alpha - finalAlpha) / fadeDuration;
             while (!Mathf.Approximately(canvasGroup.alpha, finalAlpha))
             {
                 canvasGroup.alpha = Mathf.MoveTowards(canvasGroup.alpha, finalAlpha,
                     fadeSpeed * Time.deltaTime);
                 yield return null;
             }
+
             canvasGroup.alpha = finalAlpha;
             m_IsFading = false;
             canvasGroup.blocksRaycasts = false;

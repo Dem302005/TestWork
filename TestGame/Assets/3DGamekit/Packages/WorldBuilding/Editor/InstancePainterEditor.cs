@@ -1,28 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 using UnityEditor;
-using UnityEngine.Rendering;
-
+using UnityEngine;
 
 namespace Gamekit3D.WorldBuilding
 {
-
     [CustomEditor(typeof(InstancePainter))]
     public partial class InstancePainterEditor : Editor
     {
-        Texture2D[] palleteImages;
-        GameObject stamp;
+        private readonly List<GameObject> erase = new List<GameObject>();
+        private InstancePainter ip;
+        private readonly List<GameObject> overlappedGameObjects = new List<GameObject>();
+        private readonly List<Bounds> overlaps = new List<Bounds>();
+        private Texture2D[] palleteImages;
+        private GameObject stamp;
+        private Variations variations;
+        private Editor variationsEditor;
+        private Vector3 worldCursor;
 
-        List<GameObject> erase = new List<GameObject>();
-        Vector3 worldCursor;
-        InstancePainter ip;
-        Variations variations;
-        Editor variationsEditor;
-        List<Bounds> overlaps = new List<Bounds>();
-        List<GameObject> overlappedGameObjects = new List<GameObject>();
-
-        void OnEnable()
+        private void OnEnable()
         {
             stamp = new GameObject("Stamp");
             stamp.hideFlags = HideFlags.HideAndDontSave;
@@ -33,25 +28,24 @@ namespace Gamekit3D.WorldBuilding
                 if (variationsEditor != null)
                     DestroyImmediate(variationsEditor);
                 if (variations != null)
-                    variationsEditor = Editor.CreateEditor(variations);
+                    variationsEditor = CreateEditor(variations);
                 CreateNewStamp();
             }
-
         }
 
-        void OnDisable()
+        private void OnDisable()
         {
             if (variationsEditor != null) DestroyImmediate(variationsEditor);
             if (stamp != null)
                 DestroyImmediate(stamp);
         }
 
-        void CreateNewStamp()
+        private void CreateNewStamp()
         {
             while (stamp.transform.childCount > 0)
                 DestroyImmediate(stamp.transform.GetChild(0).gameObject);
 
-            var count = Mathf.Min(1000, (Mathf.PI * Mathf.Pow(ip.brushRadius, 2)) / (1f / ip.brushDensity));
+            var count = Mathf.Min(1000, Mathf.PI * Mathf.Pow(ip.brushRadius, 2) / (1f / ip.brushDensity));
 
             for (var i = 0; i < count; i++)
             {
@@ -66,17 +60,20 @@ namespace Gamekit3D.WorldBuilding
                     if (ip.rotationStep > 0)
                         eulerAngles.y = Mathf.Round(eulerAngles.y / ip.rotationStep) * ip.rotationStep;
                 }
+
                 child.transform.localEulerAngles = eulerAngles;
                 GameObject dummy;
                 if (variations != null)
-                    dummy = PrefabUtility.InstantiatePrefab(variations.gameObjects[Random.Range(0, variations.gameObjects.Count)]) as GameObject;
+                    dummy = PrefabUtility.InstantiatePrefab(
+                        variations.gameObjects[Random.Range(0, variations.gameObjects.Count)]) as GameObject;
                 else
                     dummy = PrefabUtility.InstantiatePrefab(ip.SelectedPrefab) as GameObject;
                 foreach (var c in dummy.GetComponentsInChildren<Collider>())
                     c.enabled = false;
                 dummy.transform.parent = child.transform;
                 if (variations != null)
-                    child.transform.localScale = Vector3.one * Mathf.Lerp(variations.minScale, variations.maxScale, Random.value);
+                    child.transform.localScale =
+                        Vector3.one * Mathf.Lerp(variations.minScale, variations.maxScale, Random.value);
                 dummy.transform.localPosition = Vector3.zero;
                 dummy.transform.localRotation = Quaternion.identity;
             }
@@ -102,7 +99,8 @@ namespace Gamekit3D.WorldBuilding
                         var intersection = Intersection(b, bounds);
                         var intersectionVolume = intersection.size.x * intersection.size.y * intersection.size.z;
                         // Handles.DrawWireCube(intersection.center, intersection.size);
-                        var maxIntersection = Mathf.Max(intersectionVolume / overlapVolume, intersectionVolume / childVolume);
+                        var maxIntersection = Mathf.Max(intersectionVolume / overlapVolume,
+                            intersectionVolume / childVolume);
                         // Handles.Label(intersection.center, maxIntersection.ToString());
                         if (maxIntersection > ip.maxIntersectionVolume)
                         {
@@ -112,20 +110,18 @@ namespace Gamekit3D.WorldBuilding
                     }
                 }
             }
-            foreach (var i in toDestroy)
-            {
-                DestroyImmediate(i);
-            }
+
+            foreach (var i in toDestroy) DestroyImmediate(i);
         }
 
-        void PerformErase()
+        private void PerformErase()
         {
             foreach (var g in erase)
                 Undo.DestroyObjectImmediate(g);
             erase.Clear();
         }
 
-        void PerformStamp()
+        private void PerformStamp()
         {
             var removeVariations = ip.SelectedPrefab.GetComponent<Variations>() != null;
             for (var i = 0; i < stamp.transform.childCount; i++)
@@ -149,24 +145,21 @@ namespace Gamekit3D.WorldBuilding
                     }
                 }
             }
+
             if (ip.randomizeAfterStamp)
                 CreateNewStamp();
         }
 
-        void RotateStamp(Vector2 delta)
+        private void RotateStamp(Vector2 delta)
         {
             var rotation = Quaternion.AngleAxis(delta.x, Vector3.up);
-            foreach (Transform t in stamp.transform)
-            {
-                t.localPosition = rotation * t.localPosition;
-            }
+            foreach (Transform t in stamp.transform) t.localPosition = rotation * t.localPosition;
         }
 
-        void AdjustMaxScale(float s)
+        private void AdjustMaxScale(float s)
         {
             for (var i = 0; i < stamp.transform.childCount; i++)
                 stamp.transform.GetChild(i).localScale *= s;
         }
-
     }
 }

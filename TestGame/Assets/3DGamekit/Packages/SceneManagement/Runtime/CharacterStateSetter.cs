@@ -5,16 +5,71 @@ using UnityEngine;
 namespace Gamekit3D
 {
     /// <summary>
-    /// This class is used to put the player character into a specific state, usually upon entering a scene.
+    ///     This class is used to put the player character into a specific state, usually upon entering a scene.
     /// </summary>
     public class CharacterStateSetter : MonoBehaviour
     {
+        public bool setCharacterVelocity;
+        public Vector2 characterVelocity;
+
+        public bool setCharacterFacing;
+        public bool faceLeft;
+
+        public Animator animator;
+
+        public bool setState;
+        public string animatorStateName;
+
+        public bool setParameters;
+        public ParameterSetter[] parameterSetters;
+
+        private int m_HashStateName;
+        private Coroutine m_SetCharacterStateCoroutine;
+
+        private void Awake()
+        {
+            m_HashStateName = Animator.StringToHash(animatorStateName);
+
+            for (var i = 0; i < parameterSetters.Length; i++)
+                parameterSetters[i].Awake();
+        }
+
+        public void SetCharacterState()
+        {
+            if (m_SetCharacterStateCoroutine != null)
+                StopCoroutine(m_SetCharacterStateCoroutine);
+
+
+            if (setState)
+                animator.Play(m_HashStateName);
+
+            if (setParameters)
+                for (var i = 0; i < parameterSetters.Length; i++)
+                    parameterSetters[i].SetParameter(animator);
+        }
+
+        public void SetCharacterState(float delay)
+        {
+            if (m_SetCharacterStateCoroutine != null)
+                StopCoroutine(m_SetCharacterStateCoroutine);
+            m_SetCharacterStateCoroutine = StartCoroutine(CallWithDelay(delay, SetCharacterState));
+        }
+
+        private IEnumerator CallWithDelay(float delay, Action call)
+        {
+            yield return new WaitForSeconds(delay);
+            call();
+        }
+
         [Serializable]
         public class ParameterSetter
         {
             public enum ParameterType
             {
-                Bool, Float, Int, Trigger,
+                Bool,
+                Float,
+                Int,
+                Trigger
             }
 
             public string parameterName;
@@ -50,61 +105,6 @@ namespace Gamekit3D
                         throw new ArgumentOutOfRangeException();
                 }
             }
-        }
-
-
-        public bool setCharacterVelocity;
-        public Vector2 characterVelocity;
-
-        public bool setCharacterFacing;
-        public bool faceLeft;
-
-        public Animator animator;
-
-        public bool setState;
-        public string animatorStateName;
-
-        public bool setParameters;
-        public ParameterSetter[] parameterSetters;
-
-        int m_HashStateName;
-        Coroutine m_SetCharacterStateCoroutine;
-
-        void Awake()
-        {
-            m_HashStateName = Animator.StringToHash(animatorStateName);
-
-            for (int i = 0; i < parameterSetters.Length; i++)
-                parameterSetters[i].Awake();
-        }
-
-        public void SetCharacterState()
-        {
-            if (m_SetCharacterStateCoroutine != null)
-                StopCoroutine(m_SetCharacterStateCoroutine);
-
-
-            if (setState)
-                animator.Play(m_HashStateName);
-
-            if (setParameters)
-            {
-                for (int i = 0; i < parameterSetters.Length; i++)
-                    parameterSetters[i].SetParameter(animator);
-            }
-        }
-
-        public void SetCharacterState(float delay)
-        {
-            if (m_SetCharacterStateCoroutine != null)
-                StopCoroutine(m_SetCharacterStateCoroutine);
-            m_SetCharacterStateCoroutine = StartCoroutine(CallWithDelay(delay, SetCharacterState));
-        }
-
-        IEnumerator CallWithDelay(float delay, Action call)
-        {
-            yield return new WaitForSeconds(delay);
-            call();
         }
     }
 }

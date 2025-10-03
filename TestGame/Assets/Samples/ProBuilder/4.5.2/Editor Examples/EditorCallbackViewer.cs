@@ -1,137 +1,136 @@
-using UnityEngine;
-using UnityEditor;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
 using UnityEditor.ProBuilder;
+using UnityEngine;
 using UnityEngine.ProBuilder;
 using EditorUtility = UnityEditor.ProBuilder.EditorUtility;
+using Math = System.Math;
 
 namespace ProBuilder.EditorExamples
 {
-	sealed class EditorCallbackViewer : EditorWindow
-	{
-		List<string> m_Logs = new List<string>();
-		Vector2 m_Scroll = Vector2.zero;
-		bool m_Collapse = true;
+    internal sealed class EditorCallbackViewer : EditorWindow
+    {
+        private bool m_Collapse = true;
+        private readonly List<string> m_Logs = new List<string>();
+        private Vector2 m_Scroll = Vector2.zero;
 
-		[MenuItem("Tools/ProBuilder/API Examples/Log Callbacks Window")]
-		static void MenuInitEditorCallbackViewer()
-		{
-			GetWindow<EditorCallbackViewer>(true, "ProBuilder Callbacks", true).Show();
-		}
+        private static Color logBackgroundColor => EditorGUIUtility.isProSkin
+            ? new Color(.15f, .15f, .15f, .5f)
+            : new Color(.8f, .8f, .8f, 1f);
 
-		static Color logBackgroundColor
-		{
-			get { return EditorGUIUtility.isProSkin ? new Color(.15f, .15f, .15f, .5f) : new Color(.8f, .8f, .8f, 1f); }
-		}
+        private static Color disabledColor =>
+            EditorGUIUtility.isProSkin ? new Color(.3f, .3f, .3f, .5f) : new Color(.8f, .8f, .8f, 1f);
 
-		static Color disabledColor
-		{
-			get { return EditorGUIUtility.isProSkin ? new Color(.3f, .3f, .3f, .5f) : new Color(.8f, .8f, .8f, 1f); }
-		}
+        private void OnEnable()
+        {
+            ProBuilderEditor.selectModeChanged += SelectModeChanged;
+            EditorUtility.meshCreated += MeshCreated;
+            ProBuilderEditor.selectionUpdated += SelectionUpdated;
+            ProBuilderEditor.beforeMeshModification += BeforeMeshModification;
+            ProBuilderEditor.afterMeshModification += AfterMeshModification;
+            EditorMeshUtility.meshOptimized += MeshOptimized;
+        }
 
-		void OnEnable()
-		{
-			ProBuilderEditor.selectModeChanged += SelectModeChanged;
-			EditorUtility.meshCreated += MeshCreated;
-			ProBuilderEditor.selectionUpdated += SelectionUpdated;
-			ProBuilderEditor.beforeMeshModification += BeforeMeshModification;
-			ProBuilderEditor.afterMeshModification += AfterMeshModification;
-			EditorMeshUtility.meshOptimized += MeshOptimized;
-		}
+        private void OnDisable()
+        {
+            ProBuilderEditor.selectModeChanged -= SelectModeChanged;
+            EditorUtility.meshCreated -= MeshCreated;
+            ProBuilderEditor.selectionUpdated -= SelectionUpdated;
+            ProBuilderEditor.beforeMeshModification -= BeforeMeshModification;
+            ProBuilderEditor.afterMeshModification -= AfterMeshModification;
+            EditorMeshUtility.meshOptimized -= MeshOptimized;
+        }
 
-		void OnDisable()
-		{
-			ProBuilderEditor.selectModeChanged -= SelectModeChanged;
-			EditorUtility.meshCreated -= MeshCreated;
-			ProBuilderEditor.selectionUpdated -= SelectionUpdated;
-			ProBuilderEditor.beforeMeshModification -= BeforeMeshModification;
-			ProBuilderEditor.afterMeshModification -= AfterMeshModification;
-			EditorMeshUtility.meshOptimized -= MeshOptimized;
-		}
+        private void OnGUI()
+        {
+            GUILayout.BeginHorizontal(EditorStyles.toolbar);
 
-		void BeforeMeshModification(IEnumerable<ProBuilderMesh> selection)
-		{
-			AddLog("Began Moving Vertices");
-		}
+            GUILayout.FlexibleSpace();
 
-		void AfterMeshModification(IEnumerable<ProBuilderMesh> selection)
-		{
-			AddLog("Finished Moving Vertices");
-		}
+            GUI.backgroundColor = m_Collapse ? disabledColor : Color.white;
+            if (GUILayout.Button("Collapse", EditorStyles.toolbarButton))
+                m_Collapse = !m_Collapse;
+            GUI.backgroundColor = Color.white;
 
-		void SelectModeChanged(SelectMode mode)
-		{
-			AddLog("Selection Mode Changed: " + mode);
-		}
+            if (GUILayout.Button("Clear", EditorStyles.toolbarButton))
+                m_Logs.Clear();
 
-		void MeshCreated(ProBuilderMesh mesh)
-		{
-			AddLog("Instantiated new ProBuilder Object: " + mesh.name);
-		}
+            GUILayout.EndHorizontal();
 
-		void SelectionUpdated(IEnumerable<ProBuilderMesh> selection)
-		{
-			AddLog("Selection Updated: " + string.Format("{0} objects selected.", selection != null ? selection.Count() : 0));
-		}
+            GUILayout.BeginHorizontal();
+            GUILayout.Label("Callback Log", EditorStyles.boldLabel);
+            GUILayout.EndHorizontal();
 
-		void MeshOptimized(ProBuilderMesh pmesh, Mesh umesh)
-		{
-			AddLog(string.Format("Mesh {0} rebuilt", pmesh.name));
-		}
+            var r = GUILayoutUtility.GetLastRect();
+            r.x = 0;
+            r.y = r.y + r.height + 6;
+            r.width = position.width;
+            r.height = position.height;
 
-		void AddLog(string summary)
-		{
-			m_Logs.Add(summary);
-			Repaint();
-		}
+            GUILayout.Space(4);
 
-		void OnGUI()
-		{
-			GUILayout.BeginHorizontal(EditorStyles.toolbar);
+            m_Scroll = GUILayout.BeginScrollView(m_Scroll);
 
-			GUILayout.FlexibleSpace();
+            var len = m_Logs.Count;
+            var min = Math.Max(0, len - 1024);
 
-			GUI.backgroundColor = m_Collapse ? disabledColor : Color.white;
-			if (GUILayout.Button("Collapse", EditorStyles.toolbarButton))
-				m_Collapse = !m_Collapse;
-			GUI.backgroundColor = Color.white;
+            for (var i = len - 1; i >= min; i--)
+            {
+                if (m_Collapse &&
+                    i > 0 &&
+                    i < len - 1 &&
+                    m_Logs[i].Equals(m_Logs[i - 1]) &&
+                    m_Logs[i].Equals(m_Logs[i + 1]))
+                    continue;
 
-			if (GUILayout.Button("Clear", EditorStyles.toolbarButton))
-				m_Logs.Clear();
+                GUILayout.Label(string.Format("{0,3}: {1}", i, m_Logs[i]));
+            }
 
-			GUILayout.EndHorizontal();
+            GUILayout.EndScrollView();
+        }
 
-			GUILayout.BeginHorizontal();
-			GUILayout.Label("Callback Log", EditorStyles.boldLabel);
-			GUILayout.EndHorizontal();
+        [MenuItem("Tools/ProBuilder/API Examples/Log Callbacks Window")]
+        private static void MenuInitEditorCallbackViewer()
+        {
+            GetWindow<EditorCallbackViewer>(true, "ProBuilder Callbacks", true).Show();
+        }
 
-			Rect r = GUILayoutUtility.GetLastRect();
-			r.x = 0;
-			r.y = r.y + r.height + 6;
-			r.width = this.position.width;
-			r.height = this.position.height;
+        private void BeforeMeshModification(IEnumerable<ProBuilderMesh> selection)
+        {
+            AddLog("Began Moving Vertices");
+        }
 
-			GUILayout.Space(4);
+        private void AfterMeshModification(IEnumerable<ProBuilderMesh> selection)
+        {
+            AddLog("Finished Moving Vertices");
+        }
 
-			m_Scroll = GUILayout.BeginScrollView(m_Scroll);
+        private void SelectModeChanged(SelectMode mode)
+        {
+            AddLog("Selection Mode Changed: " + mode);
+        }
 
-			int len = m_Logs.Count;
-			int min = System.Math.Max(0, len - 1024);
+        private void MeshCreated(ProBuilderMesh mesh)
+        {
+            AddLog("Instantiated new ProBuilder Object: " + mesh.name);
+        }
 
-			for (int i = len - 1; i >= min; i--)
-			{
-				if (m_Collapse &&
-				    i > 0 &&
-				    i < len - 1 &&
-				    m_Logs[i].Equals(m_Logs[i - 1]) &&
-				    m_Logs[i].Equals(m_Logs[i + 1]))
-					continue;
+        private void SelectionUpdated(IEnumerable<ProBuilderMesh> selection)
+        {
+            AddLog("Selection Updated: " +
+                   string.Format("{0} objects selected.", selection != null ? selection.Count() : 0));
+        }
 
-				GUILayout.Label(string.Format("{0,3}: {1}", i, m_Logs[i]));
-			}
+        private void MeshOptimized(ProBuilderMesh pmesh, Mesh umesh)
+        {
+            AddLog(string.Format("Mesh {0} rebuilt", pmesh.name));
+        }
 
-			GUILayout.EndScrollView();
-		}
-	}
+        private void AddLog(string summary)
+        {
+            m_Logs.Add(summary);
+            Repaint();
+        }
+    }
 }

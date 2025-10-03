@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Gamekit3D.WorldBuilding
 {
@@ -25,6 +22,7 @@ namespace Gamekit3D.WorldBuilding
                 child.AddComponent<MeshFilter>().sharedMesh = i.GetComponent<MeshFilter>().sharedMesh;
                 child.AddComponent<MeshRenderer>().sharedMaterial = i.sharedMaterial;
             }
+
             return dummy;
         }
 
@@ -39,8 +37,10 @@ namespace Gamekit3D.WorldBuilding
                     bounds = r.bounds;
                     firstBounds = false;
                 }
+
                 bounds.Encapsulate(r.bounds);
             }
+
             return bounds;
         }
 
@@ -55,8 +55,10 @@ namespace Gamekit3D.WorldBuilding
                     bounds = r.sharedMesh.bounds;
                     firstBounds = false;
                 }
+
                 bounds.Encapsulate(r.sharedMesh.bounds);
             }
+
             return bounds;
         }
 

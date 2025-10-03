@@ -3,8 +3,10 @@
 // to directly access the tangent matrix data results in a shader generation error. This works around the issue by tricking
 // the surface shader into not using those vectors until actually in the generated shader code. - Ben Golus 2017
 
-Shader "Custom/Rock" {
-    Properties {
+Shader "Custom/Rock"
+{
+    Properties
+    {
 
         _MainTex ("Albedo", 2D) = "white" {}
         [NoScaleOffset]_BumpMap("Normal", 2D) = "bump" {}
@@ -23,25 +25,29 @@ Shader "Custom/Rock" {
         [NoScaleOffset]_Noise ("Noise", 2D) = "white" {}
 
     }
-    SubShader {
-        Tags { "RenderType"="TransparentCutout" "Queue"="AlphaTest" }
+    SubShader
+    {
+        Tags
+        {
+            "RenderType"="TransparentCutout" "Queue"="AlphaTest"
+        }
         LOD 200
-        
+
         CGPROGRAM
         #pragma multi_compile _ LOD_FADE_CROSSFADE
 
         #pragma surface surf Standard fullforwardshadows
         #pragma target 5.0
         #include "UnityStandardUtils.cginc"
-        #include "UnityCG.cginc" 
+        #include "UnityCG.cginc"
         #include "AutoLight.cginc"
-       
+
         // #define TRIPLANAR_UV_OFFSET
         // hack to work around the way Unity passes the tangent to world matrix to surface shaders to prevent compiler errors
         #if defined(INTERNAL_DATA) && (defined(UNITY_PASS_FORWARDBASE) || defined(UNITY_PASS_FORWARDADD) || defined(UNITY_PASS_DEFERRED) || defined(UNITY_PASS_META))
             #define WorldToTangentNormalVector(data,normal) mul(normal, half3x3(data.internalSurfaceTtoW0, data.internalSurfaceTtoW1, data.internalSurfaceTtoW2))
         #else
-            #define WorldToTangentNormalVector(data,normal) normal
+        #define WorldToTangentNormalVector(data,normal) normal
         #endif
 
         // Reoriented Normal Mapping
@@ -56,13 +62,16 @@ Shader "Custom/Rock" {
         }
 
 
-        sampler2D _MainTex, _TopAlbedo, _BumpMap, _TopNormal, _Noise, _OcclusionMap, _MetallicRough, _TopMetallicRough, _DetailBump;
+        sampler2D _MainTex, _TopAlbedo, _BumpMap, _TopNormal, _Noise, _OcclusionMap, _MetallicRough, _TopMetallicRough,
+      _DetailBump;
         float4 _Top_ST;
         float4 _UVOffset;
-        half _Glossiness, _FresnelAmount, _FresnelPower, _TopScale, _NoiseAmount, _NoiseFallOff, _Metallic, _TopMetallic, _TopGlossiness, _OcclusionStrength, _noiseScale;
+        half _Glossiness, _FresnelAmount, _FresnelPower, _TopScale, _NoiseAmount, _NoiseFallOff, _Metallic, _TopMetallic
+       , _TopGlossiness, _OcclusionStrength, _noiseScale;
         half _DetailScale;
 
-        struct Input {
+        struct Input
+        {
             float4 screenPos;
             float3 worldPos;
             float3 viewDir;
@@ -70,17 +79,17 @@ Shader "Custom/Rock" {
             float2 uv_MainTex;
             INTERNAL_DATA
         };
-     
 
-        void surf (Input IN, inout SurfaceOutputStandard o) {
 
+        void surf(Input IN, inout SurfaceOutputStandard o)
+        {
             IN.worldNormal = WorldNormalVector(IN, float3(0,0,1));
 
             // top down UVs
             float2 uvY = IN.worldPos.xz * _TopScale;
 
             fixed4 noisetex = tex2D(_Noise, uvY * _noiseScale);
-            half blend =  clamp(IN.worldNormal.y, 0 , 1);
+            half blend = clamp(IN.worldNormal.y, 0, 1);
             blend = smoothstep(noisetex.r, 1, blend);
             half noiseBlend = smoothstep(0.1, 0.2, blend);
 
@@ -107,7 +116,7 @@ Shader "Custom/Rock" {
             fixed4 colMain = tex2D(_MainTex, IN.uv_MainTex);
 
             //Occlusion
-            half occ =  lerp(1.f, tex2D(_OcclusionMap, IN.uv_MainTex).x, (float)_OcclusionStrength);
+            half occ = lerp(1.f, tex2D(_OcclusionMap, IN.uv_MainTex).x, (float)_OcclusionStrength);
 
             //Metallic/Smoothness
             half4 metallicSmoothness = tex2D(_MetallicRough, IN.uv_MainTex);
@@ -126,7 +135,6 @@ Shader "Custom/Rock" {
             o.Metallic = m;
             o.Smoothness = s;
             o.Normal = lerp(normalMain, tangentNormal, noiseBlend);
-            
         }
         ENDCG
 

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Gamekit3D
 {
@@ -20,10 +18,10 @@ namespace Gamekit3D
         {
             base.OnSLStateNoTransitionUpdate(animator, stateInfo, layerIndex);
 
-            Vector3 v = m_MonoBehaviour.target.transform.position - m_MonoBehaviour.transform.position;
+            var v = m_MonoBehaviour.target.transform.position - m_MonoBehaviour.transform.position;
             v.y = 0;
 
-            float angle = Vector3.SignedAngle(originalForward, v, Vector3.up);
+            var angle = Vector3.SignedAngle(originalForward, v, Vector3.up);
 
             animator.SetFloat(GrenadierBehaviour.hashTurnAngleParam, angle / 180.0f);
         }

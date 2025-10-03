@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Gamekit3D.GameCommands
@@ -12,15 +10,23 @@ namespace Gamekit3D.GameCommands
     {
         //This is the interaction type. It is not link to any Unity system, and just act as a way to differentiate command received.
         public GameCommandType interactionType;
-        [Tooltip("Is this interaction only sent once?")]
-        public bool isOneShot = false;
-        [Tooltip("If this (value) > 0, the interaction will only be sent once every (value) seconds.")]
-        public float coolDown = 0;
-        [Tooltip("Delay in seconds before the interaction is sent to the target.")]
-        public float startDelay = 0;
 
-        protected bool isTriggered = false;
-        float startTime = 0;
+        [Tooltip("Is this interaction only sent once?")]
+        public bool isOneShot;
+
+        [Tooltip("If this (value) > 0, the interaction will only be sent once every (value) seconds.")]
+        public float coolDown;
+
+        [Tooltip("Delay in seconds before the interaction is sent to the target.")]
+        public float startDelay;
+
+        protected bool isTriggered;
+        private float startTime;
+
+        protected virtual void Awake()
+        {
+            GetComponent<GameCommandReceiver>().Register(interactionType, this);
+        }
 
         // Implement this in subclass to define the actiosn that handler should do
         public abstract void PerformInteraction();
@@ -38,21 +44,17 @@ namespace Gamekit3D.GameCommands
                 }
             }
             else
+            {
                 ExecuteInteraction();
+            }
         }
 
-        void ExecuteInteraction()
+        private void ExecuteInteraction()
         {
             if (startDelay > 0)
                 Invoke("PerformInteraction", startDelay);
             else
                 PerformInteraction();
         }
-
-        protected virtual void Awake()
-        {
-            GetComponent<GameCommandReceiver>().Register(interactionType, this);
-        }
     }
-
 }

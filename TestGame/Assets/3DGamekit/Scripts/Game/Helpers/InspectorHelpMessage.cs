@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -8,7 +6,7 @@ using UnityEditor;
 namespace Gamekit3D
 {
     /// <summary>
-    /// Little helper class that allow to display a message in the inspector for documentation on some gameobject.
+    ///     Little helper class that allow to display a message in the inspector for documentation on some gameobject.
     /// </summary>
     public class InspectorHelpMessage : MonoBehaviour
     {
@@ -24,5 +22,5 @@ namespace Gamekit3D
             EditorGUILayout.HelpBox((target as InspectorHelpMessage).message, MessageType.Info);
         }
     }
-#endif 
+#endif
 }

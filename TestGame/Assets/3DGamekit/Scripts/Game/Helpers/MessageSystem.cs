@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace Gamekit3D
+﻿namespace Gamekit3D
 {
     namespace Message
     {
@@ -10,7 +6,8 @@ namespace Gamekit3D
         {
             DAMAGED,
             DEAD,
-            RESPAWN,
+
+            RESPAWN
             //Add your user defined message type after
         }
 
@@ -18,5 +15,5 @@ namespace Gamekit3D
         {
             void OnReceiveMessage(MessageType type, object sender, object msg);
         }
-    } 
+    }
 }

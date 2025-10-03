@@ -1,18 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
-using UnityEditorInternal;
 #endif
 
 namespace Gamekit3D
 {
     public class EnforceTypeAttribute : PropertyAttribute
     {
-        public System.Type type;
+        public Type type;
 
-        public EnforceTypeAttribute(System.Type enforcedType)
+        public EnforceTypeAttribute(Type enforcedType)
         {
             type = enforcedType;
         }
@@ -24,16 +22,16 @@ namespace Gamekit3D
     {
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
-            EnforceTypeAttribute propAttribute = attribute as EnforceTypeAttribute;
+            var propAttribute = attribute as EnforceTypeAttribute;
             EditorGUI.BeginProperty(position, label, property);
 
-            MonoBehaviour obj = EditorGUI.ObjectField(position, property.objectReferenceValue, typeof(MonoBehaviour), true) as MonoBehaviour;
+            var obj =
+                EditorGUI.ObjectField(position, property.objectReferenceValue, typeof(MonoBehaviour), true) as
+                    MonoBehaviour;
             if (obj != null && propAttribute.type.IsAssignableFrom(obj.GetType()) && !EditorGUI.showMixedValue)
-            {
-                property.objectReferenceValue = obj as MonoBehaviour;
-            }
+                property.objectReferenceValue = obj;
             EditorGUI.EndProperty();
         }
     }
-#endif 
+#endif
 }

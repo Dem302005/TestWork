@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Gamekit3D.Message;
+﻿using Gamekit3D.Message;
 using UnityEngine;
-using UnityEngine.AI;
 #if UNITY_EDITOR
 using UnityEditor;
 using MessageType = UnityEditor.MessageType;
@@ -27,23 +24,23 @@ namespace Gamekit3D
         public float fleeingDistance = 3.0f;
         public RangeWeapon rangeWeapon;
 
-        [Header("Audio")]
-        public RandomAudioPlayer attackAudio;
+        [Header("Audio")] public RandomAudioPlayer attackAudio;
+
         public RandomAudioPlayer frontStepAudio;
         public RandomAudioPlayer backStepAudio;
         public RandomAudioPlayer hitAudio;
         public RandomAudioPlayer gruntAudio;
         public RandomAudioPlayer deathAudio;
         public RandomAudioPlayer spottedAudio;
-
-        public EnemyController controller { get { return m_Controller; } }
-        public PlayerController target { get { return m_Target; } }
-
-        protected PlayerController m_Target = null;
         protected EnemyController m_Controller;
-        protected bool m_Fleeing = false;
+        protected bool m_Fleeing;
 
         protected Vector3 m_RememberedTargetPosition;
+
+        protected PlayerController m_Target;
+
+        public EnemyController controller => m_Controller;
+        public PlayerController target => m_Target;
 
         protected void OnEnable()
         {
@@ -52,8 +49,14 @@ namespace Gamekit3D
             m_Controller.animator.Play(hashIdleState, 0, Random.value);
 
             SceneLinkedSMB<SpitterBehaviour>.Initialise(m_Controller.animator, this);
-
         }
+
+#if UNITY_EDITOR
+        private void OnDrawGizmosSelected()
+        {
+            playerScanner.EditorGizmo(transform);
+        }
+#endif
 
         public void OnReceiveMessage(Message.MessageType type, object sender, object msg)
         {
@@ -65,14 +68,12 @@ namespace Gamekit3D
                 case Message.MessageType.DAMAGED:
                     ApplyDamage((Damageable.DamageMessage)msg);
                     break;
-                default:
-                    break;
             }
         }
 
         public void Death(Damageable.DamageMessage msg)
         {
-            Vector3 pushForce = transform.position - msg.damageSource;
+            var pushForce = transform.position - msg.damageSource;
 
             pushForce.y = 0;
 
@@ -86,7 +87,7 @@ namespace Gamekit3D
             deathAudio.transform.SetParent(null, true);
             deathAudio.PlayRandomClip();
 
-            GameObject.Destroy(deathAudio, deathAudio.clip == null ? 0.0f : deathAudio.clip.length + 0.5f);
+            Destroy(deathAudio, deathAudio.clip == null ? 0.0f : deathAudio.clip.length + 0.5f);
         }
 
         public void ApplyDamage(Damageable.DamageMessage msg)
@@ -94,10 +95,10 @@ namespace Gamekit3D
             if (msg.damager.name == "Staff")
                 CameraShake.Shake(0.06f, 0.1f);
 
-            float verticalDot = Vector3.Dot(Vector3.up, msg.direction);
-            float horizontalDot = Vector3.Dot(transform.right, msg.direction);
+            var verticalDot = Vector3.Dot(Vector3.up, msg.direction);
+            var horizontalDot = Vector3.Dot(transform.right, msg.direction);
 
-            Vector3 pushForce = transform.position - msg.damageSource;
+            var pushForce = transform.position - msg.damageSource;
 
             pushForce.y = 0;
 
@@ -130,18 +131,18 @@ namespace Gamekit3D
             m_RememberedTargetPosition = m_Target.transform.position;
         }
 
-        void PlayStep(int frontFoot)
+        private void PlayStep(int frontFoot)
         {
             if (frontStepAudio != null && frontFoot == 1)
                 frontStepAudio.PlayRandomClip();
             else if (backStepAudio != null && frontFoot == 0)
-                backStepAudio.PlayRandomClip ();
+                backStepAudio.PlayRandomClip();
         }
 
-        public void Grunt ()
+        public void Grunt()
         {
             if (gruntAudio != null)
-                gruntAudio.PlayRandomClip ();
+                gruntAudio.PlayRandomClip();
         }
 
         public void Spotted()
@@ -159,24 +160,22 @@ namespace Gamekit3D
                 return;
             }
 
-            Vector3 fromTarget = transform.position - m_Target.transform.position;
+            var fromTarget = transform.position - m_Target.transform.position;
 
             if (m_Fleeing || fromTarget.sqrMagnitude <= fleeingDistance * fleeingDistance)
             {
                 //player is too close from us, pick a point diametrically oppossite at twice that distance and try to move there.
-                Vector3 fleePoint = transform.position + fromTarget.normalized * 2 * fleeingDistance;
+                var fleePoint = transform.position + fromTarget.normalized * 2 * fleeingDistance;
 
                 Debug.DrawLine(fleePoint, fleePoint + Vector3.up * 10.0f);
 
                 if (!m_Fleeing)
-                {
                     //if we're not already fleeing, we may be in the cooldown, so the navmesh agent is disabled, enable it
                     controller.SetFollowNavmeshAgent(true);
-                }
 
                 m_Fleeing = controller.SetTarget(fleePoint);
 
-                if(m_Fleeing)
+                if (m_Fleeing)
                     controller.animator.SetBool(hashFleeing, m_Fleeing);
             }
 
@@ -194,23 +193,16 @@ namespace Gamekit3D
             m_Target = playerScanner.Detect(transform, m_Target == null);
             m_Controller.animator.SetBool(hashHaveEnemy, m_Target != null);
         }
-
-#if UNITY_EDITOR
-        private void OnDrawGizmosSelected()
-        {
-            playerScanner.EditorGizmo(transform);
-        }
-#endif
     }
-    
-    
+
+
 #if UNITY_EDITOR
     [CustomEditor(typeof(SpitterBehaviour))]
     public class SpitterBehaviourEditor : Editor
     {
-        SpitterBehaviour m_Target;
+        private SpitterBehaviour m_Target;
 
-        void OnEnable()
+        private void OnEnable()
         {
             m_Target = target as SpitterBehaviour;
         }
@@ -218,12 +210,10 @@ namespace Gamekit3D
         public override void OnInspectorGUI()
         {
             if (m_Target.playerScanner.detectionRadius < m_Target.fleeingDistance)
-            {
                 EditorGUILayout.HelpBox("The scanner detection radius is smaller than the fleeing range.\n" +
-                    "The spitter will never shoot at the player as it will flee past the range at which it can see the player",
-                    MessageType.Warning, true);    
-            }
-            
+                                        "The spitter will never shoot at the player as it will flee past the range at which it can see the player",
+                    MessageType.Warning, true);
+
             base.OnInspectorGUI();
         }
     }

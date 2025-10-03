@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
-using UnityEditor.Animations;
+﻿using UnityEditor;
 using UnityEngine;
 
 namespace Gamekit3D
@@ -9,46 +6,85 @@ namespace Gamekit3D
     [CustomEditor(typeof(PlayerController))]
     public class PlayerControllerEditor : Editor
     {
-        SerializedProperty m_ScriptProp;
+        private readonly GUIContent m_CameraSettingsContent = new GUIContent("Camera Settings",
+            "Used to get the rotation of the current camera so that Ellen faces the correct direction.  Note: This is the only reference which is not part of the Ellen prefab.  It should automatically be set to the Camera Settings script of the CameraRig gameobject when the Prefab is instantiated.");
 
-        SerializedProperty m_MaxForwardSpeedProp;
-        SerializedProperty m_GravityProp;
-        SerializedProperty m_JumpSpeedProp;
-        SerializedProperty m_MinTurnSpeedProp;
-        SerializedProperty m_MaxTurnSpeedProp;
-        SerializedProperty m_IdleTimeoutProp;
-        SerializedProperty m_CanAttackProp;
+        private SerializedProperty m_CameraSettingsProp;
 
-        SerializedProperty m_MeleeWeaponProp;
-        SerializedProperty m_CameraSettingsProp;
-        SerializedProperty m_FootstepPlayerProp;
-        SerializedProperty m_HurtAudioPlayerProp;
-        SerializedProperty m_LandingPlayerProp;
-        SerializedProperty m_EmoteLandingPlayerProp;
-        SerializedProperty m_EmoteDeathPlayerProp;
-        SerializedProperty m_EmoteAttackPlayerProp;
-        SerializedProperty m_EmoteJumpPlayerProp;
+        private readonly GUIContent m_CanAttackContent = new GUIContent("Can Attack",
+            "Whether or not Ellen can attack with her staff.  This can be set externally.");
 
-        GUIContent m_ScriptContent = new GUIContent("Script");
+        private SerializedProperty m_CanAttackProp;
 
-        GUIContent m_MaxForwardSpeedContent = new GUIContent("Max Forward Speed", "How fast Ellen can run.");
-        GUIContent m_GravityContent = new GUIContent("Gravity", "How fast Ellen falls when in the air.");
-        GUIContent m_JumpSpeedContent = new GUIContent("Jump Speed", "How fast Ellen takes off when jumping.");
-        GUIContent m_TurnSpeedContent = new GUIContent("Turn Speed", "How fast Ellen turns.  This varies depending on how fast she is moving.  When stationary the maximum will be used and when running at Max Forward Speed the minimum will be used.");
-        GUIContent m_IdleTimeoutContent = new GUIContent("Idle Timeout", "How many seconds before Ellen starts considering random Idle poses.");
-        GUIContent m_CanAttackContent = new GUIContent("Can Attack", "Whether or not Ellen can attack with her staff.  This can be set externally.");
+        private readonly GUIContent m_EmoteAttackPlayerContent = new GUIContent("Emote Attack Player",
+            "Used to play a random vocal sound when Ellen attacks.");
 
-        GUIContent m_MeleeWeaponContent = new GUIContent("Melee Weapon", "Used for damaging enemies when Ellen swings her staff.");
-        GUIContent m_CameraSettingsContent = new GUIContent("Camera Settings", "Used to get the rotation of the current camera so that Ellen faces the correct direction.  Note: This is the only reference which is not part of the Ellen prefab.  It should automatically be set to the Camera Settings script of the CameraRig gameobject when the Prefab is instantiated.");
-        GUIContent m_FootstepPlayerContent = new GUIContent("Footstep Random Audio Player", "Used to play a random sound when Ellen takes a step.");
-        GUIContent m_HurtAudioPlayerContent = new GUIContent("Hurt Random Audio Player", "Used to play a random sound when Ellen gets hurt.");
-        GUIContent m_LandingPlayerContent = new GUIContent("Landing Random Audio Player", "Used to play a random sound when Ellen lands.");
-        GUIContent m_EmoteLandingPlayerContent = new GUIContent("Emote Landing Player", "Used to play a random vocal sound when Ellen lands.");
-        GUIContent m_EmoteDeathPlayerContent = new GUIContent("Emote Death Player", "Used to play a random vocal sound when Ellen dies.");
-        GUIContent m_EmoteAttackPlayerContent = new GUIContent("Emote Attack Player", "Used to play a random vocal sound when Ellen attacks.");
-        GUIContent m_EmoteJumpPlayerContent = new GUIContent("Emote Jump Player", "Used to play a random vocal sound when Ellen jumps.");
+        private SerializedProperty m_EmoteAttackPlayerProp;
 
-        void OnEnable()
+        private readonly GUIContent m_EmoteDeathPlayerContent =
+            new GUIContent("Emote Death Player", "Used to play a random vocal sound when Ellen dies.");
+
+        private SerializedProperty m_EmoteDeathPlayerProp;
+
+        private readonly GUIContent m_EmoteJumpPlayerContent =
+            new GUIContent("Emote Jump Player", "Used to play a random vocal sound when Ellen jumps.");
+
+        private SerializedProperty m_EmoteJumpPlayerProp;
+
+        private readonly GUIContent m_EmoteLandingPlayerContent = new GUIContent("Emote Landing Player",
+            "Used to play a random vocal sound when Ellen lands.");
+
+        private SerializedProperty m_EmoteLandingPlayerProp;
+
+        private readonly GUIContent m_FootstepPlayerContent = new GUIContent("Footstep Random Audio Player",
+            "Used to play a random sound when Ellen takes a step.");
+
+        private SerializedProperty m_FootstepPlayerProp;
+
+        private readonly GUIContent m_GravityContent =
+            new GUIContent("Gravity", "How fast Ellen falls when in the air.");
+
+        private SerializedProperty m_GravityProp;
+
+        private readonly GUIContent m_HurtAudioPlayerContent = new GUIContent("Hurt Random Audio Player",
+            "Used to play a random sound when Ellen gets hurt.");
+
+        private SerializedProperty m_HurtAudioPlayerProp;
+
+        private readonly GUIContent m_IdleTimeoutContent = new GUIContent("Idle Timeout",
+            "How many seconds before Ellen starts considering random Idle poses.");
+
+        private SerializedProperty m_IdleTimeoutProp;
+
+        private readonly GUIContent m_JumpSpeedContent =
+            new GUIContent("Jump Speed", "How fast Ellen takes off when jumping.");
+
+        private SerializedProperty m_JumpSpeedProp;
+
+        private readonly GUIContent m_LandingPlayerContent = new GUIContent("Landing Random Audio Player",
+            "Used to play a random sound when Ellen lands.");
+
+        private SerializedProperty m_LandingPlayerProp;
+
+        private readonly GUIContent m_MaxForwardSpeedContent =
+            new GUIContent("Max Forward Speed", "How fast Ellen can run.");
+
+        private SerializedProperty m_MaxForwardSpeedProp;
+        private SerializedProperty m_MaxTurnSpeedProp;
+
+        private readonly GUIContent m_MeleeWeaponContent =
+            new GUIContent("Melee Weapon", "Used for damaging enemies when Ellen swings her staff.");
+
+        private SerializedProperty m_MeleeWeaponProp;
+        private SerializedProperty m_MinTurnSpeedProp;
+
+        private readonly GUIContent m_ScriptContent = new GUIContent("Script");
+        private SerializedProperty m_ScriptProp;
+
+        private readonly GUIContent m_TurnSpeedContent = new GUIContent("Turn Speed",
+            "How fast Ellen turns.  This varies depending on how fast she is moving.  When stationary the maximum will be used and when running at Max Forward Speed the minimum will be used.");
+
+        private void OnEnable()
         {
             m_ScriptProp = serializedObject.FindProperty("m_Script");
 
@@ -79,9 +115,11 @@ namespace Gamekit3D
             EditorGUILayout.PropertyField(m_ScriptProp, m_ScriptContent);
             GUI.enabled = true;
 
-            m_MaxForwardSpeedProp.floatValue = EditorGUILayout.Slider(m_MaxForwardSpeedContent, m_MaxForwardSpeedProp.floatValue, 4f, 12f);
+            m_MaxForwardSpeedProp.floatValue =
+                EditorGUILayout.Slider(m_MaxForwardSpeedContent, m_MaxForwardSpeedProp.floatValue, 4f, 12f);
             m_GravityProp.floatValue = EditorGUILayout.Slider(m_GravityContent, m_GravityProp.floatValue, 10f, 30f);
-            m_JumpSpeedProp.floatValue = EditorGUILayout.Slider(m_JumpSpeedContent, m_JumpSpeedProp.floatValue, 5f, 20f);
+            m_JumpSpeedProp.floatValue =
+                EditorGUILayout.Slider(m_JumpSpeedContent, m_JumpSpeedProp.floatValue, 5f, 20f);
 
             MinMaxTurnSpeed();
 
@@ -110,40 +148,40 @@ namespace Gamekit3D
             serializedObject.ApplyModifiedProperties();
         }
 
-        void MinMaxTurnSpeed()
+        private void MinMaxTurnSpeed()
         {
-            Rect position = EditorGUILayout.GetControlRect(false, EditorGUIUtility.singleLineHeight);
+            var position = EditorGUILayout.GetControlRect(false, EditorGUIUtility.singleLineHeight);
 
             const float spacing = 4f;
             const float intFieldWidth = 50f;
 
             position.width -= spacing * 3f + intFieldWidth * 2f;
 
-            Rect labelRect = position;
+            var labelRect = position;
             labelRect.width *= 0.48f;
 
-            Rect minRect = position;
+            var minRect = position;
             minRect.width = 50f;
             minRect.x += labelRect.width + spacing;
 
-            Rect sliderRect = position;
+            var sliderRect = position;
             sliderRect.width *= 0.52f;
             sliderRect.x += labelRect.width + minRect.width + spacing * 2f;
 
-            Rect maxRect = position;
+            var maxRect = position;
             maxRect.width = minRect.width;
             maxRect.x += labelRect.width + minRect.width + sliderRect.width + spacing * 3f;
 
             EditorGUI.LabelField(labelRect, m_TurnSpeedContent);
             m_MinTurnSpeedProp.floatValue = EditorGUI.IntField(minRect, (int)m_MinTurnSpeedProp.floatValue);
 
-            float minTurnSpeed = m_MinTurnSpeedProp.floatValue;
-            float maxTurnSpeed = m_MaxTurnSpeedProp.floatValue;
+            var minTurnSpeed = m_MinTurnSpeedProp.floatValue;
+            var maxTurnSpeed = m_MaxTurnSpeedProp.floatValue;
             EditorGUI.MinMaxSlider(sliderRect, GUIContent.none, ref minTurnSpeed, ref maxTurnSpeed, 100f, 1500f);
             m_MinTurnSpeedProp.floatValue = minTurnSpeed;
             m_MaxTurnSpeedProp.floatValue = maxTurnSpeed;
 
             m_MaxTurnSpeedProp.floatValue = EditorGUI.IntField(maxRect, (int)m_MaxTurnSpeedProp.floatValue);
         }
-    } 
+    }
 }

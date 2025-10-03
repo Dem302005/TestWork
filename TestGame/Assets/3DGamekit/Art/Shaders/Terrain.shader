@@ -3,10 +3,12 @@
 // to directly access the tangent matrix data results in a shader generation error. This works around the issue by tricking
 // the surface shader into not using those vectors until actually in the generated shader code. - Ben Golus 2017
 
-Shader "Custom/Terrain" {
-    Properties {
-        
-        
+Shader "Custom/Terrain"
+{
+    Properties
+    {
+
+
         _WaterColor ("Water Color", Color) = (1,1,1,1)
         _WaterEdge("Water Edge Hardness", Range(0, 1)) = 0.2
         [NoScaleOffset]_WaterRoughness ("Water Roughness", 2D) = "white" {}
@@ -39,25 +41,29 @@ Shader "Custom/Terrain" {
         //_TextureScale04("Texture Scale 01", Float) = 1.0
         //_Falloff04("Blend Falloff 01", Range(0, 1)) = 0.2
     }
-    SubShader {
-        Tags { "RenderType"="Opaque" }
+    SubShader
+    {
+        Tags
+        {
+            "RenderType"="Opaque"
+        }
         LOD 200
-        
+
         CGPROGRAM
         #pragma surface surf Standard fullforwardshadows vertex:vert addshadow
         #pragma target 5.0
         #include "UnityStandardUtils.cginc"
-        #include "UnityCG.cginc" 
+        #include "UnityCG.cginc"
         #include "AutoLight.cginc"
         #include "Tessellation.cginc"
 
-       
+
         // #define TRIPLANAR_UV_OFFSET
         // hack to work around the way Unity passes the tangent to world matrix to surface shaders to prevent compiler errors
         #if defined(INTERNAL_DATA) && (defined(UNITY_PASS_FORWARDBASE) || defined(UNITY_PASS_FORWARDADD) || defined(UNITY_PASS_DEFERRED) || defined(UNITY_PASS_META))
             #define WorldToTangentNormalVector(data,normal) mul(normal, half3x3(data.internalSurfaceTtoW0, data.internalSurfaceTtoW1, data.internalSurfaceTtoW2))
         #else
-            #define WorldToTangentNormalVector(data,normal) normal
+        #define WorldToTangentNormalVector(data,normal) normal
         #endif
 
         // Reoriented Normal Mapping
@@ -85,19 +91,21 @@ Shader "Custom/Terrain" {
         half4 _WaterColor;
 
 
-        struct vertdata {
-		    float4 vertex : POSITION;
-		    float4 tangent : TANGENT;
-		    float3 normal : NORMAL;
-		    float4 texcoord : TEXCOORD0;
-		    float4 texcoord1 : TEXCOORD1;
-		    float4 texcoord2 : TEXCOORD2;
-		    fixed4 color : COLOR;
-		    float3 tangentViewDir : TEXCOORD3;
-		    UNITY_VERTEX_INPUT_INSTANCE_ID
-		};
+        struct vertdata
+        {
+            float4 vertex : POSITION;
+            float4 tangent : TANGENT;
+            float3 normal : NORMAL;
+            float4 texcoord : TEXCOORD0;
+            float4 texcoord1 : TEXCOORD1;
+            float4 texcoord2 : TEXCOORD2;
+            fixed4 color : COLOR;
+            float3 tangentViewDir : TEXCOORD3;
+            UNITY_VERTEX_INPUT_INSTANCE_ID
+        };
 
-        struct Input {
+        struct Input
+        {
             float3 worldPos;
             float3 viewDir;
             float3 worldNormal;
@@ -108,28 +116,28 @@ Shader "Custom/Terrain" {
         };
 
 
-        void vert (inout vertdata v, out Input o) {
-        	UNITY_INITIALIZE_OUTPUT(Input,o);
+        void vert(inout vertdata v, out Input o)
+        {
+                UNITY_INITIALIZE_OUTPUT(Input, o);
 
-        	float3 worldPos = mul (unity_ObjectToWorld, v.vertex).xyz;
+            float3 worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
 
 
-        	float3x3 objectToTangent = float3x3(v.tangent.xyz,cross(v.normal, v.tangent.xyz) * v.tangent.w,v.normal);
-			v.tangentViewDir = mul(objectToTangent, ObjSpaceViewDir(v.vertex));
+            float3x3 objectToTangent = float3x3(v.tangent.xyz, cross(v.normal, v.tangent.xyz) * v.tangent.w, v.normal);
+            v.tangentViewDir = mul(objectToTangent, ObjSpaceViewDir(v.vertex));
 
-			o.tangentViewDir = normalize(v.tangentViewDir);
-			o.tangentViewDir.xy /= o.tangentViewDir.z;
+            o.tangentViewDir = normalize(v.tangentViewDir);
+            o.tangentViewDir.xy /= o.tangentViewDir.z;
+        }
 
-    	  }
-     
 
-        void surf (Input IN, inout SurfaceOutputStandard o) {
-
+        void surf(Input IN, inout SurfaceOutputStandard o)
+        {
             IN.worldNormal = WorldNormalVector(IN, float3(0,0,1));
 
 
             // top down UVs
-            float2 UVY = IN.worldPos.xz;   
+            float2 UVY = IN.worldPos.xz;
 
             fixed4 vertCol = IN.color;
 
@@ -140,12 +148,11 @@ Shader "Custom/Terrain" {
             fixed4 Albedo03 = tex2D(_Albedo03, UVY * _TextureScale03);
             //fixed4 Albedo04 = tex2D(_Albedo04, UVY * _TextureScale04);
 
-           
 
-            half blend01 = smoothstep(vertCol.r, vertCol.r-_Falloff01, 1-Albedo01.a);
-            half blend02 = smoothstep(vertCol.g, vertCol.g-_Falloff02, 1-Albedo03.a);
+            half blend01 = smoothstep(vertCol.r, vertCol.r - _Falloff01, 1 - Albedo01.a);
+            half blend02 = smoothstep(vertCol.g, vertCol.g - _Falloff02, 1 - Albedo03.a);
 
-            float2 UVY2 = IN.worldPos.xz;  
+            float2 UVY2 = IN.worldPos.xz;
             UVY2 += IN.tangentViewDir * _ParallaxStrength * blend01;
 
 
@@ -153,7 +160,6 @@ Shader "Custom/Terrain" {
             Albedo03 = tex2D(_Albedo03, UVY * _TextureScale03);
 
 
-            
             fixed4 AlbedoFinal = Albedo01;
             AlbedoFinal = lerp(AlbedoFinal, Albedo02, blend01);
             AlbedoFinal = lerp(AlbedoFinal, Albedo01, blend02);
@@ -165,12 +171,12 @@ Shader "Custom/Terrain" {
             half3 Normal03 = UnpackNormal(tex2D(_Normal03, UVY * _TextureScale03));
             //half3 Normal04 = UnpackNormal(tex2D(_Normal04, UVY * _TextureScale04));
 
-            half3 Normal02Detail = UnpackNormal(tex2D(_Normal02Detail, UVY*0.1));
+            half3 Normal02Detail = UnpackNormal(tex2D(_Normal02Detail, UVY * 0.1));
 
             // flip normal maps' x axis to account for flipped UVs
             half3 absVertNormal = abs(IN.worldNormal);
             // swizzle world normals to match tangent space and apply reoriented normal mapping blend
-            half3 tangentNormal = lerp(Normal01,Normal02, blend01);
+            half3 tangentNormal = lerp(Normal01, Normal02, blend01);
             tangentNormal = lerp(tangentNormal, Normal03, blend02);
             //tangentNormal = lerp(tangentNormal, Normal04, blend03);
             tangentNormal = blend_rnm(half3(IN.worldNormal.xz, absVertNormal.y), tangentNormal);
@@ -188,7 +194,7 @@ Shader "Custom/Terrain" {
             fixed4 RoughnessFinal = lerp(0.3, Roughness02, blend01);
             RoughnessFinal = lerp(RoughnessFinal, Roughness03, blend02);
             //RoughnessFinal = lerp(RoughnessFinal, Roughness04, blend03);
-           
+
             /*
             //waterLevel
             half blendY = 1-smoothstep(0.96, 1, absVertNormal.y);
@@ -197,23 +203,24 @@ Shader "Custom/Terrain" {
             //half waterLevel = blendY;
             */
 
-            
+
             //water
- 			float blend = 1-Albedo01.a;
+            float blend = 1 - Albedo01.a;
 
             half3 upNormal = WorldToTangentNormalVector(IN, float3(0,1,0));
-            AlbedoFinal = lerp(AlbedoFinal*_WaterColor, AlbedoFinal, smoothstep(IN.color.a+_WaterEdge, IN.color.a+1,  blend));
-            NormalFinal = lerp(upNormal, NormalFinal, smoothstep(IN.color.a+_WaterEdge, IN.color.a, blend));
-            RoughnessFinal = lerp( tex2D(_WaterRoughness, UVY * 0.3).a * 0.95, (float)RoughnessFinal, smoothstep(IN.color.a+_WaterEdge, IN.color.a, blend));
-            
+            AlbedoFinal = lerp(AlbedoFinal * _WaterColor, AlbedoFinal,
+                smoothstep(IN.color.a + _WaterEdge, IN.color.a + 1, blend));
+            NormalFinal = lerp(upNormal, NormalFinal, smoothstep(IN.color.a + _WaterEdge, IN.color.a, blend));
+            RoughnessFinal = lerp(tex2D(_WaterRoughness, UVY * 0.3).a * 0.95, (float)RoughnessFinal,
+                smoothstep(IN.color.a + _WaterEdge, IN.color.a, blend));
+
 
             // set surface ouput properties
             o.Albedo = AlbedoFinal;
             //o.Occlusion = occ;
             o.Metallic = 0;
             o.Smoothness = RoughnessFinal;
-            o.Normal = NormalFinal; 
-            
+            o.Normal = NormalFinal;
         }
         ENDCG
 

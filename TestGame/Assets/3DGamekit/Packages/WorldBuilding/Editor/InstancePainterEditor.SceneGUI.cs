@@ -1,18 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using UnityEditor;
 using UnityEngine;
-using UnityEditor;
-using UnityEngine.Rendering;
-using System;
-using System.Linq;
 
 namespace Gamekit3D.WorldBuilding
 {
-
     public partial class InstancePainterEditor : Editor
     {
-
-        void OnSceneGUI()
+        private void OnSceneGUI()
         {
             SceneView.RepaintAll();
             //if (ip == null || ip.SelectedPrefab == null) return;
@@ -32,7 +25,8 @@ namespace Gamekit3D.WorldBuilding
                 Handles.color = Color.white * 0.5f;
                 Handles.DrawWireDisc(worldCursor + up * ip.brushHeight, up, ip.brushRadius);
                 Handles.DrawWireDisc(worldCursor - up * ip.brushHeight, up, ip.brushRadius);
-                OverlapCapsule(worldCursor + hit.normal * 10, worldCursor - hit.normal * 10, ip.brushRadius, ip.layerMask);
+                OverlapCapsule(worldCursor + hit.normal * 10, worldCursor - hit.normal * 10, ip.brushRadius,
+                    ip.layerMask);
                 if (isErasing)
                     DrawEraser(worldCursor, hit.normal);
                 else
@@ -47,12 +41,14 @@ namespace Gamekit3D.WorldBuilding
                         RotateStamp(Event.current.delta);
                         Event.current.Use();
                     }
+
                     if (Event.current.alt)
                     {
                         ip.brushRadius *= Event.current.delta.y < 0 ? 0.9f : 1.1f;
                         CreateNewStamp();
                         Event.current.Use();
                     }
+
                     break;
                 case EventType.KeyDown:
                     HandleKey(Event.current.keyCode);
@@ -68,6 +64,7 @@ namespace Gamekit3D.WorldBuilding
                         GUIUtility.hotControl = controlId;
                         Event.current.Use();
                     }
+
                     break;
             }
         }
@@ -77,20 +74,18 @@ namespace Gamekit3D.WorldBuilding
             overlaps.Clear();
             overlappedGameObjects.Clear();
             if (ip.collisionTest == InstancePainter.CollisionTest.ColliderBounds)
-            {
                 foreach (var c in Physics.OverlapCapsule(top, bottom, brushRadius))
-                {
                     if (c.transform.parent == ip.rootTransform)
                     {
                         overlaps.Add(c.bounds);
                         overlappedGameObjects.Add(c.gameObject);
                     }
-                }
-            }
+
             if (ip.collisionTest == InstancePainter.CollisionTest.RendererBounds)
             {
                 //TODO: This might need an oct-tree later. Brute force for now.
-                var capsule = new Bounds(Vector3.Lerp(top, bottom, 0.5f), new Vector3(brushRadius * 2, brushRadius * 2 + (top - bottom).magnitude, brushRadius * 2));
+                var capsule = new Bounds(Vector3.Lerp(top, bottom, 0.5f),
+                    new Vector3(brushRadius * 2, brushRadius * 2 + (top - bottom).magnitude, brushRadius * 2));
                 for (var i = 0; i < ip.rootTransform.childCount; i++)
                 {
                     var child = ip.rootTransform.GetChild(i);
@@ -102,10 +97,9 @@ namespace Gamekit3D.WorldBuilding
                     }
                 }
             }
-
         }
 
-        void HandleKey(KeyCode keyCode)
+        private void HandleKey(KeyCode keyCode)
         {
             switch (keyCode)
             {
@@ -140,11 +134,10 @@ namespace Gamekit3D.WorldBuilding
                     CreateNewStamp();
                     Event.current.Use();
                     break;
-
             }
         }
 
-        void DrawStamp(Vector3 center, Vector3 normal)
+        private void DrawStamp(Vector3 center, Vector3 normal)
         {
             stamp.transform.position = center;
 
@@ -166,7 +159,8 @@ namespace Gamekit3D.WorldBuilding
                 var child = stamp.transform.GetChild(i);
                 child.localPosition = Vector3.Scale(child.localPosition, new Vector3(1, 0, 1));
                 RaycastHit hit;
-                if (Physics.Raycast(child.position + (child.up * ip.brushHeight), -child.up, out hit, ip.brushHeight * 2, ip.layerMask))
+                if (Physics.Raycast(child.position + child.up * ip.brushHeight, -child.up, out hit, ip.brushHeight * 2,
+                        ip.layerMask))
                 {
                     var slope = Vector3.Angle(normal, hit.normal);
                     if (slope > ip.maxSlope)
@@ -174,6 +168,7 @@ namespace Gamekit3D.WorldBuilding
                         child.gameObject.SetActive(false);
                         continue;
                     }
+
                     child.gameObject.SetActive(true);
                     var dummy = child.GetChild(0);
                     dummy.position = hit.point;
@@ -185,44 +180,42 @@ namespace Gamekit3D.WorldBuilding
                         dummy.rotation = Quaternion.LookRotation(tangent, hit.normal);
                     }
                     else
+                    {
                         dummy.rotation = Quaternion.LookRotation(child.forward, child.up);
+                    }
 
                     var bounds = child.gameObject.GetRendererBounds();
                     var childVolume = bounds.size.x * bounds.size.y * bounds.size.z;
                     foreach (var b in overlaps)
-                    {
                         if (b.Intersects(bounds))
                         {
                             var overlapVolume = b.size.x * b.size.y * b.size.z;
                             var intersection = Intersection(b, bounds);
                             var intersectionVolume = intersection.size.x * intersection.size.y * intersection.size.z;
                             // Handles.DrawWireCube(intersection.center, intersection.size);
-                            var maxIntersection = Mathf.Max(intersectionVolume / overlapVolume, intersectionVolume / childVolume);
+                            var maxIntersection = Mathf.Max(intersectionVolume / overlapVolume,
+                                intersectionVolume / childVolume);
                             // Handles.Label(intersection.center, maxIntersection.ToString());
-                            if (maxIntersection > ip.maxIntersectionVolume)
-                            {
-                                child.gameObject.SetActive(false);
-                            }
+                            if (maxIntersection > ip.maxIntersectionVolume) child.gameObject.SetActive(false);
                         }
-                    }
                 }
                 else
                 {
                     child.gameObject.SetActive(false);
                 }
-
             }
-
         }
 
-        Bounds Intersection(Bounds A, Bounds B)
+        private Bounds Intersection(Bounds A, Bounds B)
         {
-            var min = new Vector3(Mathf.Max(A.min.x, B.min.x), Mathf.Max(A.min.y, B.min.y), Mathf.Max(A.min.z, B.min.z));
-            var max = new Vector3(Mathf.Min(A.max.x, B.max.x), Mathf.Min(A.max.y, B.max.y), Mathf.Min(A.max.z, B.max.z));
+            var min = new Vector3(Mathf.Max(A.min.x, B.min.x), Mathf.Max(A.min.y, B.min.y),
+                Mathf.Max(A.min.z, B.min.z));
+            var max = new Vector3(Mathf.Min(A.max.x, B.max.x), Mathf.Min(A.max.y, B.max.y),
+                Mathf.Min(A.max.z, B.max.z));
             return new Bounds(Vector3.Lerp(min, max, 0.5f), max - min);
         }
 
-        void DrawEraser(Vector3 center, Vector3 normal)
+        private void DrawEraser(Vector3 center, Vector3 normal)
         {
             erase.Clear();
             for (var i = 0; i < stamp.transform.childCount; i++)
@@ -249,10 +242,11 @@ namespace Gamekit3D.WorldBuilding
                 Handles.DrawWireDisc(h.center, Vector3.up, h.extents.magnitude);
                 erase.Add(overlappedGameObjects[i]);
             }
-
         }
 
-        public override bool RequiresConstantRepaint() { return true; }
+        public override bool RequiresConstantRepaint()
+        {
+            return true;
+        }
     }
-
 }

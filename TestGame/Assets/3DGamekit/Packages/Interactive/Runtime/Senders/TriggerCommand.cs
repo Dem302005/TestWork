@@ -1,6 +1,5 @@
 using UnityEngine;
 
-
 namespace Gamekit3D.GameCommands
 {
     public abstract class TriggerCommand : SendGameCommand
@@ -12,9 +11,8 @@ namespace Gamekit3D.GameCommands
             var c = GetComponent<Collider>();
             if (c != null)
                 c.isTrigger = true;
-            
-            base.Reset ();
+
+            base.Reset();
         }
     }
-
 }

@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 using UnityEngine.Playables;
-using UnityEngine.Timeline;
 
 [Serializable]
 public class TransformTweenBehaviour : PlayableBehaviour
@@ -11,8 +10,10 @@ public class TransformTweenBehaviour : PlayableBehaviour
         Linear,
         Deceleration,
         Harmonic,
-        Custom,
+        Custom
     }
+
+    private const float k_RightAngleInRads = Mathf.PI * 0.5f;
 
     public Transform startLocation;
     public Transform endLocation;
@@ -26,21 +27,21 @@ public class TransformTweenBehaviour : PlayableBehaviour
     public Vector3 startingPosition;
     public Quaternion startingRotation;
     public AnimationCurve currentCurve;
+    private AnimationCurve m_CustomCurve;
 
-    AnimationCurve m_LinearCurve = AnimationCurve.Linear(0f, 0f, 1f, 1f);
-    AnimationCurve m_DecelerationCurve = new AnimationCurve
+    private AnimationCurve m_DecelerationCurve = new AnimationCurve
     (
         new Keyframe(0f, 0f, -k_RightAngleInRads, k_RightAngleInRads),
         new Keyframe(1f, 1f, 0f, 0f)
     );
-    AnimationCurve m_HarmonicCurve = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
-    AnimationCurve m_CustomCurve;
 
-    const float k_RightAngleInRads = Mathf.PI * 0.5f;
+    private AnimationCurve m_HarmonicCurve = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
+
+    private AnimationCurve m_LinearCurve = AnimationCurve.Linear(0f, 0f, 1f, 1f);
 
     public override void OnGraphStart(Playable playable)
     {
-        double duration = playable.GetDuration();
+        var duration = playable.GetDuration();
         if (Mathf.Approximately((float)duration, 0f))
             throw new UnityException("A TransformTween cannot have a duration of zero.");
 

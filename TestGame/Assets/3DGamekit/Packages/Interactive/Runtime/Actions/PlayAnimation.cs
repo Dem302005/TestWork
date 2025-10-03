@@ -1,6 +1,5 @@
 using UnityEngine;
 
-
 namespace Gamekit3D.GameCommands
 {
     public class PlayAnimation : GameCommandHandler

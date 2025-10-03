@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Playables;
 
@@ -8,11 +7,13 @@ public class TimelineTriggerZone : MonoBehaviour
 {
     public enum TriggerType
     {
-        Once, Everytime,
+        Once,
+        Everytime
     }
 
     [Tooltip("This is the gameobject which will trigger the director to play.  For example, the player.")]
     public GameObject triggeringGameObject;
+
     public PlayableDirector director;
     public TriggerType triggerType;
     public UnityEvent OnDirectorPlay;
@@ -20,7 +21,7 @@ public class TimelineTriggerZone : MonoBehaviour
 
     protected bool m_AlreadyTriggered;
 
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject != triggeringGameObject)
             return;
@@ -34,7 +35,7 @@ public class TimelineTriggerZone : MonoBehaviour
         Invoke("FinishInvoke", (float)director.duration);
     }
 
-    void FinishInvoke()
+    private void FinishInvoke()
     {
         OnDirectorFinish.Invoke();
     }

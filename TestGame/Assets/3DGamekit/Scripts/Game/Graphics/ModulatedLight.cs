@@ -1,16 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Gamekit3D
 {
     [RequireComponent(typeof(Light))]
     public class ModulatedLight : MonoBehaviour
     {
-
         public enum ModulationType
         {
-            Sine, Triangle, Perlin, Random
+            Sine,
+            Triangle,
+            Perlin,
+            Random
         }
 
         public bool executeInEditMode = true;
@@ -21,20 +21,13 @@ namespace Gamekit3D
 
         public new Light light;
 
-        float TriangleWave(float x)
-        {
-            var frac = x - (int)x;
-            var a = frac * 2.0f - 1.0f;
-            return a > 0 ? a : -a;
-        }
-
-        void Reset()
+        private void Reset()
         {
             light = GetComponent<Light>();
             if (light != null) colorA = light.color;
         }
 
-        void Update()
+        private void Update()
         {
             if (light == null) light = GetComponent<Light>();
             var t = 0f;
@@ -53,9 +46,15 @@ namespace Gamekit3D
                     t = Random.value;
                     break;
             }
+
             light.color = Color.Lerp(colorA, colorB, t);
         }
 
+        private float TriangleWave(float x)
+        {
+            var frac = x - (int)x;
+            var a = frac * 2.0f - 1.0f;
+            return a > 0 ? a : -a;
+        }
     }
-
 }

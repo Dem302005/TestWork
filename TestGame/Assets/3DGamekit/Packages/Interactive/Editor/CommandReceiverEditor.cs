@@ -1,6 +1,6 @@
-using UnityEngine;
-using UnityEditor;
 using System.Collections.Generic;
+using UnityEditor;
+using UnityEngine;
 
 namespace Gamekit3D.GameCommands
 {
@@ -8,16 +8,20 @@ namespace Gamekit3D.GameCommands
     [CustomEditor(typeof(GameCommandReceiver), true)]
     public class CommandReceiverEditor : Editor
     {
-        List<SendGameCommand> senders = new List<SendGameCommand>();
+        private readonly List<SendGameCommand> senders = new List<SendGameCommand>();
 
-        void OnEnable()
+        private void OnEnable()
         {
             var interactive = target as GameCommandReceiver;
             senders.Clear();
             foreach (SendGameCommand si in Resources.FindObjectsOfTypeAll(typeof(SendGameCommand)))
-            {
-                if (si.interactiveObject == interactive) senders.Add(si);
-            }
+                if (si.interactiveObject == interactive)
+                    senders.Add(si);
+        }
+
+        private void OnSceneGUI()
+        {
+            foreach (var i in senders) SendGameCommandEditor.DrawInteraction(i);
         }
 
         public override void OnInspectorGUI()
@@ -29,17 +33,5 @@ namespace Gamekit3D.GameCommands
                 EditorGUILayout.ObjectField(i, typeof(SendGameCommand), true);
             GUILayout.EndVertical();
         }
-
-        void OnSceneGUI()
-        {
-            foreach (var i in senders)
-            {
-                SendGameCommandEditor.DrawInteraction(i);
-            }
-        }
-
-
-
     }
-
 }

@@ -4,25 +4,23 @@ namespace Gamekit3D
 {
     public class Dissolve : MonoBehaviour
     {
+        private const string k_CutoffName = "_Cutoff";
         public float minStartTime = 2f;
         public float maxStartTime = 6f;
         public float dissolveTime = 3f;
         public AnimationCurve curve;
+        private ParticleSystem.EmissionModule m_Emission;
+        private float m_EmissionRate;
+        private float m_EndTime;
+        private ParticleSystem m_ParticleSystem;
+        private MaterialPropertyBlock m_PropertyBlock;
+        private Renderer[] m_Renderer;
+        private float m_StartTime;
 
-        float m_Timer;
-        float m_EmissionRate;
-        Renderer[] m_Renderer;
-        MaterialPropertyBlock m_PropertyBlock;
-        ParticleSystem m_ParticleSystem;
-        ParticleSystem.EmissionModule m_Emission;
-        float m_StartTime;
-        float m_EndTime;
+        private float m_Timer;
 
-        const string k_CutoffName = "_Cutoff";
-
-        void Awake()
+        private void Awake()
         {
-
             m_PropertyBlock = new MaterialPropertyBlock();
             m_Renderer = GetComponentsInChildren<Renderer>();
 
@@ -40,13 +38,13 @@ namespace Gamekit3D
             m_EndTime = m_StartTime + dissolveTime + m_ParticleSystem.main.startLifetime.constant;
         }
 
-        void Update()
+        private void Update()
         {
             if (Time.time >= m_StartTime)
             {
                 float cutoff = 0;
 
-                for (int i = 0; i < m_Renderer.Length; i++)
+                for (var i = 0; i < m_Renderer.Length; i++)
                 {
                     m_Renderer[i].GetPropertyBlock(m_PropertyBlock);
                     cutoff = Mathf.Clamp01(m_Timer / dissolveTime);
@@ -61,11 +59,7 @@ namespace Gamekit3D
                 m_Timer += Time.deltaTime;
             }
 
-            if (Time.time >= m_EndTime)
-            {
-                Destroy(gameObject);
-            }
+            if (Time.time >= m_EndTime) Destroy(gameObject);
         }
     }
-
 }

@@ -22,24 +22,23 @@ Shader "Skybox/Simple"
     }
 
     CGINCLUDE
-
     #include "UnityCG.cginc"
-	#include "Lighting.cginc"
+    #include "Lighting.cginc"
 
     struct appdata
     {
         float4 position : POSITION;
         float3 texcoord : TEXCOORD0;
     };
-    
+
     struct v2f
     {
         float4 position : SV_POSITION;
         float3 texcoord : TEXCOORD0;
     };
-    
+
     half4 _AmbientSky, _AmbientGround, _AmbientHorizon;
-    half _TopSkyFalloff;    
+    half _TopSkyFalloff;
     half _BottomSkyFalloff;
 
     half _SkyIntensity;
@@ -49,7 +48,7 @@ Shader "Skybox/Simple"
 
     half _SunFalloff;
     half _SunSize;
-    
+
     v2f vert(appdata v)
     {
         v2f o;
@@ -57,7 +56,7 @@ Shader "Skybox/Simple"
         o.texcoord = v.texcoord;
         return o;
     }
-    
+
     half4 frag(v2f i) : COLOR
     {
         float3 v = normalize(i.texcoord);
@@ -72,22 +71,27 @@ Shader "Skybox/Simple"
 
         return half4(c_sky * _SkyIntensity + c_sun * _SunIntensity, 0);
     }
-
     ENDCG
 
     SubShader
     {
-        Tags { "RenderType"="Background" "Queue"="Background" }
+        Tags
+        {
+            "RenderType"="Background" "Queue"="Background"
+        }
         Pass
         {
             ZWrite Off
             Cull Off
-            Fog { Mode Off }
+            Fog
+            {
+                Mode Off
+            }
             CGPROGRAM
             #pragma fragmentoption ARB_precision_hint_fastest
             #pragma vertex vert
             #pragma fragment frag
             ENDCG
         }
-    } 
+    }
 }

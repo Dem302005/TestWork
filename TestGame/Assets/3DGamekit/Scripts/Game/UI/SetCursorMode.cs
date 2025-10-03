@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using UnityEngine;
 
 namespace Gamekit3D
 {
@@ -10,7 +7,7 @@ namespace Gamekit3D
         public bool visible = true;
         public CursorLockMode lockMode = CursorLockMode.None;
 
-        void Start()
+        private void Start()
         {
             Cursor.visible = visible;
             Cursor.lockState = lockMode;

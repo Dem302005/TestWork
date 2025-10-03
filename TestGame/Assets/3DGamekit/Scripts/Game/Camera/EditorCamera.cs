@@ -1,28 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Gamekit3D.Cameras
 {
     /// <summary>
-    /// A class that mimic's the Unity Editor camera.
+    ///     A class that mimic's the Unity Editor camera.
     /// </summary>
     public class EditorCamera : MonoBehaviour
     {
         public Vector3 velocity;
         public Vector3 angles;
+        private Vector3 mouseDelta;
 
-        Vector3 mousePosition;
-        Vector3 mouseDelta;
-        Quaternion originRotation;
+        private Vector3 mousePosition;
+        private Quaternion originRotation;
 
-        void Start()
+        private void Start()
         {
             mousePosition = Input.mousePosition;
             originRotation = transform.localRotation;
         }
 
-        void Update()
+        private void Update()
         {
             mouseDelta = Input.mousePosition - mousePosition;
             mousePosition = Input.mousePosition;
@@ -52,7 +50,6 @@ namespace Gamekit3D.Cameras
             var yaw = Quaternion.AngleAxis(angles.y, Vector3.up);
             var pitch = Quaternion.AngleAxis(angles.x, Vector3.left);
             transform.localRotation = originRotation * yaw * pitch;
-
         }
     }
 }

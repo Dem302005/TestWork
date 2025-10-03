@@ -1,4 +1,3 @@
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 namespace Gamekit3D.SimpleSFX
@@ -9,10 +8,10 @@ namespace Gamekit3D.SimpleSFX
 
     public class BQFilter
     {
-        const int sampleRate = 44100;
+        private const int sampleRate = 44100;
 
-        float a0, a1, a2, a3, a4;
-        float x1 = 0, x2 = 0, y1 = 0, y2 = 0;
+        private float a0, a1, a2, a3, a4;
+        private float x1, x2, y1, y2;
 
 
         public float Update(float v)
@@ -26,7 +25,7 @@ namespace Gamekit3D.SimpleSFX
         }
 
 
-        void SetCoeff(float aa0, float aa1, float aa2, float b0, float b1, float b2)
+        private void SetCoeff(float aa0, float aa1, float aa2, float b0, float b1, float b2)
         {
             a0 = b0 / aa0;
             a1 = b1 / aa0;
@@ -124,7 +123,5 @@ namespace Gamekit3D.SimpleSFX
             var a2 = 1 - alpha;
             SetCoeff(a0, a1, a2, b0, b1, b2);
         }
-
     }
-
 }

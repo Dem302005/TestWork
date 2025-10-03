@@ -1,5 +1,7 @@
-﻿using Gamekit3D.Message;
+﻿using System;
+using Gamekit3D.Message;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Gamekit3D
 {
@@ -19,22 +21,14 @@ namespace Gamekit3D
 
         public static readonly int hashIdleState = Animator.StringToHash("ChomperIdle");
 
-        public EnemyController controller { get { return m_Controller; } }
-
-        public PlayerController target { get { return m_Target; } }
-        public TargetDistributor.TargetFollower followerData { get { return m_FollowerInstance; } }
-
-        public Vector3 originalPosition { get; protected set; }
-        [System.NonSerialized]
-        public float attackDistance = 3;
-
         public MeleeWeapon meleeWeapon;
         public TargetScanner playerScanner;
+
         [Tooltip("Time in seconde before the Chomper stop pursuing the player when the player is out of sight")]
         public float timeToStopPursuit;
 
-        [Header("Audio")]
-        public RandomAudioPlayer attackAudio;
+        [Header("Audio")] public RandomAudioPlayer attackAudio;
+
         public RandomAudioPlayer frontStepAudio;
         public RandomAudioPlayer backStepAudio;
         public RandomAudioPlayer hitAudio;
@@ -42,11 +36,31 @@ namespace Gamekit3D
         public RandomAudioPlayer deathAudio;
         public RandomAudioPlayer spottedAudio;
 
-        protected float m_TimerSinceLostTarget = 0.0f;
+        [NonSerialized] public float attackDistance = 3;
 
-        protected PlayerController m_Target = null;
         protected EnemyController m_Controller;
-        protected TargetDistributor.TargetFollower m_FollowerInstance = null;
+        protected TargetDistributor.TargetFollower m_FollowerInstance;
+
+        protected PlayerController m_Target;
+
+        protected float m_TimerSinceLostTarget;
+
+        public EnemyController controller => m_Controller;
+
+        public PlayerController target => m_Target;
+        public TargetDistributor.TargetFollower followerData => m_FollowerInstance;
+
+        public Vector3 originalPosition { get; protected set; }
+
+        private void FixedUpdate()
+        {
+            m_Controller.animator.SetBool(hashGrounded, controller.grounded);
+
+            var toBase = originalPosition - transform.position;
+            toBase.y = 0;
+
+            m_Controller.animator.SetBool(hashNearBase, toBase.sqrMagnitude < 0.1 * 0.1f);
+        }
 
         protected void OnEnable()
         {
@@ -61,25 +75,51 @@ namespace Gamekit3D
             SceneLinkedSMB<ChomperBehavior>.Initialise(m_Controller.animator, this);
         }
 
+        protected void OnDisable()
+        {
+            if (m_FollowerInstance != null)
+                m_FollowerInstance.distributor.UnregisterFollower(m_FollowerInstance);
+        }
+
+#if UNITY_EDITOR
+        private void OnDrawGizmosSelected()
+        {
+            playerScanner.EditorGizmo(transform);
+        }
+#endif
+
+        public void OnReceiveMessage(MessageType type, object sender, object msg)
+        {
+            switch (type)
+            {
+                case MessageType.DEAD:
+                    Death((Damageable.DamageMessage)msg);
+                    break;
+                case MessageType.DAMAGED:
+                    ApplyDamage((Damageable.DamageMessage)msg);
+                    break;
+            }
+        }
+
         /// <summary>
-        /// Called by animation events.
+        ///     Called by animation events.
         /// </summary>
         /// <param name="frontFoot">Has a value of 1 when it's a front foot stepping and 0 when it's a back foot.</param>
-        void PlayStep(int frontFoot)
+        private void PlayStep(int frontFoot)
         {
             if (frontStepAudio != null && frontFoot == 1)
                 frontStepAudio.PlayRandomClip();
             else if (backStepAudio != null && frontFoot == 0)
-                backStepAudio.PlayRandomClip ();
+                backStepAudio.PlayRandomClip();
         }
 
         /// <summary>
-        /// Called by animation events.
+        ///     Called by animation events.
         /// </summary>
-        public void Grunt ()
+        public void Grunt()
         {
             if (gruntAudio != null)
-                gruntAudio.PlayRandomClip ();
+                gruntAudio.PlayRandomClip();
         }
 
         public void Spotted()
@@ -88,26 +128,10 @@ namespace Gamekit3D
                 spottedAudio.PlayRandomClip();
         }
 
-        protected void OnDisable()
-        {
-            if (m_FollowerInstance != null)
-                m_FollowerInstance.distributor.UnregisterFollower(m_FollowerInstance);
-        }
-
-        private void FixedUpdate()
-        {
-            m_Controller.animator.SetBool(hashGrounded, controller.grounded);
-
-            Vector3 toBase = originalPosition - transform.position;
-            toBase.y = 0;
-
-            m_Controller.animator.SetBool(hashNearBase, toBase.sqrMagnitude < 0.1 * 0.1f);
-        }
-
         public void FindTarget()
         {
             //we ignore height difference if the target was already seen
-            PlayerController target = playerScanner.Detect(transform, m_Target == null);
+            var target = playerScanner.Detect(transform, m_Target == null);
 
             if (m_Target == null)
             {
@@ -116,7 +140,7 @@ namespace Gamekit3D
                 {
                     m_Controller.animator.SetTrigger(hashSpotted);
                     m_Target = target;
-                    TargetDistributor distributor = target.GetComponentInChildren<TargetDistributor>();
+                    var distributor = target.GetComponentInChildren<TargetDistributor>();
                     if (distributor != null)
                         m_FollowerInstance = distributor.RegisterNewFollower();
                 }
@@ -131,7 +155,7 @@ namespace Gamekit3D
 
                     if (m_TimerSinceLostTarget >= timeToStopPursuit)
                     {
-                        Vector3 toTarget = m_Target.transform.position - transform.position;
+                        var toTarget = m_Target.transform.position - transform.position;
 
                         if (toTarget.sqrMagnitude > playerScanner.detectionRadius * playerScanner.detectionRadius)
                         {
@@ -152,7 +176,7 @@ namespace Gamekit3D
 
                         m_Target = target;
 
-                        TargetDistributor distributor = target.GetComponentInChildren<TargetDistributor>();
+                        var distributor = target.GetComponentInChildren<TargetDistributor>();
                         if (distributor != null)
                             m_FollowerInstance = distributor.RegisterNewFollower();
                     }
@@ -175,20 +199,18 @@ namespace Gamekit3D
 
         public void StopPursuit()
         {
-            if (m_FollowerInstance != null)
-            {
-                m_FollowerInstance.requireSlot = false;
-            }
+            if (m_FollowerInstance != null) m_FollowerInstance.requireSlot = false;
 
             m_Controller.animator.SetBool(hashInPursuit, false);
         }
 
         public void RequestTargetPosition()
         {
-            Vector3 fromTarget = transform.position - m_Target.transform.position;
+            var fromTarget = transform.position - m_Target.transform.position;
             fromTarget.y = 0;
 
-            m_FollowerInstance.requiredPoint = m_Target.transform.position + fromTarget.normalized * attackDistance * 0.9f;
+            m_FollowerInstance.requiredPoint =
+                m_Target.transform.position + fromTarget.normalized * attackDistance * 0.9f;
         }
 
         public void WalkBackToBase()
@@ -216,24 +238,9 @@ namespace Gamekit3D
             meleeWeapon.EndAttack();
         }
 
-        public void OnReceiveMessage(Message.MessageType type, object sender, object msg)
-        {
-            switch (type)
-            {
-                case Message.MessageType.DEAD:
-                    Death((Damageable.DamageMessage)msg);
-                    break;
-                case Message.MessageType.DAMAGED:
-                    ApplyDamage((Damageable.DamageMessage)msg);
-                    break;
-                default:
-                    break;
-            }
-        }
-
         public void Death(Damageable.DamageMessage msg)
         {
-            Vector3 pushForce = transform.position - msg.damageSource;
+            var pushForce = transform.position - msg.damageSource;
 
             pushForce.y = 0;
 
@@ -246,7 +253,7 @@ namespace Gamekit3D
             //We unparent the hit source, as it would destroy it with the gameobject when it get replaced by the ragdol otherwise
             deathAudio.transform.SetParent(null, true);
             deathAudio.PlayRandomClip();
-            GameObject.Destroy(deathAudio, deathAudio.clip == null ? 0.0f : deathAudio.clip.length + 0.5f);
+            Destroy(deathAudio, deathAudio.clip == null ? 0.0f : deathAudio.clip.length + 0.5f);
         }
 
         public void ApplyDamage(Damageable.DamageMessage msg)
@@ -255,10 +262,10 @@ namespace Gamekit3D
             if (msg.damager.name == "Staff")
                 CameraShake.Shake(0.06f, 0.1f);
 
-            float verticalDot = Vector3.Dot(Vector3.up, msg.direction);
-            float horizontalDot = Vector3.Dot(transform.right, msg.direction);
+            var verticalDot = Vector3.Dot(Vector3.up, msg.direction);
+            var horizontalDot = Vector3.Dot(transform.right, msg.direction);
 
-            Vector3 pushForce = transform.position - msg.damageSource;
+            var pushForce = transform.position - msg.damageSource;
 
             pushForce.y = 0;
 
@@ -272,12 +279,5 @@ namespace Gamekit3D
 
             hitAudio.PlayRandomClip();
         }
-
-#if UNITY_EDITOR
-        private void OnDrawGizmosSelected()
-        {
-            playerScanner.EditorGizmo(transform);
-        }
-#endif
     }
 }

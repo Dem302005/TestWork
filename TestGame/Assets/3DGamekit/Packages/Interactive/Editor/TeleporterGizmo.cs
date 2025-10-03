@@ -1,13 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 
 namespace Gamekit3D.GameCommands
 {
     public static class CommandGizmos
     {
-        static GUIStyle sceneNote;
+        private static readonly GUIStyle sceneNote;
 
         static CommandGizmos()
         {
@@ -19,7 +17,7 @@ namespace Gamekit3D.GameCommands
             sceneNote.alignment = TextAnchor.MiddleLeft;
         }
 
-        static void DrawNote(Vector3 position, string text, string warning = "", float distance = 10)
+        private static void DrawNote(Vector3 position, string text, string warning = "", float distance = 10)
         {
             if (!string.IsNullOrEmpty(warning))
                 text = text + "<color=red>" + warning + "</color>";
@@ -28,7 +26,7 @@ namespace Gamekit3D.GameCommands
         }
 
         [DrawGizmo(GizmoType.InSelectionHierarchy | GizmoType.NotInSelectionHierarchy, typeof(Teleporter))]
-        static void DrawTeleporterGizmos(Teleporter teleporter, GizmoType gizmoType)
+        private static void DrawTeleporterGizmos(Teleporter teleporter, GizmoType gizmoType)
         {
             if (teleporter.destinationTransform)
             {

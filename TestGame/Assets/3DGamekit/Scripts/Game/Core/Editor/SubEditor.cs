@@ -1,9 +1,13 @@
+using System;
 using UnityEditor;
 
 namespace Gamekit3D
 {
     public abstract class SubEditor<T>
     {
+        private Action defer;
+
+        private Editor editor;
         public abstract void OnInspectorGUI(T instance);
 
         public void Init(Editor editor)
@@ -17,7 +21,7 @@ namespace Gamekit3D
             defer = null;
         }
 
-        protected void Defer(System.Action fn)
+        protected void Defer(Action fn)
         {
             defer += fn;
         }
@@ -26,8 +30,5 @@ namespace Gamekit3D
         {
             editor.Repaint();
         }
-
-        Editor editor;
-        System.Action defer;
-    } 
+    }
 }

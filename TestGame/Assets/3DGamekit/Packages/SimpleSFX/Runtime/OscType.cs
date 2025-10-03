@@ -10,5 +10,4 @@ namespace Gamekit3D.SimpleSFX
         PWM,
         Random
     }
-
 }

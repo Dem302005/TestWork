@@ -1,13 +1,11 @@
-using System;
 using UnityEngine;
 
 namespace Gamekit3D.GameCommands
 {
-
     public class SimpleRotator : SimpleTransformer
     {
         public Vector3 axis = Vector3.forward;
-        public float start = 0;
+        public float start;
         public float end = 90;
 
 
@@ -17,7 +15,5 @@ namespace Gamekit3D.GameCommands
             var q = Quaternion.AngleAxis(Mathf.Lerp(start, end, curvePosition), axis);
             transform.localRotation = q;
         }
-
-
     }
 }

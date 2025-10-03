@@ -5,16 +5,16 @@ namespace Gamekit3D
 {
     public class HealthUI : MonoBehaviour
     {
+        protected const float k_HeartIconAnchorWidth = 0.041f;
         public Damageable representedDamageable;
         public GameObject healthIconPrefab;
 
-        protected Animator[] m_HealthIconAnimators;
-
         protected readonly int m_HashActivePara = Animator.StringToHash("Active");
         protected readonly int m_HashInactiveState = Animator.StringToHash("Inactive");
-        protected const float k_HeartIconAnchorWidth = 0.041f;
 
-        IEnumerator Start()
+        protected Animator[] m_HealthIconAnimators;
+
+        private IEnumerator Start()
         {
             if (representedDamageable == null)
                 yield break;
@@ -23,11 +23,11 @@ namespace Gamekit3D
 
             m_HealthIconAnimators = new Animator[representedDamageable.maxHitPoints];
 
-            for (int i = 0; i < representedDamageable.maxHitPoints; i++)
+            for (var i = 0; i < representedDamageable.maxHitPoints; i++)
             {
-                GameObject healthIcon = Instantiate(healthIconPrefab);
+                var healthIcon = Instantiate(healthIconPrefab);
                 healthIcon.transform.SetParent(transform);
-                RectTransform healthIconRect = healthIcon.transform as RectTransform;
+                var healthIconRect = healthIcon.transform as RectTransform;
                 healthIconRect.anchoredPosition = Vector2.zero;
                 healthIconRect.sizeDelta = Vector2.zero;
                 healthIconRect.anchorMin += new Vector2(k_HeartIconAnchorWidth, 0f) * i;
@@ -47,10 +47,8 @@ namespace Gamekit3D
             if (m_HealthIconAnimators == null)
                 return;
 
-            for (int i = 0; i < m_HealthIconAnimators.Length; i++)
-            {
+            for (var i = 0; i < m_HealthIconAnimators.Length; i++)
                 m_HealthIconAnimators[i].SetBool(m_HashActivePara, damageable.currentHitPoints >= i + 1);
-            }
         }
-    } 
+    }
 }

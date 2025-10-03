@@ -2,20 +2,20 @@ using UnityEngine;
 
 namespace Gamekit3D.GameCommands
 {
-
     public class GameplayCounter : GameCommandHandler
     {
-        public int currentCount = 0;
+        public int currentCount;
         public int targetCount = 3;
 
-        [Space]
-        [Tooltip("Send a command when increment is performed. (optional)")]
+        [Space] [Tooltip("Send a command when increment is performed. (optional)")]
         public SendGameCommand onIncrementSendCommand;
+
         [Tooltip("Perform an action when increment is performed. (optional)")]
         public GameCommandHandler onIncrementPerformAction;
-        [Space]
-        [Tooltip("Send a command when target count is reacted. (optional)")]
+
+        [Space] [Tooltip("Send a command when target count is reacted. (optional)")]
         public SendGameCommand onTargetReachedSendCommand;
+
         [Tooltip("Perform an action when target count is reacted. (optional)")]
         public GameCommandHandler onTargetReachedPerformAction;
 
@@ -36,7 +36,5 @@ namespace Gamekit3D.GameCommands
                 isTriggered = false;
             }
         }
-
     }
-
 }

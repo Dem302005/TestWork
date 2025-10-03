@@ -2,66 +2,46 @@
 using System.Linq;
 using UnityEngine;
 using UnityEngine.ProBuilder;
+using Math = System.Math;
 using PMath = UnityEngine.ProBuilder.Math;
 
 namespace ProBuilder.Examples
 {
-    class MeshEditor : MonoBehaviour
+    internal class MeshEditor : MonoBehaviour
     {
-        Camera m_SceneCamera;
-        CameraMotion m_CameraMotion;
-        MeshAndFace m_Selection;
+        private CameraMotion m_CameraMotion;
 
-        class MeshState
-        {
-            public ProBuilderMesh mesh;
-            public Vector3[] vertices;
-            public Vector3[] origins;
-            public List<int> indices;
+        private readonly DragState m_DragState = new DragState();
+        private Camera m_SceneCamera;
+        private MeshAndFace m_Selection;
 
-            public MeshState(ProBuilderMesh mesh, IList<int> selectedIndices)
-            {
-                this.mesh = mesh;
-                vertices = mesh.positions.ToArray();
-                indices = mesh.GetCoincidentVertices(selectedIndices);
-                origins = new Vector3[indices.Count];
-
-                for (int i = 0, c = indices.Count; i < c; i++)
-                    origins[i] = vertices[indices[i]];
-            }
-        }
-
-        class DragState
-        {
-            public bool active;
-            public Ray constraint;
-            public float offset;
-            public MeshState meshState;
-        }
-
-        DragState m_DragState = new DragState();
-
-        void Awake()
+        private void Awake()
         {
             m_SceneCamera = Camera.main;
             m_CameraMotion = m_SceneCamera.GetComponent<CameraMotion>();
             Camera.onPostRender += DrawSelection;
         }
 
-        void Start()
+        private void Start()
         {
             m_CameraMotion.Focus(Vector3.zero, 10f);
         }
 
-        void Update()
+        private void Update()
         {
-            if(!m_DragState.active)
+            if (!m_DragState.active)
                 m_Selection = Utility.PickFace(m_SceneCamera, Input.mousePosition);
 
             HandleInput();
         }
 
-        void DrawSelection(Camera cam)
+        private void LateUpdate()
+        {
+            if (!m_DragState.active)
+                m_CameraMotion.DoLateUpdate();
+        }
+
+        private void DrawSelection(Camera cam)
         {
             if (m_CameraMotion.active)
                 return;
@@ -76,13 +56,7 @@ namespace ProBuilder.Examples
             }
         }
 
-        void LateUpdate()
-        {
-            if (!m_DragState.active)
-                m_CameraMotion.DoLateUpdate();
-        }
-
-        void HandleInput()
+        private void HandleInput()
         {
             if (m_CameraMotion.active)
                 return;
@@ -108,7 +82,7 @@ namespace ProBuilder.Examples
             }
         }
 
-        void BeginDrag()
+        private void BeginDrag()
         {
             if (m_DragState.active || m_Selection.mesh == null || m_Selection.face == null)
                 return;
@@ -126,12 +100,12 @@ namespace ProBuilder.Examples
             m_DragState.offset = GetDragDistance();
         }
 
-        void EndDrag()
+        private void EndDrag()
         {
             m_DragState.active = false;
         }
 
-        void UpdateDrag()
+        private void UpdateDrag()
         {
             var distance = GetDragDistance() - m_DragState.offset;
 
@@ -150,13 +124,40 @@ namespace ProBuilder.Examples
             mesh.Refresh();
         }
 
-        float GetDragDistance()
+        private float GetDragDistance()
         {
-            Ray constraint = m_DragState.constraint;
-            Ray mouse = m_SceneCamera.ScreenPointToRay(Input.mousePosition);
-            Vector3 nearestPoint = PMath.GetNearestPointRayRay(constraint, mouse);
-            float sign = System.Math.Sign(Vector3.Dot(nearestPoint - constraint.origin, constraint.direction));
+            var constraint = m_DragState.constraint;
+            var mouse = m_SceneCamera.ScreenPointToRay(Input.mousePosition);
+            var nearestPoint = PMath.GetNearestPointRayRay(constraint, mouse);
+            float sign = Math.Sign(Vector3.Dot(nearestPoint - constraint.origin, constraint.direction));
             return Vector3.Distance(constraint.origin, nearestPoint) * sign;
+        }
+
+        private class MeshState
+        {
+            public readonly List<int> indices;
+            public ProBuilderMesh mesh;
+            public readonly Vector3[] origins;
+            public readonly Vector3[] vertices;
+
+            public MeshState(ProBuilderMesh mesh, IList<int> selectedIndices)
+            {
+                this.mesh = mesh;
+                vertices = mesh.positions.ToArray();
+                indices = mesh.GetCoincidentVertices(selectedIndices);
+                origins = new Vector3[indices.Count];
+
+                for (int i = 0, c = indices.Count; i < c; i++)
+                    origins[i] = vertices[indices[i]];
+            }
+        }
+
+        private class DragState
+        {
+            public bool active;
+            public Ray constraint;
+            public MeshState meshState;
+            public float offset;
         }
     }
 }

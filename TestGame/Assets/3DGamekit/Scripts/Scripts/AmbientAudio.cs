@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Gamekit3D
@@ -15,21 +14,18 @@ namespace Gamekit3D
 
         public AudioListener audioListener;
 
-        new AudioSource audio;
+        private new AudioSource audio;
+        private int delayIndex;
 
-        WaitForSeconds[] delays;
-        int delayIndex = 0;
+        private WaitForSeconds[] delays;
 
-        WaitForSeconds Delay
-        {
-            get { return delays[delayIndex++ % delays.Length]; }
-        }
+        private WaitForSeconds Delay => delays[delayIndex++ % delays.Length];
 
-        IEnumerator Start()
+        private IEnumerator Start()
         {
             audio = GetComponent<AudioSource>();
             if (audio.clip == null) yield break;
-            if (audioListener == null) audioListener = GameObject.FindObjectOfType<AudioListener>();
+            if (audioListener == null) audioListener = FindObjectOfType<AudioListener>();
             audio.loop = false;
             delays = new WaitForSeconds[7];
             for (var i = 0; i < delays.Length; i++)
@@ -49,6 +45,5 @@ namespace Gamekit3D
                 audio.Play();
             }
         }
-
     }
 }

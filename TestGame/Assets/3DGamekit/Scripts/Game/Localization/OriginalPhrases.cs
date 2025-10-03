@@ -14,11 +14,9 @@ namespace Gamekit3D
         {
             get
             {
-                for (int i = 0; i < phrases.Count; i++)
-                {
+                for (var i = 0; i < phrases.Count; i++)
                     if (phrases[i].key == key)
                         return phrases[i].value;
-                }
 
                 return "Key not found.";
             }

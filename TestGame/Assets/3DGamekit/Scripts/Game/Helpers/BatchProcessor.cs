@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace Gamekit3D
@@ -8,43 +7,39 @@ namespace Gamekit3D
     {
         public delegate void BatchProcessing();
 
-        static protected BatchProcessor s_Instance;
-        static protected List<BatchProcessing> s_ProcessList;
+        protected static BatchProcessor s_Instance;
+        protected static List<BatchProcessing> s_ProcessList;
 
         static BatchProcessor()
         {
             s_ProcessList = new List<BatchProcessing>();
         }
 
-        static public void RegisterBatchFunction(BatchProcessing function)
+        // Update is called once per frame
+        private void Update()
+        {
+            for (var i = 0; i < s_ProcessList.Count; ++i) s_ProcessList[i]();
+        }
+
+        public static void RegisterBatchFunction(BatchProcessing function)
         {
             s_ProcessList.Add(function);
         }
 
-        static public void UnregisterBatchFunction(BatchProcessing function)
+        public static void UnregisterBatchFunction(BatchProcessing function)
         {
             s_ProcessList.Remove(function);
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-            for (int i = 0; i < s_ProcessList.Count; ++i)
-            {
-                s_ProcessList[i]();
-            }
-        }
-
         [RuntimeInitializeOnLoadMethod]
-        static void Init()
+        private static void Init()
         {
             if (s_Instance != null)
                 return;
 
-            GameObject obj = new GameObject("BatchProcessor");
+            var obj = new GameObject("BatchProcessor");
             DontDestroyOnLoad(obj);
             s_Instance = obj.AddComponent<BatchProcessor>();
         }
     }
-
 }

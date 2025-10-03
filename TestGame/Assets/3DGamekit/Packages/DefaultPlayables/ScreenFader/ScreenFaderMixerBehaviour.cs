@@ -1,15 +1,13 @@
-using System;
 using UnityEngine;
 using UnityEngine.Playables;
-using UnityEngine.Timeline;
 using UnityEngine.UI;
 
 public class ScreenFaderMixerBehaviour : PlayableBehaviour
 {
-    Color m_DefaultColor;
+    private Color m_DefaultColor;
+    private bool m_FirstFrameHappened;
 
-    Image m_TrackBinding;
-    bool m_FirstFrameHappened;
+    private Image m_TrackBinding;
 
     public override void ProcessFrame(Playable playable, FrameData info, object playerData)
     {
@@ -24,28 +22,25 @@ public class ScreenFaderMixerBehaviour : PlayableBehaviour
             m_FirstFrameHappened = true;
         }
 
-        int inputCount = playable.GetInputCount ();
+        var inputCount = playable.GetInputCount();
 
-        Color blendedColor = Color.clear;
-        float totalWeight = 0f;
-        float greatestWeight = 0f;
-        int currentInputs = 0;
+        var blendedColor = Color.clear;
+        var totalWeight = 0f;
+        var greatestWeight = 0f;
+        var currentInputs = 0;
 
-        for (int i = 0; i < inputCount; i++)
+        for (var i = 0; i < inputCount; i++)
         {
-            float inputWeight = playable.GetInputWeight(i);
-            ScriptPlayable<ScreenFaderBehaviour> inputPlayable = (ScriptPlayable<ScreenFaderBehaviour>)playable.GetInput(i);
-            ScreenFaderBehaviour input = inputPlayable.GetBehaviour ();
-            
+            var inputWeight = playable.GetInputWeight(i);
+            var inputPlayable = (ScriptPlayable<ScreenFaderBehaviour>)playable.GetInput(i);
+            var input = inputPlayable.GetBehaviour();
+
             blendedColor += input.color * inputWeight;
             totalWeight += inputWeight;
 
-            if (inputWeight > greatestWeight)
-            {
-                greatestWeight = inputWeight;
-            }
+            if (inputWeight > greatestWeight) greatestWeight = inputWeight;
 
-            if (!Mathf.Approximately (inputWeight, 0f))
+            if (!Mathf.Approximately(inputWeight, 0f))
                 currentInputs++;
         }
 
@@ -55,7 +50,7 @@ public class ScreenFaderMixerBehaviour : PlayableBehaviour
         }
     }
 
-    public override void OnGraphStop (Playable playable)
+    public override void OnGraphStop(Playable playable)
     {
         m_TrackBinding.color = m_DefaultColor;
         m_FirstFrameHappened = false;

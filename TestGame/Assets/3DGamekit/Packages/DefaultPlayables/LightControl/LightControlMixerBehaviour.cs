@@ -1,17 +1,15 @@
-using System;
 using UnityEngine;
 using UnityEngine.Playables;
-using UnityEngine.Timeline;
 
 public class LightControlMixerBehaviour : PlayableBehaviour
 {
-    Color m_DefaultColor;
-    float m_DefaultIntensity;
-    float m_DefaultBounceIntensity;
-    float m_DefaultRange;
+    private float m_DefaultBounceIntensity;
+    private Color m_DefaultColor;
+    private float m_DefaultIntensity;
+    private float m_DefaultRange;
+    private bool m_FirstFrameHappened;
 
-    Light m_TrackBinding;
-    bool m_FirstFrameHappened;
+    private Light m_TrackBinding;
 
     public override void ProcessFrame(Playable playable, FrameData info, object playerData)
     {
@@ -29,34 +27,31 @@ public class LightControlMixerBehaviour : PlayableBehaviour
             m_FirstFrameHappened = true;
         }
 
-        int inputCount = playable.GetInputCount ();
+        var inputCount = playable.GetInputCount();
 
-        Color blendedColor = Color.clear;
-        float blendedIntensity = 0f;
-        float blendedBounceIntensity = 0f;
-        float blendedRange = 0f;
-        float totalWeight = 0f;
-        float greatestWeight = 0f;
-        int currentInputs = 0;
+        var blendedColor = Color.clear;
+        var blendedIntensity = 0f;
+        var blendedBounceIntensity = 0f;
+        var blendedRange = 0f;
+        var totalWeight = 0f;
+        var greatestWeight = 0f;
+        var currentInputs = 0;
 
-        for (int i = 0; i < inputCount; i++)
+        for (var i = 0; i < inputCount; i++)
         {
-            float inputWeight = playable.GetInputWeight(i);
-            ScriptPlayable<LightControlBehaviour> inputPlayable = (ScriptPlayable<LightControlBehaviour>)playable.GetInput(i);
-            LightControlBehaviour input = inputPlayable.GetBehaviour ();
-            
+            var inputWeight = playable.GetInputWeight(i);
+            var inputPlayable = (ScriptPlayable<LightControlBehaviour>)playable.GetInput(i);
+            var input = inputPlayable.GetBehaviour();
+
             blendedColor += input.color * inputWeight;
             blendedIntensity += input.intensity * inputWeight;
             blendedBounceIntensity += input.bounceIntensity * inputWeight;
             blendedRange += input.range * inputWeight;
             totalWeight += inputWeight;
 
-            if (inputWeight > greatestWeight)
-            {
-                greatestWeight = inputWeight;
-            }
+            if (inputWeight > greatestWeight) greatestWeight = inputWeight;
 
-            if (!Mathf.Approximately (inputWeight, 0f))
+            if (!Mathf.Approximately(inputWeight, 0f))
                 currentInputs++;
         }
 
@@ -69,7 +64,7 @@ public class LightControlMixerBehaviour : PlayableBehaviour
         }
     }
 
-    public override void OnPlayableDestroy (Playable playable)
+    public override void OnPlayableDestroy(Playable playable)
     {
         m_TrackBinding.color = m_DefaultColor;
         m_TrackBinding.intensity = m_DefaultIntensity;

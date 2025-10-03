@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Gamekit3D
 {
@@ -8,7 +6,7 @@ namespace Gamekit3D
     {
         public static bool Contains(this LayerMask layers, GameObject gameObject)
         {
-            return 0 != (layers.value & 1 << gameObject.layer);
+            return 0 != (layers.value & (1 << gameObject.layer));
         }
     }
 }

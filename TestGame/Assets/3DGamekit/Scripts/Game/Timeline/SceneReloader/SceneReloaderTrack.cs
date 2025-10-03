@@ -9,6 +9,6 @@ public class SceneReloaderTrack : TrackAsset
 {
     public override Playable CreateTrackMixer(PlayableGraph graph, GameObject go, int inputCount)
     {
-        return ScriptPlayable<SceneReloaderMixerBehaviour>.Create (graph, inputCount);
+        return ScriptPlayable<SceneReloaderMixerBehaviour>.Create(graph, inputCount);
     }
 }

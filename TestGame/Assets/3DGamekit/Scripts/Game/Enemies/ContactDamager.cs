@@ -18,14 +18,14 @@ Also Remember to place that object in a layer that collide with what you want to
 
         private void OnTriggerStay(Collider other)
         {
-            if ((damagedLayers.value & 1 << other.gameObject.layer) == 0)
+            if ((damagedLayers.value & (1 << other.gameObject.layer)) == 0)
                 return;
 
-            Damageable d = other.GetComponentInChildren<Damageable>();
+            var d = other.GetComponentInChildren<Damageable>();
 
             if (d != null && !d.isInvulnerable)
             {
-                Damageable.DamageMessage message = new Damageable.DamageMessage
+                var message = new Damageable.DamageMessage
                 {
                     damageSource = transform.position,
                     damager = this,
@@ -41,7 +41,6 @@ Also Remember to place that object in a layer that collide with what you want to
 
     public class HelpBoxAttribute : PropertyAttribute
     {
-
     }
 
 #if UNITY_EDITOR

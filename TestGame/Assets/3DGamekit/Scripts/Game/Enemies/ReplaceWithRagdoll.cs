@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Gamekit3D
 {
@@ -10,19 +8,19 @@ namespace Gamekit3D
 
         public void Replace()
         {
-            GameObject ragdollInstance = Instantiate(ragdollPrefab, transform.position, transform.rotation);
+            var ragdollInstance = Instantiate(ragdollPrefab, transform.position, transform.rotation);
             //need to disable it, otherwise when we copy over the hierarchy objects position/rotation, the ragdoll will try each time to 
             //"correct" the attached joint, leading to a deformed/glitched instance
             ragdollInstance.SetActive(false);
 
-            EnemyController baseController = GetComponent<EnemyController>();
+            var baseController = GetComponent<EnemyController>();
 
-            RigidbodyDelayedForce t = ragdollInstance.AddComponent<RigidbodyDelayedForce>();
+            var t = ragdollInstance.AddComponent<RigidbodyDelayedForce>();
             t.forceToAdd = baseController.externalForce;
 
-            Transform ragdollCurrent = ragdollInstance.transform;
-            Transform current = transform;
-            bool first = true;
+            var ragdollCurrent = ragdollInstance.transform;
+            var current = transform;
+            var first = true;
 
             while (current != null && ragdollCurrent != null)
             {
@@ -43,7 +41,6 @@ namespace Gamekit3D
                 else
                 {
                     while (current != null)
-                    {
                         if (current.parent == null || ragdollCurrent.parent == null)
                         {
                             // No more transforms to find.
@@ -64,7 +61,6 @@ namespace Gamekit3D
                             ragdollCurrent = ragdollCurrent.parent.GetChild(ragdollCurrent.GetSiblingIndex() + 1);
                             break;
                         }
-                    }
                 }
             }
 

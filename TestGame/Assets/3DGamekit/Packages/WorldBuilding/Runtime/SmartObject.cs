@@ -1,18 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Gamekit3D.WorldBuilding
 {
     [ExecuteInEditMode]
     public class SmartObject : MonoBehaviour
     {
-
         public float distance = 10;
-        public float rotationOffset = 0;
+        public float rotationOffset;
         public GameObject prefab;
 
-        void Update()
+        private void Update()
         {
             if (transform.childCount == 0) return;
             var step = 360f / transform.childCount;
@@ -21,8 +18,9 @@ namespace Gamekit3D.WorldBuilding
             for (var i = 0; i < transform.childCount; i++)
             {
                 var child = transform.GetChild(i);
-                child.position = (transform.position + (dir * distance));
-                child.rotation = Quaternion.AngleAxis(rotationOffset, transform.up) * Quaternion.LookRotation(dir, transform.up);
+                child.position = transform.position + dir * distance;
+                child.rotation = Quaternion.AngleAxis(rotationOffset, transform.up) *
+                                 Quaternion.LookRotation(dir, transform.up);
                 Vector3 center;
                 var up = Ground(child, out center);
                 child.position = center;
@@ -31,13 +29,12 @@ namespace Gamekit3D.WorldBuilding
             }
         }
 
-        Vector3 Ground(Transform child, out Vector3 center)
+        private Vector3 Ground(Transform child, out Vector3 center)
         {
             foreach (var c in child.GetComponentsInChildren<Collider>())
                 c.enabled = false;
             try
             {
-
                 var box = child.GetComponent<BoxCollider>();
                 if (box == null)
                 {
@@ -46,7 +43,7 @@ namespace Gamekit3D.WorldBuilding
                 }
                 else
                 {
-                    var size = (box.size / 2) - box.center;
+                    var size = box.size / 2 - box.center;
                     var x = size.x;
                     var y = size.y;
                     var z = size.z;
@@ -62,16 +59,19 @@ namespace Gamekit3D.WorldBuilding
                         up = Vector3.Lerp(up, hit.normal, 0.5f);
                         mid = Vector3.Lerp(mid, hit.point, 0.5f);
                     }
+
                     if (Physics.Raycast(backRight + Vector3.up * 100, Vector3.down, out hit))
                     {
                         up = Vector3.Lerp(up, hit.normal, 0.5f);
                         mid = Vector3.Lerp(mid, hit.point, 0.5f);
                     }
+
                     if (Physics.Raycast(frontLeft + Vector3.up * 100, Vector3.down, out hit))
                     {
                         up = Vector3.Lerp(up, hit.normal, 0.5f);
                         mid = Vector3.Lerp(mid, hit.point, 0.5f);
                     }
+
                     if (Physics.Raycast(frontRight + Vector3.up * 100, Vector3.down, out hit))
                     {
                         up = Vector3.Lerp(up, hit.normal, 0.5f);
@@ -88,7 +88,5 @@ namespace Gamekit3D.WorldBuilding
                     c.enabled = true;
             }
         }
-
-
     }
 }

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
 namespace Gamekit3D
@@ -28,8 +26,6 @@ namespace Gamekit3D
 
         public static readonly int hashIdleState = Animator.StringToHash("GrenadierIdle");
 
-        public EnemyController controller { get { return m_EnemyController; } }
-
         public TargetScanner playerScanner;
 
         public float meleeRange = 4.0f;
@@ -42,34 +38,48 @@ namespace Gamekit3D
 
         public SkinnedMeshRenderer coreRenderer;
 
-        protected EnemyController m_EnemyController;
-        protected NavMeshAgent m_NavMeshAgent;
+        [Header("Audio")] public RandomAudioPlayer deathAudioPlayer;
 
-        public bool shieldUp { get { return shield.activeSelf; } }
-
-        public PlayerController target { get { return m_Target; } }
-        public Damageable damageable { get { return m_Damageable; } }
-
-        [Header("Audio")]
-        public RandomAudioPlayer deathAudioPlayer;
         public RandomAudioPlayer damageAudioPlayer;
         public RandomAudioPlayer footstepAudioPlayer;
         public RandomAudioPlayer throwAudioPlayer;
         public RandomAudioPlayer punchAudioPlayer;
-
-        protected PlayerController m_Target;
-        //used to store the position of the target when the Grenadier decide to shoot, so if the player
-        //move between the start of the animation and the actual grenade launch, it shoot were it was not where it is now
-        protected Vector3 m_GrenadeTarget;
         protected Material m_CoreMaterial;
 
         protected Damageable m_Damageable;
+
+        protected EnemyController m_EnemyController;
+
+        //used to store the position of the target when the Grenadier decide to shoot, so if the player
+        //move between the start of the animation and the actual grenade launch, it shoot were it was not where it is now
+        protected Vector3 m_GrenadeTarget;
+        protected NavMeshAgent m_NavMeshAgent;
         protected Color m_OriginalCoreMaterial;
 
         protected float m_ShieldActivationTime;
 
+        protected PlayerController m_Target;
 
-        void OnEnable()
+        public EnemyController controller => m_EnemyController;
+
+        public bool shieldUp => shield.activeSelf;
+
+        public PlayerController target => m_Target;
+        public Damageable damageable => m_Damageable;
+
+        private void Update()
+        {
+            if (m_ShieldActivationTime > 0)
+            {
+                m_ShieldActivationTime -= Time.deltaTime;
+
+                if (m_ShieldActivationTime <= 0.0f)
+                    DeactivateShield();
+            }
+        }
+
+
+        private void OnEnable()
         {
             m_EnemyController = GetComponent<EnemyController>();
             m_NavMeshAgent = GetComponent<NavMeshAgent>();
@@ -89,17 +99,14 @@ namespace Gamekit3D
             m_Damageable = GetComponentInChildren<Damageable>();
         }
 
-        private void Update()
+#if UNITY_EDITOR
+
+        private void OnDrawGizmosSelected()
         {
-
-            if (m_ShieldActivationTime > 0)
-            {
-                m_ShieldActivationTime -= Time.deltaTime;
-
-                if (m_ShieldActivationTime <= 0.0f)
-                    DeactivateShield();
-            }
+            playerScanner.EditorGizmo(transform);
         }
+
+#endif
 
         public void FindTarget()
         {
@@ -171,43 +178,35 @@ namespace Gamekit3D
         {
             throwAudioPlayer.PlayRandomClip();
 
-            Vector3 toTarget = m_GrenadeTarget - transform.position;
+            var toTarget = m_GrenadeTarget - transform.position;
 
             //the grenade is launched a couple of meters in "front" of the player, because it bounce and roll, to make it a bit ahrder for the player
             //to avoid it
-            Vector3 target = transform.position + (toTarget - toTarget * 0.3f);
+            var target = transform.position + (toTarget - toTarget * 0.3f);
 
             grenadeLauncher.Attack(target);
         }
 
         public OrientationState OrientTowardTarget()
         {
-            Vector3 v = m_Target.transform.position - transform.position;
-            bool above = v.y > 0.3f;
+            var v = m_Target.transform.position - transform.position;
+            var above = v.y > 0.3f;
             v.y = 0;
 
-            float angle = Vector3.SignedAngle(transform.forward, v, Vector3.up);
+            var angle = Vector3.SignedAngle(transform.forward, v, Vector3.up);
 
             if (Mathf.Abs(angle) < 20.0f)
-            { //for a very small angle, we directly rotate the model
+            {
+                //for a very small angle, we directly rotate the model
                 transform.forward = v.normalized;
                 // if the player was above the player we return false to tell the Idle state 
                 // that we want a "shield up" attack as our punch attack wouldn't reach it.
-                return above ? OrientationState.ORIENTED_ABOVE : OrientationState.ORIENTED_FACE; 
+                return above ? OrientationState.ORIENTED_ABOVE : OrientationState.ORIENTED_FACE;
             }
 
             m_EnemyController.animator.SetFloat(hashTurnAngleParam, angle / 180.0f);
             m_EnemyController.animator.SetTrigger(hashTurnTriggerParam);
             return OrientationState.IN_TRANSITION;
         }
-
-#if UNITY_EDITOR
-
-        private void OnDrawGizmosSelected()
-        {
-           playerScanner.EditorGizmo(transform);
-        }
-
-#endif
     }
 }

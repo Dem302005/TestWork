@@ -1,30 +1,33 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-
 
 namespace Gamekit3D
 {
     public class Respawner : MonoBehaviour
     {
-        [System.Serializable]
-        public class SaveState
-        {
-            public Vector3 position;
-            public Quaternion rotation;
-        }
-
         public GameObject player;
         public float savePeriod = 5;
 
         public List<SaveState> savedStates = new List<SaveState>();
 
-        float lastCheck = 0f;
-        bool paused = false;
+        private float lastCheck;
+        private bool paused;
 
-        void Start()
+        private void Start()
         {
             lastCheck = Time.time - savePeriod;
+        }
+
+        private void Update()
+        {
+            if (!paused && Time.time - lastCheck > savePeriod)
+            {
+                lastCheck = Time.time;
+                savedStates.Add(new SaveState
+                    { position = player.transform.position, rotation = player.transform.rotation });
+                savedStates.RemoveRange(0, Mathf.Max(0, savedStates.Count - 8));
+            }
         }
 
         public void Pause()
@@ -48,15 +51,11 @@ namespace Gamekit3D
             }
         }
 
-        void Update()
+        [Serializable]
+        public class SaveState
         {
-            if (!paused && Time.time - lastCheck > savePeriod)
-            {
-                lastCheck = Time.time;
-                savedStates.Add(new SaveState() { position = player.transform.position, rotation = player.transform.rotation });
-                savedStates.RemoveRange(0, Mathf.Max(0, savedStates.Count - 8));
-            }
+            public Vector3 position;
+            public Quaternion rotation;
         }
     }
-
 }

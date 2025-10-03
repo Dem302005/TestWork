@@ -1,23 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Gamekit3D
 {
     public class ParticleDeactivator : MonoBehaviour
     {
         public float duration;
-
-        protected float m_SinceActivation = 0.0f;
         protected ParticleSystem m_ParticleSystem;
 
-        void OnEnable()
-        {
-            m_ParticleSystem = GetComponent<ParticleSystem>();
-            m_SinceActivation = 0;
-        }
+        protected float m_SinceActivation;
 
-        void Update()
+        private void Update()
         {
             m_SinceActivation += Time.deltaTime;
             if (m_SinceActivation > duration)
@@ -26,5 +18,11 @@ namespace Gamekit3D
                 gameObject.SetActive(false);
             }
         }
-    } 
+
+        private void OnEnable()
+        {
+            m_ParticleSystem = GetComponent<ParticleSystem>();
+            m_SinceActivation = 0;
+        }
+    }
 }

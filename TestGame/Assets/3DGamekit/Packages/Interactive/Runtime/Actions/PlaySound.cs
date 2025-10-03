@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using UnityEngine;
 
 namespace Gamekit3D.GameCommands
 {
@@ -14,6 +11,5 @@ namespace Gamekit3D.GameCommands
             foreach (var a in audioSources)
                 a.Play();
         }
-
     }
 }

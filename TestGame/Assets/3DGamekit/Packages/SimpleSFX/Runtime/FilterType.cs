@@ -9,5 +9,4 @@ namespace Gamekit3D.SimpleSFX
         Bandstop,
         Allpass
     }
-
 }

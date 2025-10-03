@@ -6,15 +6,12 @@ using UnityEngine.Timeline;
 [Serializable]
 public class SceneReloaderClip : PlayableAsset, ITimelineClipAsset
 {
-    public SceneReloaderBehaviour template = new SceneReloaderBehaviour ();
+    public SceneReloaderBehaviour template = new SceneReloaderBehaviour();
 
-    public ClipCaps clipCaps
-    {
-        get { return ClipCaps.None; }
-    }
+    public ClipCaps clipCaps => ClipCaps.None;
 
-    public override Playable CreatePlayable (PlayableGraph graph, GameObject owner)
+    public override Playable CreatePlayable(PlayableGraph graph, GameObject owner)
     {
-        return ScriptPlayable<SceneReloaderBehaviour>.Create (graph, template);
+        return ScriptPlayable<SceneReloaderBehaviour>.Create(graph, template);
     }
 }

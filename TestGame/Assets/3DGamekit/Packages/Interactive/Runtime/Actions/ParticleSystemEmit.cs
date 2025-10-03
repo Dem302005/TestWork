@@ -1,6 +1,5 @@
 using UnityEngine;
 
-
 namespace Gamekit3D.GameCommands
 {
     public class ParticleSystemEmit : GameCommandHandler
@@ -10,10 +9,7 @@ namespace Gamekit3D.GameCommands
 
         public override void PerformInteraction()
         {
-            foreach (var ps in particleSystems)
-            {
-                ps.Emit(count);
-            }
+            foreach (var ps in particleSystems) ps.Emit(count);
         }
     }
 }

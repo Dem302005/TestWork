@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Gamekit3D
 {
@@ -23,7 +21,7 @@ namespace Gamekit3D
             m_MonoBehaviour.FindTarget();
             if (m_MonoBehaviour.target != null)
             {
-                Vector3 toTarget = m_MonoBehaviour.target.transform.position - m_MonoBehaviour.transform.position;
+                var toTarget = m_MonoBehaviour.target.transform.position - m_MonoBehaviour.transform.position;
 
                 if (toTarget.sqrMagnitude < m_MonoBehaviour.meleeRange * m_MonoBehaviour.meleeRange)
                 {
@@ -31,7 +29,7 @@ namespace Gamekit3D
                     {
                         animator.SetTrigger(GrenadierBehaviour.hashMeleeAttack);
                     }
-                    else if(!m_MonoBehaviour.shieldUp)
+                    else if (!m_MonoBehaviour.shieldUp)
                     {
                         //we don't turn, we do a shield attack, reset the turn apram set by the orient function
                         animator.ResetTrigger(GrenadierBehaviour.hashTurnTriggerParam);
@@ -41,16 +39,12 @@ namespace Gamekit3D
                 else if (toTarget.sqrMagnitude < m_MonoBehaviour.rangeRange * m_MonoBehaviour.rangeRange)
                 {
                     if (m_MonoBehaviour.OrientTowardTarget() != GrenadierBehaviour.OrientationState.IN_TRANSITION)
-                    {
                         animator.SetTrigger(GrenadierBehaviour.hashRangeAttack);
-                    }
                 }
                 else
                 {
                     if (m_MonoBehaviour.OrientTowardTarget() != GrenadierBehaviour.OrientationState.IN_TRANSITION)
-                    {
                         m_MonoBehaviour.StartPursuit();
-                    }
                 }
             }
         }

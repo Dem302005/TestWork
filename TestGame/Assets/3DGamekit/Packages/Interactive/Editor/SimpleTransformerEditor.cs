@@ -5,7 +5,6 @@ namespace Gamekit3D.GameCommands
     [CustomEditor(typeof(SimpleTransformer), true)]
     public class SimpleTransformerEditor : Editor
     {
-
         public override void OnInspectorGUI()
         {
             using (var cc = new EditorGUI.ChangeCheckScope())
@@ -18,7 +17,5 @@ namespace Gamekit3D.GameCommands
                 }
             }
         }
-
     }
-
 }

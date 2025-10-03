@@ -5,9 +5,10 @@ namespace Gamekit3D.GameCommands
 {
     public class Collector : MonoBehaviour
     {
-        public bool attachCollectables = false;
+        public bool attachCollectables;
 
-        Dictionary<string, int> collections = new Dictionary<string, int>();
+        private readonly Dictionary<string, int> collections = new Dictionary<string, int>();
+
         public virtual void OnCollect(Collectable collectable)
         {
             if (attachCollectables)
@@ -32,6 +33,4 @@ namespace Gamekit3D.GameCommands
             return false;
         }
     }
-
-
 }

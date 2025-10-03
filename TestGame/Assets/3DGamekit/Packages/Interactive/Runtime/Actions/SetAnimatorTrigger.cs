@@ -2,13 +2,12 @@ using UnityEngine;
 
 namespace Gamekit3D.GameCommands
 {
-
     public class SetAnimatorTrigger : GameCommandHandler
     {
         public Animator animator;
         public string triggerName;
 
-        void Reset()
+        private void Reset()
         {
             animator = GetComponent<Animator>();
         }

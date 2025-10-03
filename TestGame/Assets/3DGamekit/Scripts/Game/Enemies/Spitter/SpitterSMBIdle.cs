@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Gamekit3D
 {
@@ -9,7 +7,7 @@ namespace Gamekit3D
         public float minimumIdleGruntTime = 2.0f;
         public float maximumIdleGruntTime = 5.0f;
 
-        protected float remainingToNextGrunt = 0.0f;
+        protected float remainingToNextGrunt;
 
         public override void OnStateMachineEnter(Animator animator, int stateMachinePathHash)
         {
@@ -35,10 +33,7 @@ namespace Gamekit3D
             m_MonoBehaviour.FindTarget();
             m_MonoBehaviour.CheckNeedFleeing();
 
-            if (m_MonoBehaviour.target != null)
-            {
-                m_MonoBehaviour.TriggerAttack();
-            }
+            if (m_MonoBehaviour.target != null) m_MonoBehaviour.TriggerAttack();
         }
     }
 }

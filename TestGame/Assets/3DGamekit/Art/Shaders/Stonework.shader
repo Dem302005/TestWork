@@ -1,5 +1,7 @@
-﻿Shader "Custom/MossMask" {
-    Properties {
+﻿Shader "Custom/MossMask"
+{
+    Properties
+    {
         _Color ("Color", Color) = (1,1,1,1)
         [Toggle] _Use_Mask ("Use mask?", Float) = 0
         _MainTex ("Albedo", 2D) = "black" {}
@@ -24,21 +26,25 @@
         _Emission ("Emission", 2D) = "black" {}
         [HDR]_EmissiveColor ("EmissiveColor", Color) = (1,1,1,1)
     }
-    SubShader {
-         Tags { "RenderType"="TransparentCutout" "Queue"="AlphaTest" }
+    SubShader
+    {
+        Tags
+        {
+            "RenderType"="TransparentCutout" "Queue"="AlphaTest"
+        }
         LOD 200
-        
+
         CGPROGRAM
         #pragma multi_compile _ LOD_FADE_CROSSFADE
         #pragma surface surf Standard fullforwardshadows
         #pragma target 5.0
         #pragma multi_compile __ _USE_MASK_ON
         #include "UnityStandardUtils.cginc"
-        #include "UnityCG.cginc" 
+        #include "UnityCG.cginc"
         #include "AutoLight.cginc"
         //#include "Tessellation.cginc"
 
-       
+
         // Reoriented Normal Mapping
         // http://blog.selfshadow.com/publications/blending-in-detail/
         // Altered to take normals (-1 to 1 ranges) rather than unsigned normal maps (0 to 1 ranges)
@@ -51,15 +57,18 @@
         }
 
 
-        sampler2D _MainTex, _TopAlbedo, _BumpMap, _TopNormal, _TopNormal2, _Emission, _OcclusionMap, _MetallicRough, _TopMetallicRough;
+        sampler2D _MainTex, _TopAlbedo, _BumpMap, _TopNormal, _TopNormal2, _Emission, _OcclusionMap, _MetallicRough,
+          _TopMetallicRough;
         sampler2D _PaintNormal, _DetailBump;
         float4 _Top_ST;
-        half _Glossiness, _FresnelAmount, _FresnelPower, _TopNormal2Scale, _TopScale, _NoiseAmount, _NoiseFallOff, _Metallic, _TopMetallic, _TopGlossiness, _OcclusionStrength, _noiseScale, _MaskNormalScale;
+        half _Glossiness, _FresnelAmount, _FresnelPower, _TopNormal2Scale, _TopScale, _NoiseAmount, _NoiseFallOff,
+               _Metallic, _TopMetallic, _TopGlossiness, _OcclusionStrength, _noiseScale, _MaskNormalScale;
         half4 _Color, _EmissiveColor;
         half _MaskNormalAmount, _MossAmount, _DetailScale;
 
 
-        struct Input {
+        struct Input
+        {
             float4 screenPos;
             float3 worldPos;
             float3 viewDir;
@@ -71,22 +80,22 @@
             INTERNAL_DATA
         };
 
-        void surf (Input IN, inout SurfaceOutputStandard o) {
-
+        void surf(Input IN, inout SurfaceOutputStandard o)
+        {
             //mask texture
-           half mask;
+            half mask;
 
             #if _USE_MASK_ON
                 mask = tex2D(_MainTex, IN.uv_MainTex).a; 
 
             #else
-                mask = 0;
-            #endif  
+            mask = 0;
+            #endif
 
 
             //tangent space normal maps
-            half3 tnormalY = UnpackNormal(tex2D(_TopNormal,  IN.uv_TopAlbedo));
-            half3 tnormalY2 = UnpackNormal(tex2D(_TopNormal2,  IN.uv_TopNormal2));
+            half3 tnormalY = UnpackNormal(tex2D(_TopNormal, IN.uv_TopAlbedo));
+            half3 tnormalY2 = UnpackNormal(tex2D(_TopNormal2, IN.uv_TopNormal2));
             half3 normalMain = UnpackNormal(tex2D(_BumpMap, IN.uv_MainTex));
             half3 detailNormal = UnpackNormal(tex2D(_DetailBump, IN.uv_MainTex * _DetailScale));
 
@@ -97,22 +106,22 @@
 
             //Albedo
             float fresnel = (dot(tnormalY, IN.viewDir));
-            fresnel = clamp(pow(1-fresnel, _FresnelPower), 0, 6);
-            fixed4 colY = tex2D(_TopAlbedo,  IN.uv_TopAlbedo);
-            colY += colY*lerp(-1, 1, fresnel)*_FresnelAmount/2;
+            fresnel = clamp(pow(1 - fresnel, _FresnelPower), 0, 6);
+            fixed4 colY = tex2D(_TopAlbedo, IN.uv_TopAlbedo);
+            colY += colY * lerp(-1, 1, fresnel) * _FresnelAmount / 2;
             fixed4 colMain = tex2D(_MainTex, IN.uv_MainTex);
 
             //Occlusion
-            half occ =  lerp(1.f, tex2D(_OcclusionMap, IN.uv_MainTex).x, (float)_OcclusionStrength);
-            fixed4 col = lerp(colMain, colY * occ, mask) ;
+            half occ = lerp(1.f, tex2D(_OcclusionMap, IN.uv_MainTex).x, (float)_OcclusionStrength);
+            fixed4 col = lerp(colMain, colY * occ, mask);
 
             //Metallic/Smoothness
             half4 metallicSmoothness = tex2D(_MetallicRough, IN.uv_MainTex);
-            half4 TopMetallicSmoothness = tex2D(_TopMetallicRough,  IN.uv_MainTex);
+            half4 TopMetallicSmoothness = tex2D(_TopMetallicRough, IN.uv_MainTex);
             half m = lerp(metallicSmoothness.r * _Metallic, TopMetallicSmoothness.r * _TopMetallic, mask);
             half s = lerp(metallicSmoothness.a * _Glossiness, TopMetallicSmoothness.a * _TopGlossiness, mask);
 
-             #ifdef LOD_FADE_CROSSFADE
+            #ifdef LOD_FADE_CROSSFADE
             float2 vpos = IN.screenPos.xy / IN.screenPos.w * _ScreenParams.xy;
             UnityApplyDitherCrossFade(vpos);
             #endif
@@ -121,8 +130,8 @@
             o.Albedo = col;
             o.Occlusion = occ;
             o.Metallic = m;
-            o.Smoothness = s; 
-            
+            o.Smoothness = s;
+
 
             #if _USE_MASK_ON
 
@@ -130,10 +139,9 @@
 
                 o.Emission = tex2D(_Emission, IN.uv_MainTex) * _EmissiveColor * (1-mask*0.99);   
             #else
-                o.Normal = lerp(normalMain, tnormalY, mask);
-                o.Emission = tex2D(_Emission, IN.uv_MainTex) * _EmissiveColor;
-            #endif   
-                      
+            o.Normal = lerp(normalMain, tnormalY, mask);
+            o.Emission = tex2D(_Emission, IN.uv_MainTex) * _EmissiveColor;
+            #endif
         }
         ENDCG
 

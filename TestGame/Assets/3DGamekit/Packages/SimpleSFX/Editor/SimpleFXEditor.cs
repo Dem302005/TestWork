@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace Gamekit3D.SimpleSFX
 {
-
     [CustomEditor(typeof(SimpleFXSynth))]
     public class SimpleFXEditor : Editor
     {
@@ -19,6 +18,5 @@ namespace Gamekit3D.SimpleSFX
                 }
             }
         }
-
     }
 }

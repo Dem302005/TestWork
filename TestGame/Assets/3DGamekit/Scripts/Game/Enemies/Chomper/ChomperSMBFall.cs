@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Gamekit3D
 {
@@ -10,7 +8,7 @@ namespace Gamekit3D
         {
             // Adding force will disable the navmesh agent & move through the rigidbody. 
             // Since we only want the chomper to fall, we add zero force, the call just allow to make it move through rigidbody
-            if(m_MonoBehaviour != null && m_MonoBehaviour.controller != null)
+            if (m_MonoBehaviour != null && m_MonoBehaviour.controller != null)
                 m_MonoBehaviour.controller.AddForce(Vector3.zero);
         }
 

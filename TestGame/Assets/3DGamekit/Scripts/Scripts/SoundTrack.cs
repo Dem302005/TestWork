@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace Gamekit3D
@@ -12,10 +11,46 @@ namespace Gamekit3D
         public bool playOnStart = true;
         public AudioSource[] audioSources;
 
-        AudioSource activeAudio, fadeAudio;
-        float volumeVelocity, fadeVelocity;
-        float volume;
-        Stack<string> trackStack = new Stack<string>();
+        private AudioSource activeAudio, fadeAudio;
+        private readonly Stack<string> trackStack = new Stack<string>();
+        private float volume;
+        private float volumeVelocity, fadeVelocity;
+
+        private void Reset()
+        {
+            audioSources = GetComponentsInChildren<AudioSource>();
+        }
+
+        private void Update()
+        {
+            if (activeAudio != null)
+                activeAudio.volume = Mathf.SmoothDamp(activeAudio.volume, volume * soundTrackVolume, ref volumeVelocity,
+                    volumeRampSpeed, 1);
+
+            if (fadeAudio != null)
+            {
+                fadeAudio.volume = Mathf.SmoothDamp(fadeAudio.volume, 0, ref fadeVelocity, volumeRampSpeed, 1);
+                if (Mathf.Approximately(fadeAudio.volume, 0))
+                {
+                    fadeAudio.Stop();
+                    fadeAudio = null;
+                }
+            }
+        }
+
+        private void OnEnable()
+        {
+            trackStack.Clear();
+            if (audioSources.Length > 0)
+            {
+                activeAudio = audioSources[0];
+                foreach (var i in audioSources) i.volume = 0;
+                trackStack.Push(audioSources[0].name);
+                if (playOnStart) Play();
+            }
+
+            volume = initialVolume;
+        }
 
         public void PushTrack(string name)
         {
@@ -33,7 +68,6 @@ namespace Gamekit3D
         public void Enqueue(string name)
         {
             foreach (var i in audioSources)
-            {
                 if (i.name == name)
                 {
                     fadeAudio = activeAudio;
@@ -41,7 +75,6 @@ namespace Gamekit3D
                     if (!activeAudio.isPlaying) activeAudio.Play();
                     break;
                 }
-            }
         }
 
         public void Play()
@@ -55,43 +88,9 @@ namespace Gamekit3D
             foreach (var i in audioSources) i.Stop();
         }
 
-        void OnEnable()
-        {
-            trackStack.Clear();
-            if (audioSources.Length > 0)
-            {
-                activeAudio = audioSources[0];
-                foreach (var i in audioSources) i.volume = 0;
-                trackStack.Push(audioSources[0].name);
-                if (playOnStart) Play();
-            }
-            volume = initialVolume;
-        }
-
-        void Reset()
-        {
-            audioSources = GetComponentsInChildren<AudioSource>();
-        }
-
         public void SetVolume(float volume)
         {
             this.volume = volume;
-        }
-
-        void Update()
-        {
-            if (activeAudio != null)
-                activeAudio.volume = Mathf.SmoothDamp(activeAudio.volume, volume * soundTrackVolume, ref volumeVelocity, volumeRampSpeed, 1);
-
-            if (fadeAudio != null)
-            {
-                fadeAudio.volume = Mathf.SmoothDamp(fadeAudio.volume, 0, ref fadeVelocity, volumeRampSpeed, 1);
-                if (Mathf.Approximately(fadeAudio.volume, 0))
-                {
-                    fadeAudio.Stop();
-                    fadeAudio = null;
-                }
-            }
         }
     }
 }

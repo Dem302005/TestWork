@@ -9,24 +9,24 @@ namespace Gamekit3D.GameCommands
         public UnityEvent OnDirectorPlay;
         public UnityEvent OnDirectorFinish;
 
-        void Reset()
+        private void Reset()
         {
             director = GetComponent<PlayableDirector>();
         }
 
         public override void PerformInteraction()
         {
-            OnDirectorPlay.Invoke ();
-            
+            OnDirectorPlay.Invoke();
+
             if (director)
                 director.Play();
-            
-            Invoke ("FinishInvoke", (float)director.duration);
+
+            Invoke("FinishInvoke", (float)director.duration);
         }
 
-        void FinishInvoke ()
+        private void FinishInvoke()
         {
-            OnDirectorFinish.Invoke ();
+            OnDirectorFinish.Invoke();
         }
     }
 }

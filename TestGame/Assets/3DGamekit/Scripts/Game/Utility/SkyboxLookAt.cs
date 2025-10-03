@@ -1,17 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Gamekit3D
 {
     public class SkyboxLookAt : MonoBehaviour
     {
-
         public Transform target;
 
-        void Update()
+        private void Update()
         {
             transform.LookAt(target);
         }
-    } 
+    }
 }

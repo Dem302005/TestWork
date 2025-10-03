@@ -1,38 +1,43 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
 namespace Gamekit3D
 {
-//this assure it's runned before any behaviour that may use it, as the animator need to be fecthed
     [DefaultExecutionOrder(-1)]
     [RequireComponent(typeof(NavMeshAgent))]
     public class EnemyController : MonoBehaviour
     {
-        public bool interpolateTurning = false;
-        public bool applyAnimationRotation = false;
-
-        public Animator animator { get { return m_Animator; } }
-        public Vector3 externalForce { get { return m_ExternalForce; } }
-        public NavMeshAgent navmeshAgent { get { return m_NavMeshAgent; } }
-        public bool followNavmeshAgent { get { return m_FollowNavmeshAgent; } }
-        public bool grounded { get { return m_Grounded; } }
-
-        protected NavMeshAgent m_NavMeshAgent;
-        protected bool m_FollowNavmeshAgent;
+        private const float k_GroundedRayDistance = .8f;
+        public bool interpolateTurning;
+        public bool applyAnimationRotation;
         protected Animator m_Animator;
-        protected bool m_UnderExternalForce;
-        protected bool m_ExternalForceAddGravity = true;
         protected Vector3 m_ExternalForce;
+        protected bool m_ExternalForceAddGravity = true;
+        protected bool m_FollowNavmeshAgent;
         protected bool m_Grounded;
 
+        protected NavMeshAgent m_NavMeshAgent;
+
         protected Rigidbody m_Rigidbody;
+        protected bool m_UnderExternalForce;
 
-        const float k_GroundedRayDistance = .8f;
+        public Animator animator => m_Animator;
+        public Vector3 externalForce => m_ExternalForce;
+        public NavMeshAgent navmeshAgent => m_NavMeshAgent;
+        public bool followNavmeshAgent => m_FollowNavmeshAgent;
+        public bool grounded => m_Grounded;
 
-        void OnEnable()
+        private void FixedUpdate()
+        {
+            animator.speed = PlayerInput.Instance != null && PlayerInput.Instance.HaveControl() ? 1.0f : 0.0f;
+
+            CheckGrounded();
+
+            if (m_UnderExternalForce)
+                ForceMovement();
+        }
+
+        private void OnEnable()
         {
             m_NavMeshAgent = GetComponent<NavMeshAgent>();
             m_Animator = GetComponent<Animator>();
@@ -51,39 +56,6 @@ namespace Gamekit3D
             m_FollowNavmeshAgent = true;
         }
 
-        private void FixedUpdate()
-        {
-            animator.speed = PlayerInput.Instance != null && PlayerInput.Instance.HaveControl() ? 1.0f : 0.0f;
-
-            CheckGrounded();
-
-            if (m_UnderExternalForce)
-                ForceMovement();
-        }
-
-        void CheckGrounded()
-        {
-            RaycastHit hit;
-            Ray ray = new Ray(transform.position + Vector3.up * k_GroundedRayDistance * 0.5f, -Vector3.up);
-            m_Grounded = Physics.Raycast(ray, out hit, k_GroundedRayDistance, Physics.AllLayers,
-                QueryTriggerInteraction.Ignore);
-        }
-
-        void ForceMovement()
-        {
-            if(m_ExternalForceAddGravity)
-                m_ExternalForce += Physics.gravity * Time.deltaTime;
-
-            RaycastHit hit;
-            Vector3 movement = m_ExternalForce * Time.deltaTime;
-            if (!m_Rigidbody.SweepTest(movement.normalized, out hit, movement.sqrMagnitude))
-            {
-                m_Rigidbody.MovePosition(m_Rigidbody.position + movement);
-            }
-
-            m_NavMeshAgent.Warp(m_Rigidbody.position);
-        }
-
         private void OnAnimatorMove()
         {
             if (m_UnderExternalForce)
@@ -98,29 +70,39 @@ namespace Gamekit3D
             {
                 RaycastHit hit;
                 if (!m_Rigidbody.SweepTest(m_Animator.deltaPosition.normalized, out hit,
-                    m_Animator.deltaPosition.sqrMagnitude))
-                {
+                        m_Animator.deltaPosition.sqrMagnitude))
                     m_Rigidbody.MovePosition(m_Rigidbody.position + m_Animator.deltaPosition);
-                }
             }
 
-            if (applyAnimationRotation)
-            {
-                transform.forward = m_Animator.deltaRotation * transform.forward;
-            }
+            if (applyAnimationRotation) transform.forward = m_Animator.deltaRotation * transform.forward;
         }
 
-        // used to disable position being set by the navmesh agent, for case where we want the animation to move the enemy instead (e.g. Chomper attack)
+        private void CheckGrounded()
+        {
+            RaycastHit hit;
+            var ray = new Ray(transform.position + Vector3.up * k_GroundedRayDistance * 0.5f, -Vector3.up);
+            m_Grounded = Physics.Raycast(ray, out hit, k_GroundedRayDistance, Physics.AllLayers,
+                QueryTriggerInteraction.Ignore);
+        }
+
+        private void ForceMovement()
+        {
+            if (m_ExternalForceAddGravity)
+                m_ExternalForce += Physics.gravity * Time.deltaTime;
+
+            RaycastHit hit;
+            var movement = m_ExternalForce * Time.deltaTime;
+            if (!m_Rigidbody.SweepTest(movement.normalized, out hit, movement.sqrMagnitude))
+                m_Rigidbody.MovePosition(m_Rigidbody.position + movement);
+
+            m_NavMeshAgent.Warp(m_Rigidbody.position);
+        }
+
         public void SetFollowNavmeshAgent(bool follow)
         {
             if (!follow && m_NavMeshAgent.enabled)
-            {
                 m_NavMeshAgent.ResetPath();
-            }
-            else if(follow && !m_NavMeshAgent.enabled)
-            {
-                m_NavMeshAgent.Warp(transform.position);
-            }
+            else if (follow && !m_NavMeshAgent.enabled) m_NavMeshAgent.Warp(transform.position);
 
             m_FollowNavmeshAgent = follow;
             m_NavMeshAgent.enabled = follow;
@@ -145,13 +127,11 @@ namespace Gamekit3D
 
         public void SetForward(Vector3 forward)
         {
-            Quaternion targetRotation = Quaternion.LookRotation(forward);
+            var targetRotation = Quaternion.LookRotation(forward);
 
             if (interpolateTurning)
-            {
                 targetRotation = Quaternion.RotateTowards(transform.rotation, targetRotation,
                     m_NavMeshAgent.angularSpeed * Time.deltaTime);
-            }
 
             transform.rotation = targetRotation;
         }

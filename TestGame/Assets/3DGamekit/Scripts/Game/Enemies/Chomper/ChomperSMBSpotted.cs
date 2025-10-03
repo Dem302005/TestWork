@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Gamekit3D
 {
@@ -21,9 +19,9 @@ namespace Gamekit3D
                 return;
             }
 
-            Vector3 toTarget = m_MonoBehaviour.target.transform.position - m_MonoBehaviour.transform.position;
+            var toTarget = m_MonoBehaviour.target.transform.position - m_MonoBehaviour.transform.position;
 
-            float onUp = Vector3.Dot(toTarget, m_MonoBehaviour.transform.up);
+            var onUp = Vector3.Dot(toTarget, m_MonoBehaviour.transform.up);
             toTarget -= m_MonoBehaviour.transform.up * onUp;
 
             toTarget.Normalize();

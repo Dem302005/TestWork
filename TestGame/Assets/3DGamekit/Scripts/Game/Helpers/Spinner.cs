@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Gamekit3D
 {
@@ -9,9 +7,9 @@ namespace Gamekit3D
         public Vector3 axis = Vector3.up;
         public float speed = 1;
 
-        void Update()
+        private void Update()
         {
             transform.Rotate(axis, speed * Time.deltaTime);
         }
-    } 
+    }
 }

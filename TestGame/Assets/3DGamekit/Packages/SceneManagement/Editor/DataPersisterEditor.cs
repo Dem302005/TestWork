@@ -1,13 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
-using UnityEngine;
+﻿using UnityEditor;
 
 namespace Gamekit3D
 {
     public abstract class DataPersisterEditor : Editor
     {
-        IDataPersister m_DataPersister;
+        private IDataPersister m_DataPersister;
 
         protected virtual void OnEnable()
         {
@@ -23,10 +20,12 @@ namespace Gamekit3D
 
         public static void DataPersisterGUI(IDataPersister dataPersister)
         {
-            DataSettings dataSettings = dataPersister.GetDataSettings();
+            var dataSettings = dataPersister.GetDataSettings();
 
-            DataSettings.PersistenceType persistenceType = (DataSettings.PersistenceType)EditorGUILayout.EnumPopup("Persistence Type", dataSettings.persistenceType);
-            string dataTag = EditorGUILayout.TextField("Data Tag", dataSettings.dataTag);
+            var persistenceType =
+                (DataSettings.PersistenceType)EditorGUILayout.EnumPopup("Persistence Type",
+                    dataSettings.persistenceType);
+            var dataTag = EditorGUILayout.TextField("Data Tag", dataSettings.dataTag);
 
             dataPersister.SetDataSettings(dataTag, persistenceType);
         }

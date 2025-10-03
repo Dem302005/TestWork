@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.UI;
 
 namespace Gamekit3D
 {
@@ -12,13 +10,13 @@ namespace Gamekit3D
         public AudioMixer mixer;
         public string mixerParameter;
 
-        public float maxAttenuation = 0.0f;
+        public float maxAttenuation;
         public float minAttenuation = -80.0f;
 
         protected Slider m_Slider;
 
 
-        void Awake ()
+        private void Awake()
         {
             m_Slider = GetComponent<Slider>();
 
@@ -31,7 +29,7 @@ namespace Gamekit3D
         }
 
 
-        void SliderValueChange(float value)
+        private void SliderValueChange(float value)
         {
             mixer.SetFloat(mixerParameter, minAttenuation + value * (maxAttenuation - minAttenuation));
         }

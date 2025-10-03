@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Gamekit3D
 {
@@ -9,26 +7,14 @@ namespace Gamekit3D
     {
         public string inventoryKey = "";
         public LayerMask layers;
-        public bool disableOnEnter = false;
+        public bool disableOnEnter;
 
-        [HideInInspector]
-        new public Collider collider;
+        [HideInInspector] public new Collider collider;
 
         public AudioClip clip;
         public DataSettings dataSettings;
 
-        void OnEnable()
-        {
-            collider = GetComponent<Collider>();
-            PersistentDataManager.RegisterPersister(this);
-        }
-
-        void OnDisable()
-        {
-            PersistentDataManager.UnregisterPersister(this);
-        }
-
-        void Reset()
+        private void Reset()
         {
             layers = LayerMask.NameToLayer("Everything");
             collider = GetComponent<Collider>();
@@ -36,7 +22,23 @@ namespace Gamekit3D
             dataSettings = new DataSettings();
         }
 
-        void OnTriggerEnter(Collider other)
+        private void OnEnable()
+        {
+            collider = GetComponent<Collider>();
+            PersistentDataManager.RegisterPersister(this);
+        }
+
+        private void OnDisable()
+        {
+            PersistentDataManager.UnregisterPersister(this);
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.DrawIcon(transform.position, "InventoryItem", false);
+        }
+
+        private void OnTriggerEnter(Collider other)
         {
             if (layers.Contains(other.gameObject))
             {
@@ -49,18 +51,7 @@ namespace Gamekit3D
                 }
 
                 if (clip) AudioSource.PlayClipAtPoint(clip, transform.position);
-
             }
-        }
-
-        public void Save()
-        {
-            PersistentDataManager.SetDirty(this);
-        }
-
-        void OnDrawGizmos()
-        {
-            Gizmos.DrawIcon(transform.position, "InventoryItem", false);
         }
 
         public DataSettings GetDataSettings()
@@ -81,8 +72,13 @@ namespace Gamekit3D
 
         public void LoadData(Data data)
         {
-            Data<bool> inventoryItemData = (Data<bool>)data;
+            var inventoryItemData = (Data<bool>)data;
             gameObject.SetActive(inventoryItemData.value);
+        }
+
+        public void Save()
+        {
+            PersistentDataManager.SetDirty(this);
         }
     }
 }

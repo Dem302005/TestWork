@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Gamekit3D.GameCommands
@@ -11,10 +10,9 @@ namespace Gamekit3D.GameCommands
 
         public override void PerformTransform(float position)
         {
-
             var curvePosition = accelCurve.Evaluate(position);
             var pos = transform.TransformPoint(Vector3.Lerp(start, end, curvePosition));
-            Vector3 deltaPosition = pos - rigidbody.position;
+            var deltaPosition = pos - rigidbody.position;
             if (Application.isEditor && !Application.isPlaying)
                 rigidbody.transform.position = pos;
             rigidbody.MovePosition(pos);

@@ -1,13 +1,12 @@
 using UnityEngine;
 
-
 namespace Gamekit3D.GameCommands
 {
     public class SwitchMaterial : GameCommandHandler
     {
         public Renderer target;
         public Material[] materials;
-        int count;
+        private int count;
 
         public override void PerformInteraction()
         {

@@ -1,31 +1,26 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using UnityEditor;
 using UnityEngine;
-
 
 public class PaletteWizard : ScriptableWizard
 {
     public Texture2D sourceImage;
-    [Range(1, 5)]
-    public int count = 4;
+
+    [Range(1, 5)] public int count = 4;
+
     public List<Color> palette;
 
-    Texture2D _sourceImage;
-    float totalWorkToComplete, totalWork;
+    private Texture2D _sourceImage;
+    private float totalWorkToComplete, totalWork;
 
-    [MenuItem("Assets/Create/Palette Wizard")]
-    static void CreateWizard()
-    {
-        ScriptableWizard.DisplayWizard<PaletteWizard>("Create Palette Textures", "Save Textures", "Refresh");
-    }
-
-    void OnEnable()
+    private void OnEnable()
     {
         palette = new List<Color>();
     }
 
-    void OnWizardCreate()
+    private void OnWizardCreate()
     {
         if (palette.Count == 0)
             Refresh();
@@ -36,19 +31,36 @@ public class PaletteWizard : ScriptableWizard
             for (var i = 0; i < pixels.Length; i++)
                 pixels[i] = c;
             tex.SetPixels(pixels);
-            var name = "Assets/"+((int)(c.r * 255)).ToString("X2")+((int)(c.g * 255)).ToString("X2")+((int)(c.b * 255)).ToString("X2")+".png";
+            var name = "Assets/" + ((int)(c.r * 255)).ToString("X2") + ((int)(c.g * 255)).ToString("X2") +
+                       ((int)(c.b * 255)).ToString("X2") + ".png";
             var filename = AssetDatabase.GenerateUniqueAssetPath(name);
-            System.IO.File.WriteAllBytes(filename, tex.EncodeToPNG());
+            File.WriteAllBytes(filename, tex.EncodeToPNG());
         }
+
         AssetDatabase.Refresh();
     }
 
-    void OnWizardOtherButton()
+    private void OnWizardOtherButton()
     {
         Refresh();
     }
 
-    void Refresh()
+    private void OnWizardUpdate()
+    {
+        helpString = sourceImage == null ? "Select an image to generate a palette from." : "";
+        isValid = sourceImage != null;
+        if (sourceImage != null && sourceImage != _sourceImage)
+            Refresh();
+        _sourceImage = sourceImage;
+    }
+
+    [MenuItem("Assets/Create/Palette Wizard")]
+    private static void CreateWizard()
+    {
+        DisplayWizard<PaletteWizard>("Create Palette Textures", "Save Textures", "Refresh");
+    }
+
+    private void Refresh()
     {
         if (sourceImage == null) return;
         Color[] pixels;
@@ -62,13 +74,14 @@ public class PaletteWizard : ScriptableWizard
             errorString = "Texture must be read/write enabled.";
             return;
         }
+
         try
         {
             var cuts = new Queue<Color[]>();
             cuts.Enqueue(pixels);
             var loops = (int)Mathf.Pow(2, count);
             totalWork = 0;
-            totalWorkToComplete = (loops * 4) + 1;
+            totalWorkToComplete = loops * 4 + 1;
             IncrementProgress();
             while (cuts.Count < loops)
             {
@@ -78,6 +91,7 @@ public class PaletteWizard : ScriptableWizard
                 cuts.Enqueue(top);
                 cuts.Enqueue(bottom);
             }
+
             palette.Clear();
             while (cuts.Count > 0)
             {
@@ -96,22 +110,14 @@ public class PaletteWizard : ScriptableWizard
         }
     }
 
-    void OnWizardUpdate()
-    {
-        helpString = sourceImage == null ? "Select an image to generate a palette from." : "";
-        isValid = sourceImage != null;
-        if (sourceImage != null && sourceImage != _sourceImage)
-            Refresh();
-        _sourceImage = sourceImage;
-    }
-
-    void IncrementProgress()
+    private void IncrementProgress()
     {
         totalWork += 1;
-        EditorUtility.DisplayProgressBar("Palette Wizard", "Calculating colors from image...", totalWork / totalWorkToComplete);
+        EditorUtility.DisplayProgressBar("Palette Wizard", "Calculating colors from image...",
+            totalWork / totalWorkToComplete);
     }
 
-    void ExtractColors(Color[] pixels, out Color[] top, out Color[] bottom)
+    private void ExtractColors(Color[] pixels, out Color[] top, out Color[] bottom)
     {
         var min = Color.white;
         var max = Color.black;
@@ -124,6 +130,7 @@ public class PaletteWizard : ScriptableWizard
             max.g = Mathf.Min(max.g, i.g);
             max.b = Mathf.Min(max.b, i.b);
         }
+
         IncrementProgress();
         var range = max - min;
         var channel = 2;
@@ -135,16 +142,13 @@ public class PaletteWizard : ScriptableWizard
         for (var i = 0; i < pixels.Length; i++)
             keys[i] = pixels[i][channel];
         IncrementProgress();
-        System.Array.Sort(keys, pixels);
+        Array.Sort(keys, pixels);
         IncrementProgress();
         var size = pixels.Length / 2;
         top = new Color[size];
         bottom = new Color[size];
-        System.Array.Copy(pixels, 0, top, 0, size);
-        System.Array.Copy(pixels, size, bottom, 0, size);
+        Array.Copy(pixels, 0, top, 0, size);
+        Array.Copy(pixels, size, bottom, 0, size);
         IncrementProgress();
     }
-
 }
-
-

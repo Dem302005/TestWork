@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Gamekit3D
 {
@@ -22,7 +21,7 @@ namespace Gamekit3D
 
         public void RestartZoneWithDelayAndHealthReset(float delay)
         {
-            SceneController.RestartZoneWithDelay(delay, true);
+            SceneController.RestartZoneWithDelay(delay);
         }
     }
 }

@@ -1,22 +1,25 @@
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Gamekit3D.SimpleSFX
 {
-    [System.Serializable]
+    [Serializable]
     public class SynthLayer
     {
+        private const float TWOPI = Mathf.PI * 2;
+        private const int SAMPLERATE = 44100;
         public OscType oscType;
         public AnimationCurve oscillatorFrequency = AnimationCurve.Linear(0, 440, 1, 440);
         public AnimationCurve volumeEnvelope = AnimationCurve.Linear(0, 1, 0, 1);
         public FilterType filterType;
         public AnimationCurve cutoffEnvelope = AnimationCurve.Linear(0, 1, 0, 1);
         public AnimationCurve resonanceEnvelope = AnimationCurve.Linear(0, 1, 0, 1);
-        [System.NonSerialized] public float phase = 0f;
-        [System.NonSerialized] public float time = 0f;
-        [System.NonSerialized] BQFilter bqFilter = new BQFilter();
+        [NonSerialized] private BQFilter bqFilter = new BQFilter();
+        [NonSerialized] public float phase;
+        [NonSerialized] public float time;
 
-        const float TWOPI = Mathf.PI * 2;
-        const int SAMPLERATE = 44100;
+        private float[] xv = new float[2], yv = new float[2];
 
         public void Reset()
         {
@@ -24,7 +27,7 @@ namespace Gamekit3D.SimpleSFX
             time = 0f;
         }
 
-        float SampleOsc()
+        private float SampleOsc()
         {
             switch (oscType)
             {
@@ -37,12 +40,11 @@ namespace Gamekit3D.SimpleSFX
                 case OscType.Tan:
                     return BandLimit(Mathf.Clamp(Mathf.Tan(phase / 2), -1, 1));
                 case OscType.Saw:
-                    return BandLimit(1f - (1f / Mathf.PI * phase));
+                    return BandLimit(1f - 1f / Mathf.PI * phase);
                 case OscType.Triangle:
                     if (phase < Mathf.PI)
-                        return BandLimit(-1f + (2 * 1f / Mathf.PI) * phase);
-                    else
-                        return BandLimit(3f - (2 * 1f / Mathf.PI) * phase);
+                        return BandLimit(-1f + 2 * 1f / Mathf.PI * phase);
+                    return BandLimit(3f - 2 * 1f / Mathf.PI * phase);
                 case OscType.Random:
                     return Random.value * 2 - 1;
                 default:
@@ -50,17 +52,15 @@ namespace Gamekit3D.SimpleSFX
             }
         }
 
-        float BandLimit(float smp)
+        private float BandLimit(float smp)
         {
             //This is a LPF at 22049hz.
             xv[0] = xv[1];
             xv[1] = smp / 1.000071238f;
             yv[0] = yv[1];
-            yv[1] = (xv[0] + xv[1]) + (-0.9998575343f * yv[0]);
+            yv[1] = xv[0] + xv[1] + -0.9998575343f * yv[0];
             return yv[1];
         }
-
-        float[] xv = new float[2], yv = new float[2];
 
         public float Sample(float duration)
         {
@@ -70,7 +70,7 @@ namespace Gamekit3D.SimpleSFX
             var c = cutoffEnvelope.Evaluate(time / duration);
             var r = resonanceEnvelope.Evaluate(time / duration);
             smp *= a;
-            phase = phase + ((TWOPI * oscillatorFrequency.Evaluate(phase)) / SAMPLERATE);
+            phase = phase + TWOPI * oscillatorFrequency.Evaluate(phase) / SAMPLERATE;
             if (phase > TWOPI)
                 phase -= TWOPI;
 
@@ -100,6 +100,5 @@ namespace Gamekit3D.SimpleSFX
 
             return smp;
         }
-
     }
 }

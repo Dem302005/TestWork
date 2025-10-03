@@ -5,6 +5,14 @@ namespace Gamekit3D
 {
     public class SavedData : MonoBehaviour
     {
+        protected static SavedData instance;
+        protected Dictionary<string, bool> m_BoolSavedData;
+        protected Dictionary<string, float> m_FloatSavedData;
+        protected Dictionary<string, int> m_IntSavedData;
+
+        protected Dictionary<string, string> m_StringSavedData;
+        protected Dictionary<string, Vector2> m_Vector2SavedData;
+
         public static SavedData Instance
         {
             get
@@ -17,31 +25,19 @@ namespace Gamekit3D
                 if (instance != null)
                     return instance;
 
-                GameObject spawnManagerGameObject = new GameObject("SpawnManager");
+                var spawnManagerGameObject = new GameObject("SpawnManager");
                 instance = spawnManagerGameObject.AddComponent<SavedData>();
 
                 return instance;
             }
         }
 
-        protected static SavedData instance;
-
-        protected Dictionary<string, string> m_StringSavedData;
-        protected Dictionary<string, bool> m_BoolSavedData;
-        protected Dictionary<string, int> m_IntSavedData;
-        protected Dictionary<string, float> m_FloatSavedData;
-        protected Dictionary<string, Vector2> m_Vector2SavedData;
-
-        void Start()
+        private void Start()
         {
             if (Instance != null)
-            {
                 Destroy(gameObject);
-            }
             else
-            {
                 DontDestroyOnLoad(gameObject);
-            }
         }
 
         public static string Get(string key, out string value)

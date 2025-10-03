@@ -6,16 +6,13 @@ using UnityEngine.Timeline;
 [Serializable]
 public class SetLocationClip : PlayableAsset, ITimelineClipAsset
 {
-    public SetLocationBehaviour template = new SetLocationBehaviour ();
+    public SetLocationBehaviour template = new SetLocationBehaviour();
 
-    public ClipCaps clipCaps
-    {
-        get { return ClipCaps.None; }
-    }
+    public ClipCaps clipCaps => ClipCaps.None;
 
-    public override Playable CreatePlayable (PlayableGraph graph, GameObject owner)
+    public override Playable CreatePlayable(PlayableGraph graph, GameObject owner)
     {
-        var playable = ScriptPlayable<SetLocationBehaviour>.Create (graph, template);
+        var playable = ScriptPlayable<SetLocationBehaviour>.Create(graph, template);
         return playable;
     }
 }

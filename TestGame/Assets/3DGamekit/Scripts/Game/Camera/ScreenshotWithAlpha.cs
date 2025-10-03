@@ -1,8 +1,7 @@
-﻿using UnityEngine;
-using System.IO;
-using System;
-using System.Linq;
+﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using UnityEngine;
 
 namespace Gamekit3D
 {
@@ -12,11 +11,11 @@ namespace Gamekit3D
         public int UpScale = 4;
         public bool AlphaBackground = true;
 
-        Texture2D Screenshot()
+        private Texture2D Screenshot()
         {
             var camera = GetComponent<Camera>();
-            int w = camera.pixelWidth * UpScale;
-            int h = camera.pixelHeight * UpScale;
+            var w = camera.pixelWidth * UpScale;
+            var h = camera.pixelHeight * UpScale;
             var rt = new RenderTexture(w, h, 32);
             camera.targetTexture = rt;
             var screenShot = new Texture2D(w, h, TextureFormat.ARGB32, false);
@@ -26,6 +25,7 @@ namespace Gamekit3D
                 camera.clearFlags = CameraClearFlags.SolidColor;
                 camera.backgroundColor = new Color(0, 0, 0, 0);
             }
+
             var cameras = new List<Camera>(FindObjectsOfType<Camera>());
             cameras.Sort((A, B) => A.depth.CompareTo(B.depth));
             foreach (var c in cameras) c.Render();
@@ -33,7 +33,7 @@ namespace Gamekit3D
             screenShot.ReadPixels(new Rect(0, 0, w, h), 0, 0);
             var pixels = screenShot.GetPixels();
 
-            for (int i = 0; i < pixels.Length; ++i)
+            for (var i = 0; i < pixels.Length; ++i)
                 pixels[i].a = 1;
 
             screenShot.SetPixels(pixels);
@@ -51,7 +51,7 @@ namespace Gamekit3D
             StartCoroutine(_SaveChildScreenshots());
         }
 
-        IEnumerator<YieldInstruction> _SaveChildScreenshots()
+        private IEnumerator<YieldInstruction> _SaveChildScreenshots()
         {
             var path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             {
@@ -84,7 +84,7 @@ namespace Gamekit3D
         {
             var path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             var filename = "SS-Builtin-" + DateTime.Now.ToString("yyyy.MM.dd.HH.mm.ss") + ".png";
-            ScreenCapture.CaptureScreenshot(System.IO.Path.Combine(path, filename), UpScale);
+            ScreenCapture.CaptureScreenshot(Path.Combine(path, filename), UpScale);
         }
     }
 }

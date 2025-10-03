@@ -1,24 +1,24 @@
-﻿using UnityEngine;
-using UnityEditor;
+﻿using UnityEditor;
+using UnityEngine;
 
 [CustomPropertyDrawer(typeof(AudioSnapshotBehaviour))]
 public class AudioSnapshotDrawer : PropertyDrawer
 {
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
     {
-        int fieldCount = 5;
+        var fieldCount = 5;
         return fieldCount * EditorGUIUtility.singleLineHeight;
     }
 
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
-        SerializedProperty audioClipProp = property.FindPropertyRelative("audioClip");
-        SerializedProperty snapshotProp = property.FindPropertyRelative("snapshot");
-        SerializedProperty volumeProp = property.FindPropertyRelative ("volume");
-        SerializedProperty weightedVolumeProp = property.FindPropertyRelative ("weightedVolume");
-        SerializedProperty audioPlayModeProp = property.FindPropertyRelative("audioPlayMode");
+        var audioClipProp = property.FindPropertyRelative("audioClip");
+        var snapshotProp = property.FindPropertyRelative("snapshot");
+        var volumeProp = property.FindPropertyRelative("volume");
+        var weightedVolumeProp = property.FindPropertyRelative("weightedVolume");
+        var audioPlayModeProp = property.FindPropertyRelative("audioPlayMode");
 
-        Rect singleFieldRect = new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
+        var singleFieldRect = new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
         EditorGUI.PropertyField(singleFieldRect, audioClipProp);
 
         singleFieldRect.y += EditorGUIUtility.singleLineHeight;

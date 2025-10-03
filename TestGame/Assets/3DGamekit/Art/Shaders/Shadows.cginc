@@ -1,6 +1,6 @@
 // Unity built-in shader source. Copyright (c) 2016 Unity Technologies. MIT license (see license.txt)
 
-UNITY_DECLARE_SHADOWMAP(_DirectionalShadowMap);
+UNITY_DECLARE_SHADOWMAP (_DirectionalShadowMap);
 float4 _DirectionalShadowMap_TexelSize;
 
 #define SHADOWMAPSAMPLER_AND_TEXELSIZE_DEFINED
@@ -38,13 +38,13 @@ float4 unity_ShadowCascadeScales;
 #if defined (SHADOWS_SPLIT_SPHERES)
     #define GET_CASCADE_WEIGHTS(wpos, z)    getCascadeWeights_splitSpheres(wpos)
 #else
-    #define GET_CASCADE_WEIGHTS(wpos, z)    getCascadeWeights( wpos, z )
+#define GET_CASCADE_WEIGHTS(wpos, z)    getCascadeWeights( wpos, z )
 #endif
 
 #if defined (SHADOWS_SINGLE_CASCADE)
     #define GET_SHADOW_COORDINATES(wpos,cascadeWeights) getShadowCoord_SingleCascade(wpos)
 #else
-    #define GET_SHADOW_COORDINATES(wpos,cascadeWeights) getShadowCoord(wpos,cascadeWeights)
+#define GET_SHADOW_COORDINATES(wpos,cascadeWeights) getShadowCoord(wpos,cascadeWeights)
 #endif
 
 /**
@@ -53,8 +53,8 @@ float4 unity_ShadowCascadeScales;
  */
 inline fixed4 getCascadeWeights(float3 wpos, float z)
 {
-    fixed4 zNear = float4( z >= _LightSplitsNear );
-    fixed4 zFar = float4( z < _LightSplitsFar );
+    fixed4 zNear = float4(z >= _LightSplitsNear);
+    fixed4 zFar = float4(z < _LightSplitsFar);
     fixed4 weights = zNear * zFar;
     return weights;
 }
@@ -69,7 +69,8 @@ inline fixed4 getCascadeWeights_splitSpheres(float3 wpos)
     float3 fromCenter1 = wpos.xyz - unity_ShadowSplitSpheres[1].xyz;
     float3 fromCenter2 = wpos.xyz - unity_ShadowSplitSpheres[2].xyz;
     float3 fromCenter3 = wpos.xyz - unity_ShadowSplitSpheres[3].xyz;
-    float4 distances2 = float4(dot(fromCenter0,fromCenter0), dot(fromCenter1,fromCenter1), dot(fromCenter2,fromCenter2), dot(fromCenter3,fromCenter3));
+    float4 distances2 = float4(dot(fromCenter0, fromCenter0), dot(fromCenter1, fromCenter1),
+                               dot(fromCenter2, fromCenter2), dot(fromCenter3, fromCenter3));
     fixed4 weights = float4(distances2 < unity_ShadowSplitSqRadii);
     weights.yzw = saturate(weights.yzw - weights.xyz);
     return weights;
@@ -79,17 +80,18 @@ inline fixed4 getCascadeWeights_splitSpheres(float3 wpos)
  * Returns the shadowmap coordinates for the given fragment based on the world position and z-depth.
  * These coordinates belong to the shadowmap atlas that contains the maps for all cascades.
  */
-inline float4 getShadowCoord( float4 wpos, fixed4 cascadeWeights )
+inline float4 getShadowCoord(float4 wpos, fixed4 cascadeWeights)
 {
-    float3 sc0 = mul (unity_WorldToShadow[0], wpos).xyz;
-    float3 sc1 = mul (unity_WorldToShadow[1], wpos).xyz;
-    float3 sc2 = mul (unity_WorldToShadow[2], wpos).xyz;
-    float3 sc3 = mul (unity_WorldToShadow[3], wpos).xyz;
-    float4 shadowMapCoordinate = float4(sc0 * cascadeWeights[0] + sc1 * cascadeWeights[1] + sc2 * cascadeWeights[2] + sc3 * cascadeWeights[3], 1);
-#if defined(UNITY_REVERSED_Z)
-    float  noCascadeWeights = 1 - dot(cascadeWeights, float4(1, 1, 1, 1));
+    float3 sc0 = mul(unity_WorldToShadow[0], wpos).xyz;
+    float3 sc1 = mul(unity_WorldToShadow[1], wpos).xyz;
+    float3 sc2 = mul(unity_WorldToShadow[2], wpos).xyz;
+    float3 sc3 = mul(unity_WorldToShadow[3], wpos).xyz;
+    float4 shadowMapCoordinate = float4(
+        sc0 * cascadeWeights[0] + sc1 * cascadeWeights[1] + sc2 * cascadeWeights[2] + sc3 * cascadeWeights[3], 1);
+    #if defined(UNITY_REVERSED_Z)
+    float noCascadeWeights = 1 - dot(cascadeWeights, float4(1, 1, 1, 1));
     shadowMapCoordinate.z += noCascadeWeights;
-#endif
+    #endif
     return shadowMapCoordinate;
 }
 
@@ -97,9 +99,9 @@ inline float4 getShadowCoord( float4 wpos, fixed4 cascadeWeights )
 /**
  * Same as the getShadowCoord; but optimized for single cascade
  */
-inline float4 getShadowCoord_SingleCascade( float4 wpos )
+inline float4 getShadowCoord_SingleCascade(float4 wpos)
 {
-    return float4( mul (unity_WorldToShadow[0], wpos).xyz, 0);
+    return float4(mul(unity_WorldToShadow[0], wpos).xyz, 0);
 }
 
 /**
@@ -110,7 +112,7 @@ inline float3 computeCameraSpacePosFromDepthAndInvProjMat(v2f i)
     float zdepth = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, i.uv.xy);
 
     #if defined(UNITY_REVERSED_Z)
-        zdepth = 1 - zdepth;
+    zdepth = 1 - zdepth;
     #endif
 
     // View position calculation for oblique clipped projection case.
@@ -134,9 +136,9 @@ inline float3 computeCameraSpacePosFromDepthAndVSInfo(v2f i)
 
     // 0..1 linear depth, 0 at camera, 1 at far plane.
     float depth = lerp(Linear01Depth(zdepth), zdepth, unity_OrthoParams.w);
-#if defined(UNITY_REVERSED_Z)
+    #if defined(UNITY_REVERSED_Z)
     zdepth = 1 - zdepth;
-#endif
+    #endif
 
     // view position calculation for perspective & ortho cases
     float3 vposPersp = i.ray * depth;
@@ -156,21 +158,22 @@ inline float3 computeCameraSpacePosFromDepth(v2f i)
 // /**
 //  *  Hard shadow
 //  */
-fixed4 frag_hard (v2f i) : SV_Target
+fixed4 frag_hard(v2f i) : SV_Target
 {
-    UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i); // required for sampling the correct slice of the shadow map render texture array
+    UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
+    // required for sampling the correct slice of the shadow map render texture array
     float4 wpos;
     float3 vpos;
 
-#if defined(STEREO_CUBEMAP_RENDER_ON)
+    #if defined(STEREO_CUBEMAP_RENDER_ON)
     wpos.xyz = tex2D(_ODSWorldTexture, i.uv.xy).xyz;
     wpos.w = 1.0f;
     vpos = mul(unity_WorldToCamera, wpos).xyz;
-#else
+    #else
     vpos = computeCameraSpacePosFromDepth(i);
-    wpos = mul (unity_CameraToWorld, float4(vpos,1));
-#endif
-    fixed4 cascadeWeights = GET_CASCADE_WEIGHTS (wpos, vpos.z);
+    wpos = mul(unity_CameraToWorld, float4(vpos, 1));
+    #endif
+    fixed4 cascadeWeights = GET_CASCADE_WEIGHTS(wpos, vpos.z);
     float4 shadowCoord = GET_SHADOW_COORDINATES(wpos, cascadeWeights);
 
     //1 tap hard shadow
@@ -186,25 +189,26 @@ fixed4 frag_hard (v2f i) : SV_Target
 //  */
 fixed4 frag_pcfSoft(v2f i) : SV_Target
 {
-    UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i); // required for sampling the correct slice of the shadow map render texture array
+    UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
+    // required for sampling the correct slice of the shadow map render texture array
     float4 wpos;
     float3 vpos;
 
-#if defined(STEREO_CUBEMAP_RENDER_ON)
+    #if defined(STEREO_CUBEMAP_RENDER_ON)
     wpos.xyz = tex2D(_ODSWorldTexture, i.uv.xy).xyz;
     wpos.w = 1.0f;
     vpos = mul(unity_WorldToCamera, wpos).xyz;
-#else
+    #else
     vpos = computeCameraSpacePosFromDepth(i);
 
     // sample the cascade the pixel belongs to
-    wpos = mul(unity_CameraToWorld, float4(vpos,1));
-#endif
+    wpos = mul(unity_CameraToWorld, float4(vpos, 1));
+    #endif
     fixed4 cascadeWeights = GET_CASCADE_WEIGHTS(wpos, vpos.z);
     float4 coord = GET_SHADOW_COORDINATES(wpos, cascadeWeights);
 
     float3 receiverPlaneDepthBias = 0.0;
-#ifdef UNITY_USE_RECEIVER_PLANE_BIAS
+    #ifdef UNITY_USE_RECEIVER_PLANE_BIAS
     // Reveiver plane depth bias: need to calculate it based on shadow coordinate
     // as it would be in first cascade; otherwise derivatives
     // at cascade boundaries will be all wrong. So compute
@@ -212,19 +216,19 @@ fixed4 frag_pcfSoft(v2f i) : SV_Target
     float3 coordCascade0 = getShadowCoord_SingleCascade(wpos);
     float biasMultiply = dot(cascadeWeights,unity_ShadowCascadeScales);
     receiverPlaneDepthBias = UnityGetReceiverPlaneDepthBias(coordCascade0.xyz, biasMultiply);
-#endif
+    #endif
 
-#if defined(SHADER_API_MOBILE)
+    #if defined(SHADER_API_MOBILE)
     half shadow = UnitySampleShadowmap_PCF5x5(coord, receiverPlaneDepthBias);
-#else
+    #else
     half shadow = UnitySampleShadowmap_PCF7x7(coord, receiverPlaneDepthBias);
-#endif
+    #endif
     shadow = lerp(_LightShadowData.r, 1.0f, shadow);
 
     // Blend between shadow cascades if enabled
     //
     // Not working yet with split spheres, and no need when 1 cascade
-#if UNITY_USE_CASCADE_BLENDING && !defined(SHADOWS_SPLIT_SPHERES) && !defined(SHADOWS_SINGLE_CASCADE)
+    #if UNITY_USE_CASCADE_BLENDING && !defined(SHADOWS_SPLIT_SPHERES) && !defined(SHADOWS_SINGLE_CASCADE)
     half4 z4 = (float4(vpos.z,vpos.z,vpos.z,vpos.z) - _LightSplitsNear) / (_LightSplitsFar - _LightSplitsNear);
     half alpha = dot(z4 * cascadeWeights, half4(1,1,1,1));
 
@@ -238,16 +242,16 @@ fixed4 frag_pcfSoft(v2f i) : SV_Target
             cascadeWeights = fixed4(0, cascadeWeights.xyz);
             coord = GET_SHADOW_COORDINATES(wpos, cascadeWeights);
 
-#ifdef UNITY_USE_RECEIVER_PLANE_BIAS
+    #ifdef UNITY_USE_RECEIVER_PLANE_BIAS
             biasMultiply = dot(cascadeWeights,unity_ShadowCascadeScales);
             receiverPlaneDepthBias = UnityGetReceiverPlaneDepthBias(coordCascade0.xyz, biasMultiply);
-#endif
+    #endif
 
             half shadowNextCascade = UnitySampleShadowmap_PCF3x3(coord, receiverPlaneDepthBias);
             shadowNextCascade = lerp(_LightShadowData.r, 1.0f, shadowNextCascade);
             shadow = lerp(shadow, shadowNextCascade, alpha);
         }
-#endif
+    #endif
 
     return shadow;
 }

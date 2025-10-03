@@ -1,17 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using UnityEditor;
 using UnityEngine;
-using UnityEditor;
 
 namespace Gamekit3D
 {
     public class AddCollidersToHierarchy : MonoBehaviour
     {
-
         [MenuItem("GameObject/Add Colliders To Children")]
-        static void AddColliders()
+        private static void AddColliders()
         {
-
             var parent = Selection.activeGameObject;
             if (parent != null)
             {
@@ -27,9 +23,8 @@ namespace Gamekit3D
                         var mc = lodg.gameObject.AddComponent<MeshCollider>();
                         mc.sharedMesh = renderer.GetComponent<MeshFilter>().sharedMesh;
                     }
-
                 }
             }
         }
-    } 
+    }
 }

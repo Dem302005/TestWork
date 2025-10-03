@@ -8,6 +8,6 @@ public class AudioSnapshotTrack : TrackAsset
 {
     public override Playable CreateTrackMixer(PlayableGraph graph, GameObject go, int inputCount)
     {
-        return ScriptPlayable<AudioSnapshotMixerBehaviour>.Create (graph, inputCount);
+        return ScriptPlayable<AudioSnapshotMixerBehaviour>.Create(graph, inputCount);
     }
 }

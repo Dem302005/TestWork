@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
 namespace Gamekit3D
@@ -12,10 +10,8 @@ namespace Gamekit3D
             base.OnSLStateEnter(animator, stateInfo, layerIndex);
 
             if (m_MonoBehaviour.target != null)
-            {
                 //This will trigger the turning animation if it need to reorient
                 m_MonoBehaviour.OrientTowardTarget();
-            }
         }
 
         public override void OnSLStateNoTransitionUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -33,9 +29,9 @@ namespace Gamekit3D
 
             if (m_MonoBehaviour.target != null)
             {
-                Vector3 targetPos = m_MonoBehaviour.target.transform.position;
-                Vector3 toTarget = m_MonoBehaviour.target.transform.position - m_MonoBehaviour.transform.position;
-                float distToTarget = toTarget.sqrMagnitude;
+                var targetPos = m_MonoBehaviour.target.transform.position;
+                var toTarget = m_MonoBehaviour.target.transform.position - m_MonoBehaviour.transform.position;
+                var distToTarget = toTarget.sqrMagnitude;
 
                 m_MonoBehaviour.controller.SetTarget(targetPos);
 

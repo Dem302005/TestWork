@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Gamekit3D
 {
@@ -9,23 +7,7 @@ namespace Gamekit3D
     {
         public new AudioSource audio;
 
-
-        void OnTriggerEnter(Collider other)
-        {
-            var pc = other.GetComponent<PlayerController>();
-            if (pc != null)
-            {
-                pc.Die(new Damageable.DamageMessage());
-            }
-            if (audio != null)
-            {
-                audio.transform.position = other.transform.position;
-                if (!audio.isPlaying)
-                    audio.Play();
-            }
-        }
-
-        void Reset()
+        private void Reset()
         {
             if (LayerMask.LayerToName(gameObject.layer) == "Default")
                 gameObject.layer = LayerMask.NameToLayer("Environment");
@@ -34,5 +16,17 @@ namespace Gamekit3D
                 c.isTrigger = true;
         }
 
+
+        private void OnTriggerEnter(Collider other)
+        {
+            var pc = other.GetComponent<PlayerController>();
+            if (pc != null) pc.Die(new Damageable.DamageMessage());
+            if (audio != null)
+            {
+                audio.transform.position = other.transform.position;
+                if (!audio.isPlaying)
+                    audio.Play();
+            }
+        }
     }
 }

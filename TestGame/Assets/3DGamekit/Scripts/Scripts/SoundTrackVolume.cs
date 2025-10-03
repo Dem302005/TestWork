@@ -1,30 +1,27 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Gamekit3D
 {
     public class SoundTrackVolume : MonoBehaviour
     {
         public LayerMask layers;
-        SoundTrack soundTrack;
+        private SoundTrack soundTrack;
 
-        void OnEnable()
+        private void OnEnable()
         {
             soundTrack = GetComponentInParent<SoundTrack>();
         }
 
-        void OnTriggerEnter(Collider other)
+        private void OnTriggerEnter(Collider other)
         {
-            if (0 != (layers.value & 1 << other.gameObject.layer))
-                soundTrack.PushTrack(this.name);
+            if (0 != (layers.value & (1 << other.gameObject.layer)))
+                soundTrack.PushTrack(name);
         }
 
-        void OnTriggerExit(Collider other)
+        private void OnTriggerExit(Collider other)
         {
-            if (0 != (layers.value & 1 << other.gameObject.layer))
+            if (0 != (layers.value & (1 << other.gameObject.layer)))
                 soundTrack.PopTrack();
         }
-
     }
 }

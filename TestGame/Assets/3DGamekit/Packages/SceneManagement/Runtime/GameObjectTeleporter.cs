@@ -1,14 +1,18 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Gamekit3D
 {
     /// <summary>
-    /// This class is used to move gameobjects from one position to another in the scene.
+    ///     This class is used to move gameobjects from one position to another in the scene.
     /// </summary>
     public class GameObjectTeleporter : MonoBehaviour
     {
+        protected static GameObjectTeleporter instance;
+
+        protected PlayerInput m_PlayerInput;
+        protected bool m_Transitioning;
+
         public static GameObjectTeleporter Instance
         {
             get
@@ -21,24 +25,16 @@ namespace Gamekit3D
                 if (instance != null)
                     return instance;
 
-                GameObject gameObjectTeleporter = new GameObject("GameObjectTeleporter");
+                var gameObjectTeleporter = new GameObject("GameObjectTeleporter");
                 instance = gameObjectTeleporter.AddComponent<GameObjectTeleporter>();
 
                 return instance;
             }
         }
 
-        public static bool Transitioning
-        {
-            get { return Instance.m_Transitioning; }
-        }
+        public static bool Transitioning => Instance.m_Transitioning;
 
-        protected static GameObjectTeleporter instance;
-
-        protected PlayerInput m_PlayerInput;
-        protected bool m_Transitioning;
-
-        void Awake()
+        private void Awake()
         {
             if (Instance != this)
             {
@@ -53,8 +49,9 @@ namespace Gamekit3D
 
         public static void Teleport(TransitionPoint transitionPoint)
         {
-            Transform destinationTransform = Instance.GetDestination(transitionPoint.transitionDestinationTag).transform;
-            Instance.StartCoroutine(Instance.Transition(transitionPoint.transitioningGameObject, true, destinationTransform.position, true));
+            var destinationTransform = Instance.GetDestination(transitionPoint.transitionDestinationTag).transform;
+            Instance.StartCoroutine(Instance.Transition(transitionPoint.transitioningGameObject, true,
+                destinationTransform.position, true));
         }
 
         public static void Teleport(GameObject transitioningGameObject, Transform destination)
@@ -67,7 +64,8 @@ namespace Gamekit3D
             Instance.StartCoroutine(Instance.Transition(transitioningGameObject, false, destinationPosition, false));
         }
 
-        protected IEnumerator Transition(GameObject transitioningGameObject, bool releaseControl, Vector3 destinationPosition, bool fade)
+        protected IEnumerator Transition(GameObject transitioningGameObject, bool releaseControl,
+            Vector3 destinationPosition, bool fade)
         {
             m_Transitioning = true;
 
@@ -86,22 +84,17 @@ namespace Gamekit3D
             if (fade)
                 yield return StartCoroutine(ScreenFader.FadeSceneIn());
 
-            if (releaseControl)
-            {
-                m_PlayerInput.GainControl();
-            }
+            if (releaseControl) m_PlayerInput.GainControl();
 
             m_Transitioning = false;
         }
 
         protected SceneTransitionDestination GetDestination(SceneTransitionDestination.DestinationTag destinationTag)
         {
-            SceneTransitionDestination[] entrances = FindObjectsOfType<SceneTransitionDestination>();
-            for (int i = 0; i < entrances.Length; i++)
-            {
+            var entrances = FindObjectsOfType<SceneTransitionDestination>();
+            for (var i = 0; i < entrances.Length; i++)
                 if (entrances[i].destinationTag == destinationTag)
                     return entrances[i];
-            }
             Debug.LogWarning("No entrance was found with the " + destinationTag + " tag.");
             return null;
         }

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Gamekit3D
 {
@@ -8,7 +6,7 @@ namespace Gamekit3D
     {
         public float growthTime = 2.0f;
 
-        protected float m_GrowthTimer = 0;
+        protected float m_GrowthTimer;
 
         public override void OnSLStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {

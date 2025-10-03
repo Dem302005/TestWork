@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Gamekit3D
 {
@@ -13,6 +11,8 @@ namespace Gamekit3D
             MOST_DIRECT
         }
 
+        protected static Collider[] m_ExplosionHitCache = new Collider[32];
+
         public ShotType shotType;
         public float projectileSpeed;
         public int damageAmount = 1;
@@ -20,30 +20,40 @@ namespace Gamekit3D
         public float explosionRadius;
         public float explosionTimer;
         public ParticleSystem explosionVFX;
+
         [Tooltip("Will the explosion VFX play where the grenade explode or on the closest ground")]
-        public bool vfxOnGround = false;
+        public bool vfxOnGround;
 
         public RandomAudioPlayer explosionPlayer;
         public RandomAudioPlayer bouncePlayer;
-
-        protected float m_SinceFired;
+        private int m_EnvironmentLayer = -1;
+        protected Rigidbody m_RigidBody;
 
         protected RangeWeapon m_Shooter;
-        protected Rigidbody m_RigidBody;
+
+        protected float m_SinceFired;
         protected ParticleSystem m_VFXInstance;
-        int m_EnvironmentLayer = -1;
-        
-        protected static Collider[] m_ExplosionHitCache = new Collider[32];
 
         private void Awake()
         {
             m_EnvironmentLayer = 1 << LayerMask.NameToLayer("Environment");
-            
+
             m_RigidBody = GetComponent<Rigidbody>();
             m_RigidBody.detectCollisions = false;
 
             m_VFXInstance = Instantiate(explosionVFX);
             m_VFXInstance.gameObject.SetActive(false);
+        }
+
+        private void FixedUpdate()
+        {
+            m_SinceFired += Time.deltaTime;
+
+            if (m_SinceFired > 0.2f)
+                //we only enable collision after half a second to get it time to clear the grenadier body 
+                m_RigidBody.detectCollisions = true;
+
+            if (explosionTimer > 0 && m_SinceFired > explosionTimer) Explosion();
         }
 
         private void OnEnable()
@@ -52,6 +62,19 @@ namespace Gamekit3D
             m_RigidBody.isKinematic = true;
             m_SinceFired = 0.0f;
         }
+
+        protected virtual void OnCollisionEnter(Collision other)
+        {
+            if (bouncePlayer != null)
+                bouncePlayer.PlayRandomClip();
+        }
+
+#if UNITY_EDITOR
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.DrawWireSphere(transform.position, explosionRadius);
+        }
+#endif
 
         public override void Shot(Vector3 target, RangeWeapon shooter)
         {
@@ -68,22 +91,6 @@ namespace Gamekit3D
             transform.forward = target - transform.position;
         }
 
-        private void FixedUpdate()
-        {
-            m_SinceFired += Time.deltaTime;
-
-            if (m_SinceFired > 0.2f)
-            {
-                //we only enable collision after half a second to get it time to clear the grenadier body 
-                m_RigidBody.detectCollisions = true;
-            }
-
-            if (explosionTimer > 0 && m_SinceFired > explosionTimer)
-            {
-                Explosion();
-            }
-        }
-
         public void Explosion()
         {
             if (explosionPlayer)
@@ -92,10 +99,10 @@ namespace Gamekit3D
                 explosionPlayer.PlayRandomClip();
             }
 
-            int count = Physics.OverlapSphereNonAlloc(transform.position, explosionRadius, m_ExplosionHitCache,
+            var count = Physics.OverlapSphereNonAlloc(transform.position, explosionRadius, m_ExplosionHitCache,
                 damageMask.value);
 
-            Damageable.DamageMessage message = new Damageable.DamageMessage
+            var message = new Damageable.DamageMessage
             {
                 amount = damageAmount,
                 damageSource = transform.position,
@@ -105,9 +112,9 @@ namespace Gamekit3D
             };
 
 
-            for (int i = 0; i < count; ++i)
+            for (var i = 0; i < count; ++i)
             {
-                Damageable d = m_ExplosionHitCache[i].GetComponentInChildren<Damageable>();
+                var d = m_ExplosionHitCache[i].GetComponentInChildren<Damageable>();
 
                 if (d != null)
                     d.ApplyDamage(message);
@@ -115,8 +122,8 @@ namespace Gamekit3D
 
             pool.Free(this);
 
-            Vector3 playPosition = transform.position;
-            Vector3 playNormal = Vector3.up;
+            var playPosition = transform.position;
+            var playNormal = Vector3.up;
             if (vfxOnGround)
             {
                 RaycastHit hit;
@@ -134,21 +141,15 @@ namespace Gamekit3D
             m_VFXInstance.Play(true);
         }
 
-        protected virtual void OnCollisionEnter(Collision other)
-        {
-            if (bouncePlayer != null)
-                bouncePlayer.PlayRandomClip();
-        }
-
         private Vector3 GetVelocity(Vector3 target)
         {
-            Vector3 velocity = Vector3.zero;
-            Vector3 toTarget = target - transform.position;
+            var velocity = Vector3.zero;
+            var toTarget = target - transform.position;
 
             // Set up the terms we need to solve the quadratic equations.
-            float gSquared = Physics.gravity.sqrMagnitude;
-            float b = projectileSpeed * projectileSpeed + Vector3.Dot(toTarget, Physics.gravity);
-            float discriminant = b * b - gSquared * toTarget.sqrMagnitude;
+            var gSquared = Physics.gravity.sqrMagnitude;
+            var b = projectileSpeed * projectileSpeed + Vector3.Dot(toTarget, Physics.gravity);
+            var discriminant = b * b - gSquared * toTarget.sqrMagnitude;
 
             // Check whether the target is reachable at max speed or less.
             if (discriminant < 0)
@@ -166,16 +167,16 @@ namespace Gamekit3D
                 return velocity;
             }
 
-            float discRoot = Mathf.Sqrt(discriminant);
+            var discRoot = Mathf.Sqrt(discriminant);
 
             // Highest shot with the given max speed:
-            float T_max = Mathf.Sqrt((b + discRoot) * 2f / gSquared);
+            var T_max = Mathf.Sqrt((b + discRoot) * 2f / gSquared);
 
             // Most direct shot with the given max speed:
-            float T_min = Mathf.Sqrt((b - discRoot) * 2f / gSquared);
+            var T_min = Mathf.Sqrt((b - discRoot) * 2f / gSquared);
 
             // Lowest-speed arc available:
-            float T_lowEnergy = Mathf.Sqrt(Mathf.Sqrt(toTarget.sqrMagnitude * 4f / gSquared));
+            var T_lowEnergy = Mathf.Sqrt(Mathf.Sqrt(toTarget.sqrMagnitude * 4f / gSquared));
 
             float T = 0;
             // choose T_max, T_min, or some T in-between like T_lowEnergy
@@ -190,8 +191,6 @@ namespace Gamekit3D
                 case ShotType.MOST_DIRECT:
                     T = T_min;
                     break;
-                default:
-                    break;
             }
 
 
@@ -200,12 +199,5 @@ namespace Gamekit3D
 
             return velocity;
         }
-
-#if UNITY_EDITOR
-        private void OnDrawGizmosSelected()
-        {
-            Gizmos.DrawWireSphere(transform.position, explosionRadius);
-        }
-#endif
     }
 }

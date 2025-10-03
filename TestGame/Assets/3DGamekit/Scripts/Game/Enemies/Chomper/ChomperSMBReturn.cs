@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Gamekit3D
 {
@@ -17,9 +15,9 @@ namespace Gamekit3D
 
             m_MonoBehaviour.FindTarget();
 
-            if(m_MonoBehaviour.target != null)
+            if (m_MonoBehaviour.target != null)
                 m_MonoBehaviour.StartPursuit(); // if the player got back in our vision range, resume pursuit!
-            else 
+            else
                 m_MonoBehaviour.WalkBackToBase();
         }
     }

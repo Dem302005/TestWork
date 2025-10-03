@@ -1,6 +1,4 @@
-﻿using Cinemachine;
-using UnityEngine;
-using UnityEngine.Experimental.Rendering;
+﻿using UnityEngine;
 
 namespace Gamekit3D
 {
@@ -9,44 +7,58 @@ namespace Gamekit3D
     {
         public enum TransitionType
         {
-            DifferentZone, DifferentNonGameplayScene, SameScene,
+            DifferentZone,
+            DifferentNonGameplayScene,
+            SameScene
         }
 
 
         public enum TransitionWhen
         {
-            ExternalCall, OnTriggerEnter,
+            ExternalCall,
+            OnTriggerEnter
         }
 
 
         [Tooltip("This is the gameobject that will transition.  For example, the player.")]
         public GameObject transitioningGameObject;
+
         [Tooltip("Whether the transition will be within this scene, to a different zone or a non-gameplay scene.")]
         public TransitionType transitionType;
-        [SceneName]
-        public string newSceneName;
+
+        [SceneName] public string newSceneName;
+
         [Tooltip("The tag of the SceneTransitionDestination script in the scene being transitioned to.")]
         public SceneTransitionDestination.DestinationTag transitionDestinationTag;
+
         [Tooltip("The destination in this scene that the transitioning gameobject will be teleported.")]
         public TransitionPoint destinationTransform;
+
         [Tooltip("What should trigger the transition to start.")]
         public TransitionWhen transitionWhen;
+
         [Tooltip("Is this transition only possible with specific items in the inventory?")]
         public bool requiresInventoryCheck;
+
         [Tooltip("The inventory to be checked.")]
-        public Gamekit3D.InventoryController inventoryController;
-        [Tooltip("The required items.")]
-        public Gamekit3D.InventoryController.InventoryChecker inventoryCheck;
+        public InventoryController inventoryController;
 
-        bool m_TransitioningGameObjectPresent;
+        [Tooltip("The required items.")] public InventoryController.InventoryChecker inventoryCheck;
 
-        void Start()
+        private bool m_TransitioningGameObjectPresent;
+
+        private void Start()
         {
             if (transitionWhen == TransitionWhen.ExternalCall)
                 m_TransitioningGameObjectPresent = true;
         }
 
-        void OnTriggerEnter(Collider other)
+        public void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Joystick1Button0)) Transition();
+        }
+
+        private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject == transitioningGameObject)
             {
@@ -60,30 +72,21 @@ namespace Gamekit3D
             }
         }
 
-        void OnTriggerExit(Collider other)
+        private void OnTriggerExit(Collider other)
         {
-            if (other.gameObject == transitioningGameObject)
-            {
-                m_TransitioningGameObjectPresent = false;
-            }
+            if (other.gameObject == transitioningGameObject) m_TransitioningGameObjectPresent = false;
         }
 
         protected void TransitionInternal()
         {
             if (requiresInventoryCheck)
-            {
                 if (!inventoryCheck.CheckInventory(inventoryController))
                     return;
-            }
 
             if (transitionType == TransitionType.SameScene)
-            {
                 GameObjectTeleporter.Teleport(transitioningGameObject, destinationTransform.transform);
-            }
             else
-            {
                 SceneController.TransitionToScene(this);
-            }
         }
 
         public void Transition()
@@ -91,14 +94,6 @@ namespace Gamekit3D
             if (m_TransitioningGameObjectPresent)
                 if (transitionWhen == TransitionWhen.ExternalCall)
                     TransitionInternal();
-        }
-        
-        public void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Joystick1Button0))
-            {
-                Transition();
-            }
         }
     }
 }

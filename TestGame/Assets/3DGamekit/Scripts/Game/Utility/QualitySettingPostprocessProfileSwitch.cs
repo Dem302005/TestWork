@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 #if UNITY_EDITOR
@@ -12,24 +11,27 @@ namespace Gamekit3D
     [ExecuteInEditMode]
     public class QualitySettingPostprocessProfileSwitch : MonoBehaviour
     {
-        [System.Serializable]
-        public class QualitySettingEntry
-        {
-            public PostProcessProfile profile;
-            public PostProcessLayer.Antialiasing usedAntiAliasing;
-            public int minimumQualitySetting;
-        }
-
         public QualitySettingEntry[] settings = new QualitySettingEntry[0];
-
-        private PostProcessVolume m_Volume;
-        private PostProcessProfile m_OriginalProfile;
-
-        private PostProcessLayer m_Layer;
         private PostProcessLayer.Antialiasing m_AntiAliasing;
 
-        private int m_PreviousQualitySetting;
+        private PostProcessLayer m_Layer;
+        private PostProcessProfile m_OriginalProfile;
         private int m_PickedSetting;
+
+        private int m_PreviousQualitySetting;
+
+        private PostProcessVolume m_Volume;
+
+        private void Update()
+        {
+            var qualitySettingLevel = QualitySettings.GetQualityLevel();
+
+            if (qualitySettingLevel != m_PreviousQualitySetting)
+            {
+                m_PreviousQualitySetting = qualitySettingLevel;
+                DoSwitch();
+            }
+        }
 
         private void OnEnable()
         {
@@ -53,54 +55,47 @@ namespace Gamekit3D
 
         private void OnDisable()
         {
-            if(m_Volume != null)
+            if (m_Volume != null)
                 m_Volume.sharedProfile = m_OriginalProfile;
         }
 
-        void DoSwitch()
+        private void DoSwitch()
         {
             FindProperEntry();
 
-            m_Volume.sharedProfile = (m_PickedSetting == -1 || settings[m_PickedSetting].profile == null)
+            m_Volume.sharedProfile = m_PickedSetting == -1 || settings[m_PickedSetting].profile == null
                 ? m_OriginalProfile
                 : settings[m_PickedSetting].profile;
 
             if (m_Layer != null)
-            {
                 m_Layer.antialiasingMode = m_PickedSetting == -1
                     ? m_AntiAliasing
                     : settings[m_PickedSetting].usedAntiAliasing;
-            }
         }
 
-        void Update()
+        private void FindProperEntry()
         {
-            int qualitySettingLevel = QualitySettings.GetQualityLevel();
+            var foundIdx = -1;
+            var highestSetting = -1;
+            var currentQualitySetting = QualitySettings.GetQualityLevel();
 
-            if (qualitySettingLevel != m_PreviousQualitySetting)
-            {
-                m_PreviousQualitySetting = qualitySettingLevel;
-                DoSwitch();
-            }
-        }
-
-        void FindProperEntry()
-        {
-            int foundIdx = -1;
-            int highestSetting = -1;
-            int currentQualitySetting = QualitySettings.GetQualityLevel();
-
-            for (int i = 0; i < settings.Length; ++i)
-            {
+            for (var i = 0; i < settings.Length; ++i)
                 if (settings[i].minimumQualitySetting <= currentQualitySetting &&
                     settings[i].minimumQualitySetting > highestSetting)
                 {
                     highestSetting = settings[i].minimumQualitySetting;
                     foundIdx = i;
                 }
-            }
 
             m_PickedSetting = foundIdx;
+        }
+
+        [Serializable]
+        public class QualitySettingEntry
+        {
+            public PostProcessProfile profile;
+            public PostProcessLayer.Antialiasing usedAntiAliasing;
+            public int minimumQualitySetting;
         }
     }
 
@@ -108,9 +103,8 @@ namespace Gamekit3D
     [CustomEditor(typeof(QualitySettingPostprocessProfileSwitch))]
     public class QualitySettingPostprocessSwitchEditor : Editor
     {
-        private QualitySettingPostprocessProfileSwitch m_Target;
-
         private int m_OpenedSettings;
+        private QualitySettingPostprocessProfileSwitch m_Target;
 
         private int[] remainingQuality;
         private string[] remainingQualityNames;
@@ -120,17 +114,13 @@ namespace Gamekit3D
             m_Target = target as QualitySettingPostprocessProfileSwitch;
             m_OpenedSettings = -1;
 
-            if(m_Target.settings != null)
-            {
-                for (int i = 0; i < m_Target.settings.Length; ++i)
-                {
+            if (m_Target.settings != null)
+                for (var i = 0; i < m_Target.settings.Length; ++i)
                     if (m_Target.settings[i].minimumQualitySetting >= QualitySettings.names.Length)
                     {
                         ArrayUtility.RemoveAt(ref m_Target.settings, i);
                         i--;
                     }
-                }
-            }
 
             GetRemainingQualitySetting();
         }
@@ -139,12 +129,12 @@ namespace Gamekit3D
         {
             if (remainingQuality.Length > 0)
             {
-                int selected = EditorGUILayout.Popup("Add Quality Settings", -1, remainingQualityNames);
+                var selected = EditorGUILayout.Popup("Add Quality Settings", -1, remainingQualityNames);
                 if (selected != -1)
                 {
                     Undo.RecordObject(target, "Added new Quality Setting in LayerCUllDistance");
 
-                    QualitySettingPostprocessProfileSwitch.QualitySettingEntry newEntry =
+                    var newEntry =
                         new QualitySettingPostprocessProfileSwitch.QualitySettingEntry();
 
                     newEntry.minimumQualitySetting = remainingQuality[selected];
@@ -158,9 +148,9 @@ namespace Gamekit3D
                 }
             }
 
-            for (int i = 0; i < m_Target.settings.Length; ++i)
+            for (var i = 0; i < m_Target.settings.Length; ++i)
             {
-                bool opened = EditorGUILayout.Foldout(m_OpenedSettings == i,
+                var opened = EditorGUILayout.Foldout(m_OpenedSettings == i,
                     "Quality : " + QualitySettings.names[m_Target.settings[i].minimumQualitySetting]);
 
                 if (opened)
@@ -175,30 +165,24 @@ namespace Gamekit3D
             }
         }
 
-        void GetRemainingQualitySetting()
+        private void GetRemainingQualitySetting()
         {
             remainingQuality = new int[QualitySettings.names.Length];
-            for (int i = 0; i < remainingQuality.Length; ++i)
+            for (var i = 0; i < remainingQuality.Length; ++i)
                 remainingQuality[i] = i;
 
-            for (int i = 0; i < m_Target.settings.Length; ++i)
-            {
+            for (var i = 0; i < m_Target.settings.Length; ++i)
                 if (remainingQuality.Contains(m_Target.settings[i].minimumQualitySetting))
-                {
                     ArrayUtility.Remove(ref remainingQuality, m_Target.settings[i].minimumQualitySetting);
-                }
-            }
 
             remainingQualityNames = new string[remainingQuality.Length];
-            for (int i = 0; i < remainingQuality.Length; ++i)
-            {
+            for (var i = 0; i < remainingQuality.Length; ++i)
                 remainingQualityNames[i] = QualitySettings.names[remainingQuality[i]];
-            }
         }
 
-        void DrawSetting(int index)
+        private void DrawSetting(int index)
         {
-            QualitySettingPostprocessProfileSwitch.QualitySettingEntry setting = m_Target.settings[index];
+            var setting = m_Target.settings[index];
 
             GUILayout.FlexibleSpace();
             if (m_Target.settings.Length > 1 && GUILayout.Button("Remove", GUILayout.Width(64)))
@@ -212,20 +196,26 @@ namespace Gamekit3D
             }
             else
             {
-                PostProcessProfile newProfile =
-                    EditorGUILayout.ObjectField("Profile", setting.profile, typeof(PostProcessProfile), false) as PostProcessProfile;
+                var newProfile =
+                    EditorGUILayout.ObjectField("Profile", setting.profile, typeof(PostProcessProfile), false) as
+                        PostProcessProfile;
 
                 if (newProfile != setting.profile)
                 {
-                    Undo.RecordObject(m_Target, "Changed profile for setting " + QualitySettings.names[m_Target.settings[index].minimumQualitySetting]);
+                    Undo.RecordObject(m_Target,
+                        "Changed profile for setting " +
+                        QualitySettings.names[m_Target.settings[index].minimumQualitySetting]);
                     setting.profile = newProfile;
                     EditorUtility.SetDirty(m_Target);
                 }
 
-                PostProcessLayer.Antialiasing antiAliasing = (PostProcessLayer.Antialiasing)EditorGUILayout.EnumPopup("Antialiasing", setting.usedAntiAliasing);
+                var antiAliasing =
+                    (PostProcessLayer.Antialiasing)EditorGUILayout.EnumPopup("Antialiasing", setting.usedAntiAliasing);
                 if (antiAliasing != setting.usedAntiAliasing)
                 {
-                    Undo.RecordObject(m_Target, "Changed antialiasing method for setting " + QualitySettings.names[m_Target.settings[index].minimumQualitySetting]);
+                    Undo.RecordObject(m_Target,
+                        "Changed antialiasing method for setting " +
+                        QualitySettings.names[m_Target.settings[index].minimumQualitySetting]);
                     setting.usedAntiAliasing = antiAliasing;
                     EditorUtility.SetDirty(m_Target);
                 }

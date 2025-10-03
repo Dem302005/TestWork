@@ -1,11 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace Gamekit3D
 {
     public class Translator : MonoBehaviour
     {
+        protected static Translator s_Instance;
+
+        public List<OriginalPhrases> phrases = new List<OriginalPhrases>();
+
+        [SerializeField] protected int m_LanguageIndex;
+
         public static Translator Instance
         {
             get
@@ -22,31 +27,18 @@ namespace Gamekit3D
             }
         }
 
-        protected static Translator s_Instance;
+        public static string CurrentLanguage => Instance.phrases[Instance.m_LanguageIndex].language;
 
-        static Translator CreateDefault ()
+        public string this[string key] => phrases[m_LanguageIndex][key];
+
+        private static Translator CreateDefault()
         {
-            Translator prefab = Resources.Load<Translator>("Translator");
-            Translator defaultInstance = Instantiate(prefab);
+            var prefab = Resources.Load<Translator>("Translator");
+            var defaultInstance = Instantiate(prefab);
             return defaultInstance;
         }
 
-        public static string CurrentLanguage
-        {
-            get { return Instance.phrases[Instance.m_LanguageIndex].language; }
-        }
-
-        public List<OriginalPhrases> phrases = new List<OriginalPhrases> ();
-
-        [SerializeField]
-        protected int m_LanguageIndex;
-
-        public string this [string key]
-        {
-            get { return phrases[m_LanguageIndex][key]; }
-        }
-
-        public static bool SetLanguage (int index)
+        public static bool SetLanguage(int index)
         {
             if (index >= Instance.phrases.Count || index < 0)
                 return false;
@@ -55,30 +47,28 @@ namespace Gamekit3D
             return true;
         }
 
-        public static bool SetLanguage (string language)
+        public static bool SetLanguage(string language)
         {
-            for (int i = 0; i < Instance.phrases.Count; i++)
-            {
+            for (var i = 0; i < Instance.phrases.Count; i++)
                 if (Instance.phrases[i].language == language)
                 {
                     Instance.m_LanguageIndex = i;
                     return true;
                 }
-            }
+
             return false;
         }
 
-        public static void SetLanguage (TranslatedPhrases phrases)
+        public static void SetLanguage(TranslatedPhrases phrases)
         {
-            for (int i = 0; i < Instance.phrases.Count; i++)
-            {
+            for (var i = 0; i < Instance.phrases.Count; i++)
                 if (Instance.phrases[i] == phrases)
                 {
                     Instance.m_LanguageIndex = i;
                     return;
                 }
-            }
-            Instance.phrases.Add (phrases);
+
+            Instance.phrases.Add(phrases);
             Instance.m_LanguageIndex = Instance.phrases.Count - 1;
         }
     }

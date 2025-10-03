@@ -1,30 +1,27 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
-using Gamekit3D;
 
 namespace Gamekit3D
 {
     [CustomEditor(typeof(TransitionPoint))]
     public class TransitionStartEditor : Editor
     {
-        SerializedProperty m_TransitioningGameObjectProp;
-        SerializedProperty m_TransitionTypeProp;
-        SerializedProperty m_NewSceneNameProp;
-        SerializedProperty m_TransitionDestinationTagProp;
-        SerializedProperty m_DestinationTransformProp;
-        SerializedProperty m_TransitionWhenProp;
-        SerializedProperty m_RequiresInventoryCheckProp;
-        SerializedProperty m_InventoryControllerProp;
-        SerializedProperty m_InventoryCheckProp;
-        SerializedProperty m_InventoryItemsProp;
-        SerializedProperty m_OnHasItemProp;
-        SerializedProperty m_OnDoesNotHaveItemProp;
+        private SerializedProperty m_DestinationTransformProp;
+        private SerializedProperty m_InventoryCheckProp;
 
-        GUIContent[] m_InventoryControllerItems = new GUIContent[0];
+        private GUIContent[] m_InventoryControllerItems = new GUIContent[0];
+        private SerializedProperty m_InventoryControllerProp;
+        private SerializedProperty m_InventoryItemsProp;
+        private SerializedProperty m_NewSceneNameProp;
+        private SerializedProperty m_OnDoesNotHaveItemProp;
+        private SerializedProperty m_OnHasItemProp;
+        private SerializedProperty m_RequiresInventoryCheckProp;
+        private SerializedProperty m_TransitionDestinationTagProp;
+        private SerializedProperty m_TransitioningGameObjectProp;
+        private SerializedProperty m_TransitionTypeProp;
+        private SerializedProperty m_TransitionWhenProp;
 
-        void OnEnable()
+        private void OnEnable()
         {
             m_TransitioningGameObjectProp = serializedObject.FindProperty("transitioningGameObject");
             m_TransitionTypeProp = serializedObject.FindProperty("transitionType");
@@ -48,7 +45,8 @@ namespace Gamekit3D
 
             EditorGUILayout.PropertyField(m_TransitionTypeProp);
             EditorGUI.indentLevel++;
-            if ((TransitionPoint.TransitionType)m_TransitionTypeProp.enumValueIndex == TransitionPoint.TransitionType.SameScene)
+            if ((TransitionPoint.TransitionType)m_TransitionTypeProp.enumValueIndex ==
+                TransitionPoint.TransitionType.SameScene)
             {
                 EditorGUILayout.PropertyField(m_DestinationTransformProp);
             }
@@ -57,6 +55,7 @@ namespace Gamekit3D
                 EditorGUILayout.PropertyField(m_NewSceneNameProp);
                 EditorGUILayout.PropertyField(m_TransitionDestinationTagProp);
             }
+
             EditorGUI.indentLevel--;
 
             EditorGUILayout.PropertyField(m_TransitionWhenProp);
@@ -68,21 +67,20 @@ namespace Gamekit3D
 
                 EditorGUI.BeginChangeCheck();
                 EditorGUILayout.PropertyField(m_InventoryControllerProp);
-                if (EditorGUI.EndChangeCheck() || (m_InventoryControllerProp.objectReferenceValue != null && m_InventoryControllerItems.Length == 0))
-                {
-                    SetupInventoryItemGUI();
-                }
+                if (EditorGUI.EndChangeCheck() || (m_InventoryControllerProp.objectReferenceValue != null &&
+                                                   m_InventoryControllerItems.Length == 0)) SetupInventoryItemGUI();
 
                 if (m_InventoryControllerProp.objectReferenceValue != null)
                 {
-                    InventoryController controller = m_InventoryControllerProp.objectReferenceValue as InventoryController;
-                    m_InventoryItemsProp.arraySize = EditorGUILayout.IntField("Inventory Items", m_InventoryItemsProp.arraySize);
+                    var controller = m_InventoryControllerProp.objectReferenceValue as InventoryController;
+                    m_InventoryItemsProp.arraySize =
+                        EditorGUILayout.IntField("Inventory Items", m_InventoryItemsProp.arraySize);
                     EditorGUI.indentLevel++;
-                    for (int i = 0; i < m_InventoryItemsProp.arraySize; i++)
+                    for (var i = 0; i < m_InventoryItemsProp.arraySize; i++)
                     {
-                        SerializedProperty elementProp = m_InventoryItemsProp.GetArrayElementAtIndex(i);
+                        var elementProp = m_InventoryItemsProp.GetArrayElementAtIndex(i);
 
-                        int itemIndex = ItemIndexFromController(controller, elementProp.stringValue);
+                        var itemIndex = ItemIndexFromController(controller, elementProp.stringValue);
                         if (itemIndex == -1)
                         {
                             EditorGUILayout.LabelField("No items found in controller");
@@ -98,11 +96,12 @@ namespace Gamekit3D
                         }
                         else
                         {
-                            itemIndex = EditorGUILayout.Popup(new GUIContent("Item " + i), itemIndex, m_InventoryControllerItems);
+                            itemIndex = EditorGUILayout.Popup(new GUIContent("Item " + i), itemIndex,
+                                m_InventoryControllerItems);
                             elementProp.stringValue = m_InventoryControllerItems[itemIndex].text;
                         }
-
                     }
+
                     EditorGUI.indentLevel--;
 
                     EditorGUILayout.PropertyField(m_OnHasItemProp);
@@ -110,9 +109,9 @@ namespace Gamekit3D
                 }
                 else
                 {
-                    for (int i = 0; i < m_InventoryItemsProp.arraySize; i++)
+                    for (var i = 0; i < m_InventoryItemsProp.arraySize; i++)
                     {
-                        SerializedProperty elementProp = m_InventoryItemsProp.GetArrayElementAtIndex(i);
+                        var elementProp = m_InventoryItemsProp.GetArrayElementAtIndex(i);
                         elementProp.stringValue = "";
                     }
                 }
@@ -123,21 +122,19 @@ namespace Gamekit3D
             serializedObject.ApplyModifiedProperties();
         }
 
-        void SetupInventoryItemGUI()
+        private void SetupInventoryItemGUI()
         {
             if (m_InventoryControllerProp.objectReferenceValue == null)
                 return;
 
-            InventoryController inventoryController = m_InventoryControllerProp.objectReferenceValue as InventoryController;
+            var inventoryController = m_InventoryControllerProp.objectReferenceValue as InventoryController;
 
             m_InventoryControllerItems = new GUIContent[inventoryController.inventoryEvents.Length];
-            for (int i = 0; i < inventoryController.inventoryEvents.Length; i++)
-            {
+            for (var i = 0; i < inventoryController.inventoryEvents.Length; i++)
                 m_InventoryControllerItems[i] = new GUIContent(inventoryController.inventoryEvents[i].key);
-            }
         }
 
-        int ItemIndexFromController(InventoryController controller, string itemName)
+        private int ItemIndexFromController(InventoryController controller, string itemName)
         {
             if (controller.inventoryEvents.Length == 0)
                 return -1;
@@ -145,11 +142,9 @@ namespace Gamekit3D
             if (string.IsNullOrEmpty(itemName))
                 return -2;
 
-            for (int i = 0; i < controller.inventoryEvents.Length; i++)
-            {
+            for (var i = 0; i < controller.inventoryEvents.Length; i++)
                 if (controller.inventoryEvents[i].key == itemName)
                     return i;
-            }
             return -3;
         }
     }

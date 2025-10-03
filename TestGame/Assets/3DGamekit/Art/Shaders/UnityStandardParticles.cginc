@@ -57,12 +57,11 @@ struct VertexOutput
     float4 grabPassPosition : TEXCOORD4;
     #endif
     UNITY_VERTEX_OUTPUT_STEREO
-
 };
 
 fixed4 readTexture(sampler2D tex, Input IN)
 {
-    fixed4 color = tex2D (tex, IN.texcoord);
+    fixed4 color = tex2D(tex, IN.texcoord);
     #ifdef _FLIPBOOK_BLENDING
     fixed4 color2 = tex2D(tex, IN.texcoord2AndBlend.xy);
     color = lerp(color, color2, IN.texcoord2AndBlend.z);
@@ -72,7 +71,7 @@ fixed4 readTexture(sampler2D tex, Input IN)
 
 fixed4 readTexture(sampler2D tex, VertexOutput IN)
 {
-    fixed4 color = tex2D (tex, IN.texcoord);
+    fixed4 color = tex2D(tex, IN.texcoord);
     #ifdef _FLIPBOOK_BLENDING
     fixed4 color2 = tex2D(tex, IN.texcoord2AndBlend.xy);
     color = lerp(color, color2, IN.texcoord2AndBlend.z);
@@ -225,7 +224,7 @@ half3 HSVtoRGB(half3 arg1)
 #define fragDistortion(i)
 #endif
 
-void vert (inout appdata_particles v, out Input o)
+void vert(inout appdata_particles v, out Input o)
 {
     UNITY_INITIALIZE_OUTPUT(Input, o);
     float4 clipPosition = UnityObjectToClipPos(v.vertex);
@@ -235,9 +234,9 @@ void vert (inout appdata_particles v, out Input o)
     vertDistortion(o);
 }
 
-void surf (Input IN, inout SurfaceOutputStandard o)
+void surf(Input IN, inout SurfaceOutputStandard o)
 {
-    half4 albedo = readTexture (_MainTex, IN);
+    half4 albedo = readTexture(_MainTex, IN);
     albedo *= _Color;
 
     fragColorMode(IN);
@@ -253,7 +252,7 @@ void surf (Input IN, inout SurfaceOutputStandard o)
     #if defined(_NORMALMAP)
     float3 normal = normalize (UnpackScaleNormal (readTexture (_BumpMap, IN), _BumpScale));
     #else
-    float3 normal = float3(0,0,1);
+    float3 normal = float3(0, 0, 1);
     #endif
 
     #if defined(_EMISSION)
@@ -288,7 +287,7 @@ void surf (Input IN, inout SurfaceOutputStandard o)
 }
 
 
-void vertParticleUnlit (appdata_particles v, out VertexOutput o)
+void vertParticleUnlit(appdata_particles v, out VertexOutput o)
 {
     UNITY_SETUP_INSTANCE_ID(v);
     UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
@@ -303,9 +302,9 @@ void vertParticleUnlit (appdata_particles v, out VertexOutput o)
     UNITY_TRANSFER_FOG(o, o.vertex);
 }
 
-half4 fragParticleUnlit (VertexOutput IN) : SV_Target
+half4 fragParticleUnlit(VertexOutput IN) : SV_Target
 {
-    half4 albedo = readTexture (_MainTex, IN);
+    half4 albedo = readTexture(_MainTex, IN);
     albedo *= _Color;
 
     fragColorMode(IN);
@@ -315,7 +314,7 @@ half4 fragParticleUnlit (VertexOutput IN) : SV_Target
     #if defined(_NORMALMAP)
     float3 normal = normalize (UnpackScaleNormal (readTexture (_BumpMap, IN), _BumpScale));
     #else
-    float3 normal = float3(0,0,1);
+    float3 normal = float3(0, 0, 1);
     #endif
 
     #if defined(_EMISSION)

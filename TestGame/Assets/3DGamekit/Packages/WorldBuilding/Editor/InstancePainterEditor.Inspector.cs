@@ -1,23 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using UnityEditor;
 using UnityEngine;
-using UnityEditor;
-using UnityEngine.Rendering;
-
 
 namespace Gamekit3D.WorldBuilding
 {
-
     public partial class InstancePainterEditor : Editor
     {
         [MenuItem("GameObject/Create Other/Instance Painter")]
-        static void CreateInstancePainter()
+        private static void CreateInstancePainter()
         {
             var g = new GameObject("Instance Painter", typeof(InstancePainter));
             Selection.activeGameObject = g;
         }
 
-        void RefreshPaletteImages(InstancePainter ip)
+        private void RefreshPaletteImages(InstancePainter ip)
         {
             if (palleteImages == null || palleteImages.Length != ip.prefabPallete.Length)
             {
@@ -33,17 +28,23 @@ namespace Gamekit3D.WorldBuilding
 
             if (ip.rootTransform == null)
             {
-                EditorGUILayout.HelpBox("You must assign the root transform for new painted instances.", MessageType.Error);
-                ip.rootTransform = (Transform)EditorGUILayout.ObjectField("Root Transform", ip.rootTransform, typeof(Transform), true);
+                EditorGUILayout.HelpBox("You must assign the root transform for new painted instances.",
+                    MessageType.Error);
+                ip.rootTransform =
+                    (Transform)EditorGUILayout.ObjectField("Root Transform", ip.rootTransform, typeof(Transform), true);
                 return;
             }
-            EditorGUILayout.HelpBox("Stamp: Left Click\nErase: Ctrl + Left Click\nRotate: Shift + Scroll\nBrush Size: Alt + Scroll or [ and ]\nDensity: - =\nScale: . /\nSpace: Randomize", MessageType.Info);
+
+            EditorGUILayout.HelpBox(
+                "Stamp: Left Click\nErase: Ctrl + Left Click\nRotate: Shift + Scroll\nBrush Size: Alt + Scroll or [ and ]\nDensity: - =\nScale: . /\nSpace: Randomize",
+                MessageType.Info);
             base.OnInspectorGUI();
             if (ip.prefabPallete == null || ip.prefabPallete.Length == 0)
             {
                 EditorGUILayout.HelpBox("You must assign prefabs to the Prefab Pallete array.", MessageType.Error);
                 return;
             }
+
             GUILayout.Space(16);
 
             using (new EditorGUILayout.HorizontalScope())
@@ -51,11 +52,13 @@ namespace Gamekit3D.WorldBuilding
                 EditorGUILayout.PrefixLabel("Align to Normal");
                 ip.alignToNormal = GUILayout.Toggle(ip.alignToNormal, GUIContent.none);
             }
+
             using (new EditorGUILayout.HorizontalScope())
             {
                 EditorGUILayout.PrefixLabel("Follow Surface");
                 ip.followOnSurface = GUILayout.Toggle(ip.followOnSurface, GUIContent.none);
             }
+
             using (new EditorGUILayout.HorizontalScope())
             {
                 EditorGUILayout.PrefixLabel("Randomize each Stamp");
@@ -68,8 +71,9 @@ namespace Gamekit3D.WorldBuilding
                 RefreshPaletteImages(ip);
                 var tileSize = 96;
                 var xCount = Mathf.FloorToInt(Screen.width / tileSize + 1);
-                var gridHeight = GUILayout.Height(palleteImages.Length / (xCount) * tileSize);
-                var newIndex = GUILayout.SelectionGrid(ip.selectedPrefabIndex, palleteImages, xCount, EditorStyles.miniButton, gridHeight);
+                var gridHeight = GUILayout.Height(palleteImages.Length / xCount * tileSize);
+                var newIndex = GUILayout.SelectionGrid(ip.selectedPrefabIndex, palleteImages, xCount,
+                    EditorStyles.miniButton, gridHeight);
                 if (newIndex != ip.selectedPrefabIndex)
                 {
                     ip.selectedPrefabIndex = newIndex;
@@ -77,25 +81,24 @@ namespace Gamekit3D.WorldBuilding
                     if (variationsEditor != null)
                         DestroyImmediate(variationsEditor);
                     if (variations != null)
-                        variationsEditor = Editor.CreateEditor(variations);
+                        variationsEditor = CreateEditor(variations);
                     CreateNewStamp();
                 }
+
                 GUILayout.Space(16);
                 if (variationsEditor == null)
                 {
                     if (GUILayout.Button("Add Variations"))
                     {
                         variations = ip.SelectedPrefab.AddComponent<Variations>();
-                        variationsEditor = Editor.CreateEditor(variations);
+                        variationsEditor = CreateEditor(variations);
                     }
                 }
                 else
                 {
                     variationsEditor.OnInspectorGUI();
                 }
-
             }
         }
-
     }
 }

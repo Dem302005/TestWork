@@ -1,8 +1,9 @@
+using System;
 using UnityEngine;
 
 namespace Gamekit3D.WorldBuilding
 {
-    [System.Serializable]
+    [Serializable]
     public class SmartParts
     {
         public Transform topLeft;
@@ -15,6 +16,7 @@ namespace Gamekit3D.WorldBuilding
         public Transform bottom;
         public Transform bottomRight;
         public Transform[] alternateCenters = new Transform[0];
+
         public void SetActive(bool active)
         {
             topLeft.gameObject.SetActive(active);
@@ -39,7 +41,7 @@ namespace Gamekit3D.WorldBuilding
         public SmartParts parts;
         public Transform generated;
 
-        void Reset()
+        private void Reset()
         {
             parts = new SmartParts();
             parts.topLeft = transform.Find("TL");
@@ -51,10 +53,7 @@ namespace Gamekit3D.WorldBuilding
             parts.bottomLeft = transform.Find("BL");
             parts.bottom = transform.Find("B");
             parts.bottomRight = transform.Find("BR");
-            if (parts.center != null)
-            {
-                parts.alternateCenters = new[] { parts.center };
-            }
+            if (parts.center != null) parts.alternateCenters = new[] { parts.center };
             generated = transform.Find("Generated");
             if (generated == null)
             {
@@ -63,11 +62,11 @@ namespace Gamekit3D.WorldBuilding
                 generated.localPosition = Vector3.zero;
                 generated.rotation = Quaternion.identity;
             }
+
             var rb = parts.center.gameObject.GetLocalBounds();
             bounds = new Bounds(rb.center, rb.size);
             bounds.center += parts.center.localPosition;
             originBounds = bounds;
         }
-
     }
 }

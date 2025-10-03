@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 namespace Gamekit3D.GameCommands
 {
-
     [RequireComponent(typeof(Collider))]
     public class Teleporter : MonoBehaviour
     {
-        new public Collider collider;
+        public new Collider collider;
         public LayerMask layers;
 
         public GameObject enterEffect;
@@ -16,9 +14,26 @@ namespace Gamekit3D.GameCommands
         public Transform destinationTransform;
         public float delayTime;
 
-        WaitForSeconds delay;
+        private WaitForSeconds delay;
 
-        IEnumerator Activate(GameObject teleportee)
+        private void Awake()
+        {
+            delay = new WaitForSeconds(delayTime);
+        }
+
+        private void Reset()
+        {
+            collider = GetComponent<Collider>();
+            collider.isTrigger = true;
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (IsTeleportable(other))
+                StartCoroutine(Activate(other.gameObject));
+        }
+
+        private IEnumerator Activate(GameObject teleportee)
         {
             if (destinationTransform)
             {
@@ -32,29 +47,9 @@ namespace Gamekit3D.GameCommands
             }
         }
 
-        void Reset()
+        private bool IsTeleportable(Collider other)
         {
-            collider = GetComponent<Collider>();
-            collider.isTrigger = true;
+            return 0 != (layers.value & (1 << other.gameObject.layer));
         }
-
-        void Awake()
-        {
-            delay = new WaitForSeconds(delayTime);
-        }
-
-        void OnTriggerEnter(Collider other)
-        {
-            if (IsTeleportable(other))
-                StartCoroutine(Activate(other.gameObject));
-        }
-
-        bool IsTeleportable(Collider other)
-        {
-            return 0 != (layers.value & 1 << other.gameObject.layer);
-        }
-
     }
-
-
 }

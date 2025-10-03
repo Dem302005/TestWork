@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Gamekit3D
 {
@@ -9,7 +7,7 @@ namespace Gamekit3D
     public class DamageZone : MonoBehaviour
     {
         public int damageAmount = 1;
-        public bool stopCamera = false;
+        public bool stopCamera;
 
         private void Reset()
         {
@@ -23,7 +21,7 @@ namespace Gamekit3D
             if (d == null)
                 return;
 
-            var msg = new Damageable.DamageMessage()
+            var msg = new Damageable.DamageMessage
             {
                 amount = damageAmount,
                 damager = this,
@@ -33,5 +31,5 @@ namespace Gamekit3D
 
             d.ApplyDamage(msg);
         }
-    } 
+    }
 }

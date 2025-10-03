@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Gamekit3D.SkyboxVolume
 {
@@ -8,21 +6,23 @@ namespace Gamekit3D.SkyboxVolume
     public class Skybox3D : MonoBehaviour
     {
         [Tooltip("The main camera in the scene. If null, Camera.main is used.")]
-        new public Camera camera;
+        public new Camera camera;
+
         [Tooltip("A smaller value here increases the scale of the skybox.")]
         public float movementCoefficient = 0.01f;
 
-        Camera skyCam;
-        Transform cameraTransform;
+        private Transform cameraTransform;
 
-        void Start()
+        private Camera skyCam;
+
+        private void Start()
         {
             camera.clearFlags = CameraClearFlags.Depth;
             cameraTransform = camera.transform;
             skyCam = GetComponent<Camera>();
         }
 
-        void OnPreRender()
+        private void OnPreRender()
         {
             if (camera != null)
             {

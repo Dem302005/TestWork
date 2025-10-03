@@ -1,10 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace Gamekit3D
 {
-    public class ObjectPooler<T> where T : UnityEngine.MonoBehaviour, IPooled<T>
+    public class ObjectPooler<T> where T : MonoBehaviour, IPooled<T>
     {
         public T[] instances;
 
@@ -15,7 +14,7 @@ namespace Gamekit3D
             instances = new T[count];
             m_FreeIdx = new Stack<int>(count);
 
-            for (int i = 0; i < count; ++i)
+            for (var i = 0; i < count; ++i)
             {
                 instances[i] = Object.Instantiate(prefab);
                 instances[i].gameObject.SetActive(false);
@@ -28,7 +27,7 @@ namespace Gamekit3D
 
         public T GetNew()
         {
-            int idx = m_FreeIdx.Pop();
+            var idx = m_FreeIdx.Pop();
             instances[idx].gameObject.SetActive(true);
 
             return instances[idx];
@@ -45,5 +44,5 @@ namespace Gamekit3D
     {
         int poolID { get; set; }
         ObjectPooler<T> pool { get; set; }
-    } 
+    }
 }

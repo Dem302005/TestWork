@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Gamekit3D
 {
@@ -10,5 +8,5 @@ namespace Gamekit3D
         {
             animator.GetComponent<PlayerController>().Respawn();
         }
-    } 
+    }
 }

@@ -1,12 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Gamekit3D
 {
     public class SpitterSMBShoot : SceneLinkedSMB<SpitterBehaviour>
     {
-        static int s_IdleStateHash = Animator.StringToHash("Idle");
+        private static readonly int s_IdleStateHash = Animator.StringToHash("Idle");
         protected Vector3 m_AttackPosition;
 
         public override void OnSLStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -23,7 +21,7 @@ namespace Gamekit3D
             m_MonoBehaviour.controller.SetFollowNavmeshAgent(false);
 
             m_MonoBehaviour.RememberTargetPosition();
-            Vector3 toTarget = m_MonoBehaviour.target.transform.position - m_MonoBehaviour.transform.position;
+            var toTarget = m_MonoBehaviour.target.transform.position - m_MonoBehaviour.transform.position;
             toTarget.y = 0;
 
             m_MonoBehaviour.transform.forward = toTarget.normalized;

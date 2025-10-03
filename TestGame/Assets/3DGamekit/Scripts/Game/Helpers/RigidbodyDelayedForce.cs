@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Gamekit3D
 {
@@ -10,15 +8,14 @@ namespace Gamekit3D
 
         private void Start()
         {
-            Rigidbody[] rigidbodies = gameObject.GetComponentsInChildren<Rigidbody>();
+            var rigidbodies = gameObject.GetComponentsInChildren<Rigidbody>();
 
-            for (int i = 0; i < rigidbodies.Length; ++i)
+            for (var i = 0; i < rigidbodies.Length; ++i)
             {
                 rigidbodies[i].maxAngularVelocity = 45;
                 rigidbodies[i].angularVelocity = transform.right * -45.0f;
                 rigidbodies[i].velocity = forceToAdd;
-
             }
         }
-    } 
+    }
 }

@@ -5,19 +5,19 @@ namespace Gamekit3D.GameCommands
     [RequireComponent(typeof(Collider))]
     public class Collectable : MonoBehaviour
     {
-        new public Collider collider;
+        public new Collider collider;
         public LayerMask layers;
         public GameObject collectEffect;
         public AudioClip onCollectAudio;
-        public bool disableOnCollect = false;
+        public bool disableOnCollect;
 
-        void Reset()
+        private void Reset()
         {
             collider = GetComponent<Collider>();
             collider.isTrigger = true;
         }
 
-        void OnTriggerEnter(Collider other)
+        private void OnTriggerEnter(Collider other)
         {
             if (CanCollect(other))
                 Collect(other);
@@ -31,6 +31,7 @@ namespace Gamekit3D.GameCommands
                 var audio = GetComponent<AudioSource>();
                 if (audio) audio.PlayOneShot(onCollectAudio);
             }
+
             var collector = other.GetComponent<Collector>();
             if (collector)
                 collector.OnCollect(this);
@@ -38,12 +39,9 @@ namespace Gamekit3D.GameCommands
                 gameObject.SetActive(false);
         }
 
-        bool CanCollect(Collider other)
+        private bool CanCollect(Collider other)
         {
-            return 0 != (layers.value & 1 << other.gameObject.layer);
+            return 0 != (layers.value & (1 << other.gameObject.layer));
         }
-
     }
-
-
 }

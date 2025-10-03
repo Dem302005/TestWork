@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Gamekit3D
 {
@@ -8,17 +6,17 @@ namespace Gamekit3D
     public class SunSkybox : MonoBehaviour
     {
         public Material skyboxMaterial;
-        int sunDirId, sunColorId;
-        Light sun;
+        private Light sun;
+        private int sunDirId, sunColorId;
 
-        void Awake()
+        private void Awake()
         {
             sun = GetComponent<Light>();
             sunDirId = Shader.PropertyToID("_SunDirection");
             sunColorId = Shader.PropertyToID("_SunColor");
         }
 
-        void Update()
+        private void Update()
         {
             if (skyboxMaterial)
             {

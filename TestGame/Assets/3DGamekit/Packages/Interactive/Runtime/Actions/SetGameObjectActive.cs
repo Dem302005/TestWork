@@ -1,9 +1,7 @@
 using UnityEngine;
 
-
 namespace Gamekit3D.GameCommands
 {
-
     public class SetGameObjectActive : GameCommandHandler
     {
         public GameObject[] targets;

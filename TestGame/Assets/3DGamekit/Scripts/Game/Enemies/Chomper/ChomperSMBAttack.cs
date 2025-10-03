@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Gamekit3D
 {
@@ -15,7 +13,7 @@ namespace Gamekit3D
             m_MonoBehaviour.controller.SetFollowNavmeshAgent(false);
 
             m_AttackPosition = m_MonoBehaviour.target.transform.position;
-            Vector3 toTarget = m_AttackPosition - m_MonoBehaviour.transform.position;
+            var toTarget = m_AttackPosition - m_MonoBehaviour.transform.position;
             toTarget.y = 0;
 
             m_MonoBehaviour.transform.forward = toTarget.normalized;

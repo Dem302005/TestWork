@@ -1,15 +1,12 @@
-using UnityEngine;
 using UnityEditor;
-using System.Collections.Generic;
+using UnityEngine;
 
 namespace Gamekit3D.GameCommands
 {
-
     [CustomEditor(typeof(SimpleTranslator), true)]
     public class SimpleTranslatorEditor : SimpleTransformerEditor
     {
-
-        void OnSceneGUI()
+        private void OnSceneGUI()
         {
             var t = target as SimpleTranslator;
             var start = t.transform.TransformPoint(t.start);
@@ -27,11 +24,10 @@ namespace Gamekit3D.GameCommands
                     t.end = t.transform.InverseTransformPoint(end);
                 }
             }
+
             Handles.color = Color.yellow;
             Handles.DrawDottedLine(start, end, 5);
             Handles.Label(Vector3.Lerp(start, end, 0.5f), "Distance:" + (end - start).magnitude);
         }
-
     }
-
 }

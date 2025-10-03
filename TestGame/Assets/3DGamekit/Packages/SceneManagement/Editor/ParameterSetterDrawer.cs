@@ -8,16 +8,16 @@ namespace Gamekit3D
     [CustomPropertyDrawer(typeof(CharacterStateSetter.ParameterSetter))]
     public class ParameterSetterDrawer : PropertyDrawer
     {
-        SerializedProperty m_AnimatorProp;
-        SerializedProperty m_ParameterNameProp;
-        SerializedProperty m_ParameterTypeProp;
-        SerializedProperty m_BoolValueProp;
-        SerializedProperty m_FloatValueProp;
-        SerializedProperty m_IntValueProp;
-        bool m_SetupCalled;
-        string[] m_ParameterNames;
-        CharacterStateSetter.ParameterSetter.ParameterType[] m_ParameterTypes;
-        int m_ParameterNameIndex;
+        private SerializedProperty m_AnimatorProp;
+        private SerializedProperty m_BoolValueProp;
+        private SerializedProperty m_FloatValueProp;
+        private SerializedProperty m_IntValueProp;
+        private int m_ParameterNameIndex;
+        private SerializedProperty m_ParameterNameProp;
+        private string[] m_ParameterNames;
+        private SerializedProperty m_ParameterTypeProp;
+        private CharacterStateSetter.ParameterSetter.ParameterType[] m_ParameterTypes;
+        private bool m_SetupCalled;
 
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
@@ -61,7 +61,7 @@ namespace Gamekit3D
             }
         }
 
-        void ParameterSetterSetup(SerializedProperty property)
+        private void ParameterSetterSetup(SerializedProperty property)
         {
             m_SetupCalled = true;
 
@@ -78,7 +78,7 @@ namespace Gamekit3D
                 return;
             }
 
-            Animator animator = m_AnimatorProp.objectReferenceValue as Animator;
+            var animator = m_AnimatorProp.objectReferenceValue as Animator;
 
             if (animator.runtimeAnimatorController == null)
             {
@@ -86,14 +86,14 @@ namespace Gamekit3D
                 return;
             }
 
-            AnimatorController animatorController = animator.runtimeAnimatorController as AnimatorController;
+            var animatorController = animator.runtimeAnimatorController as AnimatorController;
 
-            AnimatorControllerParameter[] parameters = animatorController.parameters;
+            var parameters = animatorController.parameters;
 
             m_ParameterNames = new string[parameters.Length];
             m_ParameterTypes = new CharacterStateSetter.ParameterSetter.ParameterType[parameters.Length];
 
-            for (int i = 0; i < m_ParameterNames.Length; i++)
+            for (var i = 0; i < m_ParameterNames.Length; i++)
             {
                 m_ParameterNames[i] = parameters[i].name;
 
@@ -116,14 +116,12 @@ namespace Gamekit3D
                 }
             }
 
-            for (int i = 0; i < m_ParameterNames.Length; i++)
-            {
+            for (var i = 0; i < m_ParameterNames.Length; i++)
                 if (m_ParameterNames[i] == m_ParameterNameProp.stringValue)
                 {
                     m_ParameterNameIndex = i;
                     m_ParameterTypeProp.enumValueIndex = (int)m_ParameterTypes[i];
                 }
-            }
         }
     }
 }

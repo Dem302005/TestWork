@@ -1,15 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Gamekit3D
 {
     public class AudioPlayerOnEnable : MonoBehaviour
     {
         public RandomAudioPlayer player;
-        public bool stopOnDisable = false;
+        public bool stopOnDisable;
 
-        void OnEnable()
+        private void OnEnable()
         {
             player.PlayRandomClip();
         }
@@ -19,5 +17,5 @@ namespace Gamekit3D
             if (stopOnDisable)
                 player.audioSource.Stop();
         }
-    } 
+    }
 }

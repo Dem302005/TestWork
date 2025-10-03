@@ -1,4 +1,3 @@
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -7,28 +6,25 @@ namespace Gamekit3D
     [ExecuteInEditMode]
     public class CopyShadowMap : MonoBehaviour
     {
-        CommandBuffer cb = null;
+        private CommandBuffer cb;
 
-        void OnEnable()
+        private void OnEnable()
         {
             var light = GetComponent<Light>();
             if (light)
             {
                 cb = new CommandBuffer();
                 cb.name = "CopyShadowMap";
-                cb.SetGlobalTexture("_DirectionalShadowMask", new RenderTargetIdentifier(BuiltinRenderTextureType.CurrentActive));
-                light.AddCommandBuffer(UnityEngine.Rendering.LightEvent.AfterScreenspaceMask, cb);
+                cb.SetGlobalTexture("_DirectionalShadowMask",
+                    new RenderTargetIdentifier(BuiltinRenderTextureType.CurrentActive));
+                light.AddCommandBuffer(LightEvent.AfterScreenspaceMask, cb);
             }
         }
 
-        void OnDisable()
+        private void OnDisable()
         {
             var light = GetComponent<Light>();
-            if (light)
-            {
-                light.RemoveCommandBuffer(UnityEngine.Rendering.LightEvent.AfterScreenspaceMask, cb);
-            }
+            if (light) light.RemoveCommandBuffer(LightEvent.AfterScreenspaceMask, cb);
         }
-
     }
 }
