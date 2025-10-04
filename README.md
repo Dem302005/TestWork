@@ -44,4 +44,4 @@ To successfully complete the gameplay scene, you must perform the following acti
 
 ## 🖼️ Additional Materials
 
-* **Link to Video Showcase:** **[Место для вашей ссылки на видео]**
+* **Link to Video Showcase:** **https://drive.google.com/file/d/1Mbu70_oiKxOIkD_XMHEk_tP_N_8Od5K0/view?usp=sharing**
